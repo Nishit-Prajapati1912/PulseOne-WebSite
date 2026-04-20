@@ -1,0 +1,483 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PulseOne – Complete AI-Powered Hospital Management System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; }
+
+  /* ══ NAVBAR ══ */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 100px; background: #fff;
+    border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: #1a1a1a; }
+  .nav-logo span { color: #4caf7d; }
+  .nav-logo-icon { width: 32px; height: 32px; background: #4caf7d; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-icon svg { width: 18px; height: 18px; fill: #fff; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { text-decoration: none; color: #444; font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: #4caf7d; }
+  .nav-btn { background: #4caf7d; color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .nav-btn:hover { background: #3d9e6e; }
+
+  /* ══ HERO ══ */
+  .hero-section { position: relative; overflow: hidden; }
+  .hero-video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .hero-overlay  { position: absolute; inset: 0; background: rgba(0,0,0,0.52); z-index: 1; }
+  .hero-content-wrap {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: flex-start;
+    max-width: 1200px; margin: 0 auto; padding: 110px 50px 120px;
+  }
+  .hero-left { flex: 0 0 auto; max-width: 600px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.32);
+    color: #a8e6c4; font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 20px; margin-bottom: 22px;
+  }
+  .hero-badge::before { content: '●'; color: #4caf7d; font-size: 8px; }
+  .hero-title    { font-size: 52px; font-weight: 800; line-height: 1.12; color: #fff; margin-bottom: 20px; }
+  .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.78); line-height: 1.75; margin-bottom: 36px; max-width: 480px; }
+  .hero-buttons  { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary  { background: #4caf7d; color: #fff; padding: 13px 28px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: #3d9e6e; }
+  .btn-outline  { background: transparent; color: #fff; padding: 13px 28px; border-radius: 8px; border: 2px solid rgba(255,255,255,0.5); font-size: 14px; font-weight: 600; cursor: pointer; }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+  /* ══ SHARED ══ */
+  .section-wrap { max-width: 1500px; margin: 0 auto; }
+  .section-title { font-size: 32px; font-weight: 800; color: #0d1f12; margin-bottom: 10px; text-align: center; }
+  .section-sub   { font-size: 14px; color: #777; line-height: 1.7; text-align: center; max-width: 500px; margin: 0 auto 48px; }
+
+  /* ══ ECOSYSTEM ══ */
+  .ecosystem { background: #fff; padding: 80px 100px; }
+  .eco-grid  { display: grid; grid-template-columns: repeat(5,1fr); gap: 18px; }
+  .eco-row2  { display: grid; grid-template-columns: repeat(5,1fr); gap: 18px; margin-top: 18px; }
+  .eco-card {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 24px 14px; border: 1.5px solid #0ff4e4; border-radius: 14px; cursor: pointer;
+    background:  #fff; transition: box-shadow .2s, transform .2s; text-align: center;
+  }
+  .eco-card:hover { box-shadow: 0 6px 24px rgba(76,175,125,0.16); transform: translateY(-3px); }
+  .icon-wrap { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .icon-wrap.green  { background: #e8f5ee; }
+  .icon-wrap.blue   { background: #e8f0fe; }
+  .icon-wrap.orange { background: #fff3e0; }
+  .icon-wrap.red    { background: #fde8e8; }
+  .icon-wrap.purple { background: #f3e8fd; }
+  .icon-wrap.teal   { background: #e0f7f4; }
+  .card-label { font-size: 18px; font-weight: 600; color: #1a1a1a; }
+
+  /* ══ EMERGENCY ══ */
+  .emergency { background: #f9fafb; padding: 80px 100px; }
+  .two-col   { display: flex; align-items: center; gap: 80px; }
+  .two-col .left-media  { flex: 1; border-radius: 18px; overflow: hidden; max-width: 470px; flex-shrink: 0; }
+  .two-col .right-media { flex: 1; border-radius: 18px; overflow: hidden; max-width: 470px; flex-shrink: 0; }
+  .two-col .left-media  img,
+  .two-col .right-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .emergency .left-media { height: 460px; background: #ddd; }
+
+  .emergency-content { flex: 1; padding-right: 20px; }
+  .emergency-content h2 { font-size: 32px; font-weight: 800; color: #0d1f12; line-height: 1.2; margin-bottom: 14px; }
+  .emergency-content h2 span { color: #e05c2e; }
+  .emergency-content > p { font-size: 14px; color: #666; line-height: 1.75; margin-bottom: 28px; }
+  .triage-list { display: flex; flex-direction: column; gap: 16px; }
+  .triage-item { display: flex; align-items: flex-start; gap: 14px; }
+  .triage-badge { min-width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .triage-badge.l1 { background: #4caf7d; }
+  .triage-badge.l2 { background: #f5a623; }
+  .triage-badge.l3 { background: #e05c2e; }
+  .triage-item-text strong { display: block; font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+  .triage-item-text span   { font-size: 13px; color: #888; }
+
+  /* ══ CLINICAL BRAIN ══ */
+  .clinical { background: #fff; padding: 80px 100px; }
+  .clinical-text { flex: 1; padding-right: 20px; }
+  .clinical-text h2 { font-size: 32px; font-weight: 800; color: #0d1f12; margin-bottom: 12px; }
+  .clinical-text > p { font-size: 14px; color: #666; line-height: 1.75; margin-bottom: 26px; }
+  .clinical-cards { display: flex; flex-direction: column; gap: 16px; }
+  .clinical-card { border-radius: 14px; padding: 20px 22px; background: #f9fafb; }
+  .clinical-card.green-bg { background: #1e3a2a; }
+  .clinical-card h4 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .clinical-card.green-bg h4 { color: #fff; }
+  .clinical-card p { font-size: 13px; color: #666; line-height: 1.65; }
+  .clinical-card.green-bg p { color: #a8d5b8; }
+  .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .pill { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.15); color: #cde8d5; border: 1px solid rgba(255,255,255,0.2); }
+  .decision-card { background: #fff; border: 1.5px solid #ebebeb; border-radius: 14px; padding: 20px 22px; }
+  .decision-card .icon-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .decision-card .icon-row span { font-size: 22px; }
+  .decision-card .icon-row strong { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .decision-card p { font-size: 13px; color: #777; line-height: 1.65; }
+  .allergy-chip { display: inline-flex; align-items: center; gap: 6px; background: #fff3e0; color: #d4700a; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-top: 12px; }
+  .allergy-chip::before { content: '⚠'; }
+  .clinical .right-media { height: 420px; background: #ddd; padding-left: 20px; }
+
+  /* ══ INFRA ══ */
+  .infra { background: #1a2d22; padding: 100px 100px; }
+  .infra .section-title { color: #fff; }
+  .infra .section-sub   { color: #8ab59a; }
+  .infra-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 42px; }
+  .infra-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 34px; padding: 38px 22px; }
+  .infra-icon { font-size: 48px; margin-bottom: 44px; }
+  .infra-card h4 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .infra-card p  { font-size: 13px; color: #8ab59a; line-height: 1.65; }
+
+  /* ══ POCKET ══ */
+  .pocket { background: #f9fafb; padding: 100px 200px; }
+  .app-row { display: flex; gap: 58px; justify-content: center; flex-wrap: wrap; }
+  .app-card { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .phone-mockup { width: 200px; height: 325px; border-radius: 22px; overflow: hidden; background: #ddd; box-shadow: 0 10px 30px rgba(0,0,0,0.14); position: relative; }
+  .phone-mockup img { width: 100%; height: 100%; object-fit: cover; }
+  .phone-mockup::before { content: ''; position: absolute; inset: 0; border-radius: 22px; border: 3px solid rgba(255,255,255,0.25); pointer-events: none; }
+  .app-label { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+  .app-desc  { font-size: 12px; color: #888; text-align: center; max-width: 120px; line-height: 1.5; }
+  .phone-mockup.doc     { background: linear-gradient(160deg,#1e3a2a,#2d5a3e); }
+  .phone-mockup.patient { background: linear-gradient(160deg,#1a2840,#2c4a6e); }
+  .phone-mockup.nurse   { background: linear-gradient(160deg,#3a1e30,#5a2e4a); }
+  .phone-mockup.admin   { background: linear-gradient(160deg,#1e2d3a,#2e4a5a); }
+
+  /* ══ STATS ══ */
+  .stats { background: #fff; padding: 72px 100px; }
+  .stats-row { display: flex; max-width: 900px; margin: 0 auto; }
+  .stat-box { flex: 1; text-align: center; padding: 40px 20px; border-right: 1px solid #eee; }
+  .stat-box:last-child { border-right: none; }
+  .stat-num { font-size: 78px; font-weight: 1200; line-height: 1; margin-bottom: 10px; }
+  .stat-num.green  { color: #4caf7d; }
+  .stat-num.orange { color: #f5a623; }
+  .stat-num.blue   { color: #2196f3; }
+  .stat-box h4 { font-size: 23px; font-weight: 900; color: #1a1a1a; margin-bottom: 9px; text-transform: uppercase; letter-spacing: 0.6px; }
+  .stat-box p  { font-size: 13px; color: #888; line-height: 1.65; max-width: 180px; margin: 0 auto; }
+
+  /* ══ EMOTIONAL ══ */
+  .emotional { background: #f9fafb; padding: 80px 100px; }
+  .emotional-text { flex: 1; padding-right: 20px; }
+  .emotional-text h2 { font-size: 32px; font-weight: 800; color: #0d1f12; margin-bottom: 16px; line-height: 1.2; }
+  .emotional-text h2 span { color: #4caf7d; }
+  .emotional-text > p { font-size: 14px; color: #666; line-height: 1.75; margin-bottom: 24px; }
+  .positive-chip { display: inline-flex; align-items: center; gap: 8px; background: #e8f5ee; color: #2d8a56; padding: 22px 18px; border-radius: 12px; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .positive-chip-sub { font-size: 13px; color: #666; }
+  .emotional .right-media { height: 340px; background: #ddd; padding-left: 50px; }
+
+  /* ══ JOURNEY ══ */
+  .journey { background: #fff; padding: 80px 100px; }
+  .journey-steps { display: flex; max-width: 1060px; margin: 0 auto; position: relative; }
+  .journey-steps::before { content: ''; position: absolute; top: 27px; left: 8%; right: 8%; height: 2px; background: #e0e0e0; z-index: 0; }
+  .journey-step { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 22px; z-index: 1; }
+  .step-circle { width: 54px; height: 54px; border-radius: 50%; border: 3px solid #e0e0e0; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px; z-index: 2; }
+  .step-circle.active { border-color: #4caf7d; background: #e8f5ee; }
+  .journey-step h4 { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+  .journey-step p  { font-size: 12px; color: #888; line-height: 1.65; }
+
+  /* ══ CTA ══ */
+  .cta { background: linear-gradient(135deg,#1a3224,#2a5038); padding: 90px 100px; text-align: center; }
+  .cta h2 { font-size: 44px; font-weight: 800; color: #fff; margin-bottom: 16px; line-height: 1.2; }
+  .cta p  { font-size: 15px; color: #9ab5a4; margin: 0 auto 38px; max-width: 480px; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-btn-primary { background: #fff; color: #1a3224; padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
+  .cta-btn-outline  { background: transparent; color: #fff; padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 700; border: 2px solid rgba(255,255,255,0.4); cursor: pointer; }
+
+  /* ══ FOOTER ══ */
+  footer { background: #fff; border-top: 1px solid #eee; padding: 56px 100px 32px; }
+  .footer-top { display: flex; gap: 60px; margin-bottom: 44px; flex-wrap: wrap; align-items: flex-start; }
+  .footer-brand { flex: 1.5; min-width: 200px; }
+  .footer-brand .nav-logo { margin-bottom: 14px; }
+  .footer-brand p { font-size: 13px; color: #888; line-height: 1.75; max-width: 240px; }
+  .footer-col { flex: 1; min-width: 120px; }
+  .footer-col h5 { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.7px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 13px; color: #888; text-decoration: none; }
+  .footer-col ul li a:hover { color: #4caf7d; }
+  .footer-bottom { border-top: 1px solid #eee; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .footer-bottom p { font-size: 12px; color: #aaa; }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 960px) {
+    nav { padding: 14px 24px; }
+    .hero-content-wrap { flex-direction: column; padding: 48px 24px 52px; gap: 36px; }
+    .hero-left { max-width: 100%; }
+    .ecosystem,.emergency,.clinical,.infra,.pocket,.stats,.emotional,.journey,.cta,footer { padding-left: 24px; padding-right: 24px; }
+    .two-col { flex-direction: column; gap: 36px; }
+    .two-col .left-media, .two-col .right-media { max-width: 100%; }
+    .eco-grid,.eco-row2 { grid-template-columns: repeat(3,1fr); }
+    .infra-grid { grid-template-columns: repeat(2,1fr); }
+    .stats-row { flex-direction: column; }
+    .stat-box { border-right: none; border-bottom: 1px solid #eee; }
+    .journey-steps { flex-direction: column; align-items: center; gap: 24px; }
+    .journey-steps::before { display: none; }
+    .emergency-content,
+    .clinical-text,
+    .emotional-text { padding-right: 0; }
+    .clinical .right-media,
+    .emotional .right-media { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    Pulse<span>One</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Emergency</a></li>
+    <li><a href="#">Clinical</a></li>
+    <li><a href="#">Management</a></li>
+  </ul>
+  <button class="nav-btn">Book Demo</button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero-section">
+  <video class="hero-video-bg" autoplay muted loop playsinline>
+    <source src="hero-video.mp4" type="video/mp4"/>
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content-wrap">
+    <div class="hero-left">
+      <div class="hero-badge">AI-Powered Healthcare Platform</div>
+      <h1 class="hero-title">Complete AI-<br/>Powered Hospital<br/>Management<br/>System</h1>
+      <p class="hero-subtitle">Streamline operations, enhance patient care, and boost hospital efficiency with AI technology — all-in-one platform designed for modern healthcare.</p>
+      <div class="hero-buttons">
+        <a href="signup.html" class="btn-primary">Get Started</a>
+        <button class="btn-outline">Watch Product Tour</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ECOSYSTEM ══ -->
+<section class="ecosystem">
+  <div class="section-wrap">
+    <h2 class="section-title">A Unified Health Ecosystem</h2>
+    <p class="section-sub">One powerful platform to unite your entire medical team in a single organization in PulseOne.</p>
+    <div class="eco-grid">
+      <div class="eco-card"><div class="icon-wrap green">👤</div><span class="card-label">Patient Mgmt</span></div>
+      <div class="eco-card"><div class="icon-wrap blue">📅</div><span class="card-label">Appointment</span></div>
+      <div class="eco-card"><div class="icon-wrap orange">🏥</div><span class="card-label">OPD/IPD</span></div>
+      <div class="eco-card"><div class="icon-wrap red">🚨</div><span class="card-label">Emergency</span></div>
+      <div class="eco-card"><div class="icon-wrap purple">💊</div><span class="card-label">Pharmacy</span></div>
+    </div>
+    <div class="eco-row2">
+      <div class="eco-card"><div class="icon-wrap teal">🔬</div><span class="card-label">Lab System</span></div>
+      <div class="eco-card"><div class="icon-wrap blue">📷</div><span class="card-label">Radiology</span></div>
+      <div class="eco-card"><div class="icon-wrap green">🧠</div><span class="card-label">Smart Billing</span></div>
+      <div class="eco-card"><div class="icon-wrap orange">📋</div><span class="card-label">HR & Admin</span></div>
+      <div class="eco-card"><div class="icon-wrap purple">📁</div><span class="card-label">Digital Records</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EMERGENCY ══ -->
+<section class="emergency">
+  <div class="section-wrap">
+    <div class="two-col">
+      <div class="left-media">
+        <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=600&q=80" alt="Emergency Team" onerror="this.style.background='linear-gradient(135deg,#2a1a1a,#4a2a2a)'"/>
+      </div>
+      <div class="emergency-content">
+        <h2>Intelligent Emergency &<br/><span>Live Triage</span></h2>
+        <p>Response time is the first critical metric. Make sure paramedics are updated and correctly treat patients, and the AI brain in sync every time, accounting steps before the patient is brought to hospital.</p>
+        <div class="triage-list">
+          <div class="triage-item">
+            <div class="triage-badge l1">L1</div>
+            <div class="triage-item-text"><strong>Resuscitation</strong><span>Immediate life-threatening — immediate action, no delay</span></div>
+          </div>
+          <div class="triage-item">
+            <div class="triage-badge l2">L2</div>
+            <div class="triage-item-text"><strong>Emergency</strong><span>Stable — appointment within 30 mins</span></div>
+          </div>
+          <div class="triage-item">
+            <div class="triage-badge l3">L3</div>
+            <div class="triage-item-text"><strong>Urgent</strong><span>Stable — appointment within multiple non-critical</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLINICAL BRAIN ══ -->
+<section class="clinical">
+  <div class="section-wrap">
+    <div class="two-col">
+      <div class="clinical-text">
+        <h2>The Clinical Brain</h2>
+        <p>Empower your AI tools as a devoted set of tools for your clinicians.</p>
+        <div class="clinical-cards">
+          <div class="clinical-card green-bg">
+            <h4>Smart Pharmacy</h4>
+            <p>Drug interaction checking and AI-suggested formulary, reducing prescription errors by over 82%.</p>
+            <div class="pill-row">
+              <span class="pill">Metformin+</span>
+              <span class="pill">Insulin Glargine</span>
+              <span class="pill">+ 3 more</span>
+            </div>
+          </div>
+          <div class="decision-card">
+            <div class="icon-row"><span>🧩</span><strong>Decision Support</strong></div>
+            <p>Smart ordering via AI-powered clinical recommendations and real-time alerts — clinical decision support at the bedside.</p>
+            <span class="allergy-chip">Allergy Alert</span>
+          </div>
+        </div>
+      </div>
+      <div class="right-media" style="height:420px;">
+        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="Doctor reviewing scan" onerror="this.style.background='linear-gradient(135deg,#1a2a3a,#2a4a5a)'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INFRA ══ -->
+<section class="infra">
+  <div class="section-wrap">
+    <h2 class="section-title">Future-Proofed Infrastructure</h2>
+    <p class="section-sub" style="color:#8ab59a;">Designed for the demands of modern healthcare at any scale.</p>
+    <div class="infra-grid">
+      <div class="infra-card"><div class="infra-icon">🤖</div><h4>AI Diagnosis</h4><p>Deep learning-driven diagnostic algorithms to assist with early detection and accuracy.</p></div>
+      <div class="infra-card"><div class="infra-icon">📡</div><h4>IoT Monitoring</h4><p>Real-time patient vitals from connected devices and bedside sensors across all wards.</p></div>
+      <div class="infra-card"><div class="infra-icon">🔗</div><h4>Blockchain EMR</h4><p>Tamper-proof medical records with end-to-end encryption and full audit trails.</p></div>
+      <div class="infra-card"><div class="infra-icon">🦾</div><h4>Robotics Integration</h4><p>Seamless integration with surgical and delivery robots for advanced hospital workflows.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ POCKET ══ -->
+<section class="pocket">
+  <div class="section-wrap">
+    <h2 class="section-title">Hospital in Your Pocket</h2>
+    <p class="section-sub">Seamless mobile experiences designed for every team member, every role.</p>
+    <div class="app-row">
+      <div class="app-card">
+        <div class="phone-mockup doc"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&q=80" alt="Doctor App" onerror="this.style.background='linear-gradient(160deg,#1e3a2a,#2d5a3e)'"/></div>
+        <span class="app-label">Doctor App</span><span class="app-desc">View patient records, prescribe, consult</span>
+      </div>
+      <div class="app-card">
+        <div class="phone-mockup patient"><img src="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?w=200&q=80" alt="Patient App" onerror="this.style.background='linear-gradient(160deg,#1a2840,#2c4a6e)'"/></div>
+        <span class="app-label">Patient App</span><span class="app-desc">Book appointments, view reports, pay bills</span>
+      </div>
+      <div class="app-card">
+        <div class="phone-mockup nurse"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=200&q=80" alt="Nurse App" onerror="this.style.background='linear-gradient(160deg,#3a1e30,#5a2e4a)'"/></div>
+        <span class="app-label">Nurse App</span><span class="app-desc">Medication schedules, vitals recording</span>
+      </div>
+      <div class="app-card">
+        <div class="phone-mockup admin"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&q=80" alt="Admin App" onerror="this.style.background='linear-gradient(160deg,#1e2d3a,#2e4a5a)'"/></div>
+        <span class="app-label">Admin App</span><span class="app-desc">Manage staff, reports, and finances</span>
+      </div>
+         
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<section class="stats">
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num green">60%</div><h4>Wait Reduction</h4><p>Average reduction in patient waiting times across partner hospitals</p></div>
+    <div class="stat-box"><div class="stat-num orange">40%</div><h4>Productivity Lift</h4><p>Increase in clinical staff output through AI-powered automation</p></div>
+    <div class="stat-box"><div class="stat-num blue">95%</div><h4>User Satisfaction</h4><p>Patient and provider satisfaction scores across all deployments</p></div>
+  </div>
+</section>
+
+<!-- ══ EMOTIONAL ══ -->
+<section class="emotional">
+  <div class="section-wrap">
+    <div class="two-col">
+      <div class="emotional-text">
+        <h2>Emotional Intelligence<br/>in <span>Clinical Care</span></h2>
+        <p>Healthcare isn't just about data. It's about people. AI-driven voice tone analysis and facial emotion detection to personalize clinical care and understand patient distress to better outcomes.</p>
+        <div>
+          <div class="positive-chip">😊 &nbsp;82% Positive Patient Interaction</div>
+          <p class="positive-chip-sub">Pulse One detects over 200 clinician–patient interaction patterns.</p>
+        </div>
+      </div>
+      <div class="right-media" style="height:340px;">
+        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80" alt="Clinical Care" onerror="this.style.background='linear-gradient(135deg,#e8f5ee,#c3e8d5)'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JOURNEY ══ -->
+<section class="journey">
+  <div class="section-wrap">
+    <h2 class="section-title">Implementation Journey</h2>
+    <p class="section-sub">From legacy integration to excellence in 4 strategic phases.</p>
+    <div class="journey-steps">
+      <div class="journey-step"><div class="step-circle active">🔍</div><h4>Phase 1: Discovery</h4><p>Assess current workflows, infrastructure, and define integration goals for your hospital.</p></div>
+      <div class="journey-step"><div class="step-circle active">⚙️</div><h4>Phase 2: Core Setup</h4><p>Deploy core modules, configure EMR, train admin staff, and go live on essential systems.</p></div>
+      <div class="journey-step"><div class="step-circle">🔗</div><h4>Phase 3: Integration</h4><p>Connect lab, pharmacy, IoT devices, and third-party systems to the PulseOne ecosystem.</p></div>
+      <div class="journey-step"><div class="step-circle">🚀</div><h4>Phase 4: AI Pulse</h4><p>Activate AI modules, analytics dashboards, and continuous learning for your hospital.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta">
+  <h2>Transform Your Hospital<br/>Today</h2>
+  <p>Join the next generation of clinical specialists. Start your journey with Pulse One HMS.</p>
+  <div class="cta-buttons">
+    <button class="cta-btn-primary">Get Started Now</button>
+    <button class="cta-btn-outline">Schedule Demo</button>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        Pulse<span>One</span>
+      </div>
+      <p>Powering the future of hospital management with AI-driven intelligence and care.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Security</a></li><li><a href="#">Integrations</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5>Departments</h5>
+      <ul><li><a href="#">Emergency</a></li><li><a href="#">Pharmacy</a></li><li><a href="#">Radiology</a></li><li><a href="#">Laboratory</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <ul><li><a href="#">Documentation</a></li><li><a href="#">Case Studies</a></li><li><a href="#">Blog</a></li><li><a href="#">Support</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 PulseOne. All rights reserved.</p>
+    <p>Privacy Policy &nbsp;·&nbsp; Terms of Service &nbsp;·&nbsp; HIPAA Compliant</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.eco-card, .infra-card, .app-card, .journey-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
