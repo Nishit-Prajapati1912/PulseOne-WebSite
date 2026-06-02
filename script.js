@@ -3,6 +3,14 @@
 ========================================= */
 
 /* =========================================
+   ENVIRONMENTAL API ROUTING CONFIGURATION
+========================================= */
+// Automatically routing traffic based on the client viewport domain location
+const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+  ? 'http://localhost:5000'
+  : 'https://pulseone-website.onrender.com'; // <--- Replace this placeholder string with your live hosted cloud backend URL map link
+
+/* =========================================
    GLOBAL FEEDBACK HELPER
 ========================================= */
 function showFeedback(message, type = 'error') {
@@ -58,7 +66,8 @@ if (loginForm) {
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = 'Authenticating...';
 
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      // Dynamically requesting login mapping using the established API_BASE
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -66,7 +75,6 @@ if (loginForm) {
         body: JSON.stringify({ email, password })
       });
 
-      // Safely read the response body as text first to avoid parsing drops
       const responseText = await response.text();
       let data;
 
@@ -141,7 +149,8 @@ if (signupForm) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = 'Creating Account...';
 
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
+      // Dynamically requesting signup registration using the established API_BASE
+      const response = await fetch(`${API_BASE}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -195,7 +204,7 @@ if (navbar) {
 }
 
 /* =========================================
-   MOBILE NAVIGATION
+   MOBILE NAVIGATION Menu
 ========================================= */
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
@@ -217,7 +226,7 @@ if (hamburger && navLinks) {
 }
 
 /* =========================================
-   FADE IN ANIMATION
+   FADE IN ON SCROLL ANIMATION
 ========================================= */
 const fadeEls = document.querySelectorAll('.fade-in');
 if (fadeEls.length > 0) {
@@ -233,7 +242,7 @@ if (fadeEls.length > 0) {
 }
 
 /* =========================================
-   COUNTER ANIMATION
+   COUNTER INTERSECTION ANIMATION
 ========================================= */
 function animateCounter(el, target, suffix = '') {
   const duration = 1800;
@@ -262,7 +271,7 @@ if (statCards.length > 0) {
         if (!isNaN(num)) {
           animateCounter(numEl, num, suffix);
         }
-        statObserver.unobserve(entry.target); // Fixed script breakpoint layout
+        statObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.4 });
@@ -275,7 +284,6 @@ if (statCards.length > 0) {
 /* =============================================
    PULSEONE – GLOBAL USER STATE ROUTINE MIDDLEWARE
    ============================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
   const authContainer = document.getElementById('authActionContainer');
   
@@ -287,10 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const user = JSON.parse(rawUserData);
         
-        // Isolate or keep user first name text footprint clean
+        // Isolate first name context for standard navbar aesthetic formatting
         const displayName = user.name ? user.name.split(' ')[0] : 'User';
 
-        // Reconstruct the inner navigation matrix nodes
+        // Reconstruct active logged-in navigation profile block elements
         authContainer.innerHTML = `
           <div class="user-profile-menu">
             <span class="user-welcome-text">
@@ -303,15 +311,30 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         `;
 
-        // Re-bind the logout event action logic context path dynamically
+        // Bind secure user sign-out session clearing hooks
         document.getElementById('platformLogoutTrigger').addEventListener('click', () => {
           localStorage.removeItem('pulseone_token');
           localStorage.removeItem('pulseone_user');
-          window.location.reload(); // Refresh viewport state immediately
+          window.location.reload();
         });
 
-        // Re-bind mobile menu toggles to the newly injected hamburger node instance
-        initializeMobileMenu();
+        // Re-initialize dynamic navigation toggles for new DOM injection mapping
+        const dynamicHamburger = document.getElementById('hamburger');
+        if (dynamicHamburger && navLinks) {
+          dynamicHamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            const spans = dynamicHamburger.querySelectorAll('span');
+            if (navLinks.classList.contains('open')) {
+              spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+              spans[1].style.opacity = '0';
+              spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+              spans[0].style.transform = '';
+              spans[1].style.opacity = '';
+              spans[2].style.transform = '';
+            }
+          });
+        }
 
       } catch (e) {
         console.error("Session evaluation state corrupt. Purging local storage maps.", e);
@@ -321,24 +344,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
-
-function initializeMobileMenu() {
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
-  
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      const spans = hamburger.querySelectorAll('span');
-      if (navLinks.classList.contains('open')) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-      } else {
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
-      }
-    });
-  }
-}
