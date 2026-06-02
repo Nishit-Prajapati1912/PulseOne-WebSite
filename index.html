@@ -3,285 +3,502 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HealthCare – Premium Medical Platform</title>
+  <title>PulseOne – Transforming Healthcare Access</title>
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* =========================
+       NAVBAR & BASE LAYOUT
+    ========================= */
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+    body{
+      font-family:'Poppins', sans-serif;
+      background:#ffffff;
+      color:#0d1f12;
+    }
+    :root{
+      --primary:#0d1f12;
+      --green:#5b8767;
+      --light:#f3f4f5;
+      --text:#7d7d7d;
+      --border:#ececec;
+    }
+    .navbar{
+      width:100%;
+      background:#f4f5f4;
+      border-bottom:1px solid #e4e4e4;
+      padding:12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container{
+      width:100%;
+      max-width:1700px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 40px;
+    }
+
+    /* =========================
+       LOGO & NAVIGATION LINKS
+    ========================= */
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+    }
+    .logo-box{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      background:#2f6f4f;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#ffffff;
+      font-size:18px;
+    }
+    .logo-text{
+      color:#234734;
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:-0.5px;
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:38px;
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .nav-links li a{
+      text-decoration:none;
+      color:#01422a;
+      font-size:16px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      transition:0.3s ease;
+    }
+    .nav-links li a:hover{
+      color:#2f6f4f;
+      opacity:0.8;
+    }
+    .nav-links li a.active{
+      background:#e7ede8;
+      color:#2f6f4f;
+      padding:12px 18px;
+      border-radius:12px;
+    }
+
+    /* =========================
+       BUTTONS & PROFILE ACTIVE STATE
+    ========================= */
+    .signup-btn{
+      text-decoration:none;
+      background:#2f6f4f;
+      color:#ffffff;
+      padding:14px 28px;
+      border-radius:40px;
+      font-size:16px;
+      font-weight:600;
+      transition:0.3s ease;
+    }
+    .signup-btn:hover{
+      background:#25563d;
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .user-profile-menu {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .user-welcome-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: #234734;
+    }
+    .logout-action-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: #991b1b;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* =========================
+       SERVICES SECTION
+    ========================= */
+    .services-section{
+      width:100%;
+      padding:80px 20px;
+      background:#f5f5f5;
+      overflow:hidden;
+    }
+    .services-container{
+      width:100%;
+      max-width:1200px;
+      margin:auto;
+    }
+    .services-header{
+      text-align:center;
+      margin-bottom:60px;
+    }
+    .section-tag{
+      display:inline-block;
+      padding:8px 18px;
+      background:#e7f3ed;
+      color:#0d1f12;
+      border-radius:50px;
+      font-size:13px;
+      font-weight:600;
+      margin-bottom:22px;
+    }
+    .section-title{
+      font-size:52px;
+      line-height:1.1;
+      color:#0d1f12;
+      font-weight:700;
+      margin-bottom:30px;
+    }
+    .section-title em{
+      font-style:italic;
+      color:#3b6c56;
+    }
+    .cargo-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .cargo-card{
+      background:#ffffff;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid #e4e4e4;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      transition:0.3s ease;
+    }
+    .cargo-card:hover{
+      transform:translateY(-5px);
+    }
+    .cargo-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+    }
+    .cargo-content{
+      padding:22px;
+    }
+    .cargo-content h3{
+      font-size:20px;
+      line-height:1.4;
+      color:#222222;
+      margin-bottom:14px;
+      font-weight:700;
+    }
+    .cargo-content p{
+      font-size:14px;
+      line-height:1.7;
+      color:#666666;
+      margin-bottom:18px;
+    }
+    .service-link{
+      color:#2f6edb;
+      font-size:15px;
+      font-weight:600;
+      text-decoration:none;
+    }
+
+    /* =========================
+       SCROLLING FEATURE STRIP
+    ========================= */
+    .feature-section {
+      width: 100%;
+      background: #f3f4f5;
+      padding: 36px 0;
+      overflow: hidden;
+      position: relative;
+      border-top: 1px solid #ececec;
+      border-bottom: 1px solid #ececec;
+    }
+    .scroll-wrapper {
+      display: flex;
+      width: max-content;
+      animation: moveLeft 18s linear infinite;
+    }
+    .scroll-wrapper:hover {
+      animation-play-state: paused;
+    }
+    .feature-strip-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 50px;
+      min-width: max-content;
+    }
+    .strip-icon {
+      font-size: 16px;
+      color: #5b8767;
+    }
+    .strip-text {
+      color: #7d7d7d;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    @keyframes moveLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* =========================
+       STATS & PROMOTIONS CARD
+    ========================= */
+    .stats-wrapper{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      padding:40px 20px;
+      background:#ffffff;
+    }
+    .stats-card{
+      width:100%;
+      max-width:1050px;
+      border:1px solid var(--border);
+      border-radius:32px;
+      padding:40px 45px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:#fff;
+    }
+    .stats-left{
+      max-width:520px;
+    }
+    .stats-left h2{
+      font-size:36px;
+      line-height:1.15;
+      color:var(--green);
+      font-weight:800;
+      margin-bottom:18px;
+    }
+    .stats-left p{
+      font-size:14px;
+      line-height:1.8;
+      color:#6f6f6f;
+    }
+    .stats-right{
+      display:flex;
+      align-items:center;
+      gap:45px;
+    }
+    .stat-box{
+      text-align:center;
+      position:relative;
+    }
+    .stat-box:not(:last-child)::after{
+      content:'';
+      position:absolute;
+      right:-24px;
+      top:5px;
+      width:1px;
+      height:70px;
+      background:#e8e8e8;
+    }
+    .stat-box h3{
+      font-size:60px;
+      color:var(--green);
+      font-weight:800;
+      line-height:1;
+      margin-bottom:10px;
+    }
+    .stat-box span{
+      font-size:10px;
+      letter-spacing:1px;
+      color:#8a8a8a;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+
+    /* =========================
+       SURGERY COORDINATION (DARK GRADIENT)
+    ========================= */
+    .po-surgery-section{
+      width:100%;
+      background:linear-gradient(to right,#071b12,#0a2417);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:80px 20px;
+      overflow:hidden;
+    }
+    .po-surgery-container{
+      max-width:1200px;
+      width:100%;
+      text-align:center;
+    }
+    .po-subtitle{
+      color:#d7d7d7;
+      letter-spacing:4px;
+      font-size:11px;
+      margin-bottom:20px;
+      font-weight:600;
+    }
+    .po-title{
+      font-size:58px;
+      line-height:1.1;
+      color:#ffffff;
+      font-weight:700;
+      margin-bottom:25px;
+    }
+    .po-description{
+      color:#8d9390;
+      max-width:700px;
+      margin:0 auto 70px;
+      line-height:1.7;
+      font-size:16px;
+    }
+    .po-cards{
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+    }
+    .po-card{
+      width:320px;
+      padding:45px 35px;
+      border-radius:28px;
+      background:rgba(10,30,20,0.85);
+      border:1px solid rgba(0,255,170,0.08);
+      position:relative;
+      overflow:hidden;
+      text-align:left;
+      transition:0.3s ease;
+      backdrop-filter:blur(8px);
+    }
+    .po-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top left, rgba(0,255,170,0.12), transparent 60%);
+      pointer-events:none;
+    }
+    .po-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(0,255,170,0.2);
+    }
+    .po-icon-box{
+      width:55px;
+      height:55px;
+      border-radius:14px;
+      background:rgba(0,255,170,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:30px;
+    }
+    .po-icon{
+      color:#00d9a6;
+      font-size:24px;
+    }
+    .po-card h3{
+      color:#ffffff;
+      font-size:24px;
+      line-height:1.3;
+      margin-bottom:18px;
+    }
+    .po-card p{
+      color:#8a908d;
+      font-size:15px;
+      line-height:1.8;
+    }
+
+    /* =========================
+       MEDIA RESPONSIVENESS
+    ========================= */
+    @media(max-width:1100px){
+      .cargo-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:1000px){
+      .nav-container{ flex-direction:column; gap:20px; }
+      .nav-links{ flex-wrap:wrap; justify-content:center; gap:20px; }
+    }
+    @media(max-width:992px){
+      .po-title{ font-size:42px; }
+      .po-cards{ gap:20px; }
+      .po-card{ width:100%; max-width:400px; }
+      .stats-card{ flex-direction:column; gap:45px; align-items:flex-start; }
+      .stats-right{ width:100%; justify-content:space-between; }
+    }
+    @media(max-width:768px){
+      .stats-card{ padding:32px 28px; }
+      .stats-left h2{ font-size:28px; }
+      .stat-box h3{ font-size:42px; }
+    }
+    @media(max-width:700px){
+      .services-section{ padding:60px 15px; }
+      .section-title{ font-size:34px; }
+      .cargo-grid{ grid-template-columns:1fr; }
+    }
+    @media(max-width:600px){
+      .nav-container{ padding:0 16px; }
+      .nav-links{ gap:14px; }
+      .nav-links li a{ font-size:14px; }
+      .signup-btn{ padding:12px 22px; font-size:14px; }
+      .po-surgery-section{ padding:60px 15px; }
+      .po-title{ font-size:32px; }
+      .po-description{ font-size:14px; }
+      .po-card{ padding:35px 25px; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- ===== NAVBAR ===== -->
-   <!-- =========================
-     NAVBAR
-========================= -->
-
-<nav class="navbar" id="navbar">
-
-  <div class="nav-container">
-
-    <!-- LOGO -->
-
-    <a href="#" class="nav-logo">
-
-      <div class="logo-box">
-        ✦
-      </div>
-
-      <div class="logo-text">
-        PULSEONE
-      </div>
-
-    </a>
-
-    <!-- NAV LINKS -->
-
-    <ul class="nav-links" id="navLinks">
-
-      <li>
-        <a href="#home" class="active">
-          Home
-        </a>
-      </li>
-
-      <li>
-        <a href="#about">
-          About <span>▼</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#services">
-          Services <span>▼</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#doctors">
-          Doctors <span>▼</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#contact">
-          Contact <span>▼</span>
-        </a>
-      </li>
-
-    </ul>
-
-    <!-- BUTTON -->
-
-    <a href="logine.html" class="signup-btn">
-      Signup
-    </a>
-  </div>
-
-</nav>
-
-<style>
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar{
-  width:100%;
-  background:#f4f5f4;
-  border-bottom:1px solid #e4e4e4;
-  padding:12px 0;
-}
-
-.nav-container{
-  width:100%;
-  max-width:1700px;
-  margin:auto;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 40px;
-}
-
-/* =========================
-   LOGO
-========================= */
-
-.nav-logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  text-decoration:none;
-}
-
-.logo-box{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  background:#2f6f4f;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:#ffffff;
-  font-size:18px;
-}
-
-.logo-text{
-  color:#234734;
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:-0.5px;
-}
-
-/* =========================
-   NAV LINKS
-========================= */
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:38px;
-  list-style:none;
-}
-
-.nav-links li{
-  list-style:none;
-}
-
-.nav-links li a{
-  text-decoration:none;
-  color:#6d7f75;
-  font-size:16px;
-  font-weight:600;
-
-  display:flex;
-  align-items:center;
-  gap:7px;
-
-  transition:0.3s ease;
-}
-
-.nav-links li a span{
-  font-size:10px;
-  margin-top:2px;
-}
-
-.nav-links li a:hover{
-  color:#2f6f4f;
-}
-
-/* ACTIVE */
-
-.nav-links li a.active{
-  background:#e7ede8;
-  color:#2f6f4f;
-
-  padding:12px 18px;
-  border-radius:12px;
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-.signup-btn{
-  text-decoration:none;
-
-  background:#2f6f4f;
-  color:#ffffff;
-
-  padding:14px 28px;
-  border-radius:40px;
-
-  font-size:16px;
-  font-weight:600;
-
-  transition:0.3s ease;
-}
-
-.signup-btn:hover{
-  background:#25563d;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1000px){
-
-  .nav-container{
-    flex-direction:column;
-    gap:20px;
-  }
-
-  .nav-links{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .nav-container{
-    padding:0 16px;
-  }
-
-  .nav-links{
-    gap:14px;
-  }
-
-  .nav-links li a{
-    font-size:14px;
-  }
-
-  .signup-btn{
-    padding:12px 22px;
-    font-size:14px;
-  }
-
-}
-
-</style>
- 
-<style>
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:38px;
-  list-style:none;
-  padding:0;
-  margin:0;
-}
-
-.nav-links li a{
-  text-decoration:none;
-  color:#01422a;
-  font-size:18px;
-  font-weight:500;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  transition:0.3s ease;
-  font-family:Arial, sans-serif;
-}
-
-.nav-links li a span{
-  font-size:11px;
-  margin-top:2px;
-}
-
-.nav-links li a:hover{
-  opacity:0.8;
-} 
-</style>
-      <div class="nav-actions">
-       
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <!-- LOGO -->
+      <a href="#" class="nav-logo">
+        <div class="logo-box">✦</div>
+        <div class="logo-text">PULSEONE</div>
+      </a>
+
+      <!-- NAV LINKS -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#doctors">Doctors</a></li>
+        <li><a href="#team-anchor">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- ACTIVE AUTH ACTIONS ELEMENT MOUNT -->
+      <div class="nav-actions" id="authActionContainer">
+        <a href="signup.html" class="signup-btn">Login / Signup</a>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -289,24 +506,22 @@
     </div>
   </nav>
 
-
   <!-- ===== HERO SECTION ===== -->
-  <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <div class="container hero-inner">
       <div class="hero-text fade-in">
-        <div class="hero-badge">🏥 Trusted Healthcare Platform</div>
+        <div class="hero-badge">🏥 Vetted Small-Town Health Network</div>
         <h1 class="hero-title">
           Structured Healthcare<br />
           For Modern Families<br />
           <em>Healthcare</em> for You
         </h1>
         <p class="hero-subtitle">
-          PulseOne connects hospitals, diagnostics, surgery coordination, and healthcare membership into one seamless ecosystem.
+          PulseOne connects regional hospitals, diagnostic modules, care professionals, and strategic financing into one structured health ecosystem.
         </p>
         <div class="hero-ctas">
-          <a href="#" class="btn btn-primary">Book Appointment</a>
-          <a href="#" class="btn btn-ghost">
+          <a href="#contact" class="btn btn-primary">Book Appointment</a>
+          <a href="#royalty" class="btn btn-ghost">
             <span class="play-icon">▶</span> Explore Royalty Program
           </a>
         </div>
@@ -318,8 +533,8 @@
             <img src="p.jpg" alt="user" />
           </div>
           <div class="trust-text">
-            <span class="trust-number">12K+</span>
-            <span class="trust-label">Happy patients worldwide</span>
+            <span class="trust-number">1,500+</span>
+            <span class="trust-label">Patients served completely</span>
           </div>
         </div>
       </div>
@@ -329,1201 +544,347 @@
           <div class="hero-card hero-card--top">
             <div class="hcard-icon green">💊</div>
             <div>
-              <div class="hcard-label">Daily Medication</div>
-              <div class="hcard-val">Scheduled</div>
+              <div class="hcard-label">Ecosystem Target</div>
+              <div class="hcard-val">Rural Reach</div>
             </div>
           </div>
           <div class="hero-card hero-card--bottom">
             <div class="hcard-icon teal">❤️</div>
             <div>
-              <div class="hcard-label">Heart Rate</div>
-              <div class="hcard-val">98 bpm <span class="up">↑</span></div>
+              <div class="hcard-label">Core Mission</div>
+              <div class="hcard-val">Transparent Care</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- decorative blobs -->
     <div class="hero-blob blob-1"></div>
     <div class="hero-blob blob-2"></div>
   </section>
 
-  <!-- ===== STATS SECTION ===== -->
+  <!-- ===== IMPACT MILESTONES STATS SECTION ===== -->
   <section class="stats-section" id="stats">
     <div class="container">
-      <p class="section-eyebrow">A coordinated team who shares the healthcare system</p>
+      <p class="section-eyebrow">Our Growing Impact in Transforming Healthcare Access</p>
       <div class="stats-grid">
         <div class="stat-card fade-in">
-          <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-<!-- Replace this -->
-<!-- <div class="stat-icon">🏥</div> -->
-
-<!-- With this -->
-<div class="stat-icon">
-  <i class="fa-solid fa-hospital"></i>
-</div>
-         
-          <div class="stat-number">450+</div>
-          <div class="stat-label">Healthcare Facilities</div>
+          <div class="stat-icon"><i class="fa-solid fa-hospital"></i></div>
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Hospitals Connected</div>
         </div>
         <div class="stat-card fade-in delay-1">
-          <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-<div class="stat-icon">
-  <i class="fa-solid fa-user-doctor"></i>
-</div>
-        
-          <div class="stat-number">1,200+</div>
-          <div class="stat-label">Expert Physicians</div>
+          <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="stat-number">1500+</div>
+          <div class="stat-label">Patients Served</div>
         </div>
         <div class="stat-card fade-in delay-2">
-          <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-<div class="stat-icon">
-  <i class="fa-solid fa-smile"></i>
-</div>
-          <div class="stat-number">98%</div>
-          <div class="stat-label">Patient Satisfaction</div>
+          <div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Healthcare Financing Disbursed</div>
         </div>
         <div class="stat-card fade-in delay-3">
-           <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-<div class="stat-icon">
-  <i class="fa-solid fa-globe"></i>
-</div>
-          <div class="stat-number">50+</div>
-          <div class="stat-label">Countries Served</div>
+          <div class="stat-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Towns Covered across India</div>
         </div>
       </div>
     </div>
   </section>
 
- <!-- =========================
-     SERVICES SECTION
-     SAFE UNIQUE CLASSES
-========================= -->
-
-<section class="services-section" id="services">
-
-  <div class="services-container">
-
-    <!-- HEADER -->
-
-    <div class="services-header">
-
-      <div class="section-tag">
-        Our Services
+  <!-- ===== SERVICES SECTION ===== -->
+  <section class="services-section" id="services">
+    <div class="services-container">
+      <div class="services-header">
+        <div class="section-tag">Our Services</div>
+        <h2 class="section-title">Comprehensive Medical <br><em>Infrastructure</em></h2>
       </div>
 
-      <h2 class="section-title">
-        Healthcare Secret <br>
-        <em>Infrastructure</em>
-      </h2>
-
-       
-
-    </div>
-
-    <!-- SERVICES GRID -->
-
-    <div class="cargo-grid">
-
-      <!-- CARD 1 -->
-
-      <div class="cargo-card">
-
-        <img src="a.jpg" alt="Healthcare Access">
-
-        <div class="cargo-content">
-
-          <h3>
-            Structured Healthcare Access
-          </h3>
-
-          <p>
-            A single coordinated entry point across providers,
-            specialists and care settings.
-          </p>
-
-          <a href="#" class="service-link">
-            Explore →
-          </a>
-
+      <div class="cargo-grid">
+        <div class="cargo-card">
+          <img src="a.jpg" alt="Healthcare Access">
+          <div class="cargo-content">
+            <h3>Structured Health Access</h3>
+            <p>A single coordinated entry point across multi-specialty providers, premier clinical experts, and complex care settings.</p>
+            <a href="#" class="service-link">Explore →</a>
+          </div>
         </div>
-
-      </div>
-
-      <!-- CARD 2 -->
-
-      <div class="cargo-card">
-
-        <img src="b.jpg" alt="Patient Lifecycle">
-
-        <div class="cargo-content">
-
-          <h3>
-            Patient Lifecycle Management
-          </h3>
-
-          <p>
-            Continuity from first appointment through
-            diagnostics, surgery and follow-up.
-          </p>
-
-          <a href="#" class="service-link">
-            Explore →
-          </a>
-
+        <div class="cargo-card">
+          <img src="b.jpg" alt="Patient Lifecycle">
+          <div class="cargo-content">
+            <h3>Continuous Care Planning</h3>
+            <p>Absolute continuity from your first diagnosis appointment through complex surgery paths and regular post-op follow-ups.</p>
+            <a href="#" class="service-link">Explore →</a>
+          </div>
         </div>
-
-      </div>
-
-      <!-- CARD 3 -->
-
-      <div class="cargo-card">
-
-        <img src="c.jpg" alt="Hospital Growth">
-
-        <div class="cargo-content">
-
-          <h3>
-            Hospital Growth Infrastructure
-          </h3>
-
-          <p>
-            An institutional framework for patient acquisition,
-            retention and care delivery.
-          </p>
-
-          <a href="#" class="service-link">
-            Explore →
-          </a>
-
+        <div class="cargo-card">
+          <img src="c.jpg" alt="Hospital Growth">
+          <div class="cargo-content">
+            <h3>Advanced Telemedicine</h3>
+            <p>An institutional layout keeping you connected instantly to professional on-call clinical networks from home safety.</p>
+            <a href="#" class="service-link">Explore →</a>
+          </div>
         </div>
-
-      </div>
-
-      <!-- CARD 4 -->
-
-      <div class="cargo-card">
-
-        <img src="d.jpg" alt="Diagnostics">
-
-        <div class="cargo-content">
-
-          <h3>
-            Diagnostics Integration
-          </h3>
-
-          <p>
-            Lab networks coordinated into a unified,
-            transparent reporting workflow.
-          </p>
-
-          <a href="#" class="service-link">
-            Explore →
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<style>
-
-/* =========================
-   SERVICES SECTION
-========================= */
-
-.services-section{
-  width:100%;
-  padding:80px 20px;
-  background:#f5f5f5;
-  overflow:hidden;
-}
-
-.services-container{
-  width:100%;
-  max-width:1200px;
-  margin:auto;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.services-header{
-  text-align:center;
-  margin-bottom:60px;
-}
-
-.section-tag{
-  display:inline-block;
-  padding:8px 18px;
-  background:#e7f3ed;
-  color:#0d1f12;
-  border-radius:50px;
-  font-size:13px;
-  font-weight:600;
-  margin-bottom:22px;
-}
-
-.section-title{
-  font-size:52px;
-  line-height:1.1;
-  color:#0d1f12;
-  font-weight:700;
-  margin-bottom:30px;
-}
-
-.section-title em{
-  font-style:italic;
-  color:#3b6c56;
-}
-
-.service-highlight-card{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:14px 22px;
-  background:#ffffff;
-  border-radius:16px;
-  box-shadow:0 5px 18px rgba(0,0,0,0.08);
-}
-
-.highlight-num{
-  font-size:16px;
-  font-weight:700;
-  color:#0d1f12;
-}
-
-.highlight-text{
-  font-size:15px;
-  color:#666666;
-}
-
-/* =========================
-   GRID
-========================= */
-
-.cargo-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-/* =========================
-   CARD
-========================= */
-
-.cargo-card{
-  background:#ffffff;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid #e4e4e4;
-
-  box-shadow:
-  0 2px 10px rgba(0,0,0,0.06);
-
-  transition:0.3s ease;
-}
-
-.cargo-card:hover{
-  transform:translateY(-5px);
-}
-
-/* IMAGE */
-
-.cargo-card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  display:block;
-}
-
-/* CONTENT */
-
-.cargo-content{
-  padding:22px;
-}
-
-.cargo-content h3{
-  font-size:20px;
-  line-height:1.4;
-  color:#222222;
-  margin-bottom:14px;
-  font-weight:700;
-}
-
-.cargo-content p{
-  font-size:14px;
-  line-height:1.7;
-  color:#666666;
-  margin-bottom:18px;
-}
-
-.service-link{
-  color:#2f6edb;
-  font-size:15px;
-  font-weight:600;
-  text-decoration:none;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1100px){
-
-  .cargo-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-}
-
-@media(max-width:700px){
-
-  .services-section{
-    padding:60px 15px;
-  }
-
-  .section-title{
-    font-size:34px;
-  }
-
-  .cargo-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-</style>
- 
-
-
-   <!-- ===== PROVIDER SECTION ===== -->
-  <section class="provider-section" id="provider">
-    <div class="container provider-inner">
-      <div class="provider-text fade-in">
-        <div class="section-tag">Our Platform</div>
-        <h2 class="section-title">Redefining<br /><em>Medical</em><br />Infrastructure</h2>
-        <p class="section-body">
-          PulseOne isn't just a service; it's the underlying architecture that makes healthcare predictable, professional, and patient-first. We bridge the gap between clinical excellence and organizational efficiency.
-        </p>
-        <ul class="feature-list">
-          <li><span class="check">✓</span> Real-time patient monitoring</li>
-          <li><span class="check">✓</span> Secure health records</li>
-          <li><span class="check">✓</span> 24/7 doctor availability</li>
-          <li><span class="check">✓</span> AI-powered diagnostics</li>
-        </ul>
-        <a href="#" class="btn btn-primary">Learn More</a>
-      </div>
-      <div class="provider-image fade-in delay-1">
-        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Medical Infrastructure" />
-        <div class="provider-badge">
-          <span class="badge-num">99.9% Precision</span>
-          <span class="badge-text">Industry-leading diagnostic accuracy across our entire partner network.</span>
+        <div class="cargo-card">
+          <img src="d.jpg" alt="Diagnostics">
+          <div class="cargo-content">
+            <h3>Diagnostics Integration</h3>
+            <p>Lab metrics and critical vitals integrated flawlessly into a unified, clean, and highly transparent digital dashboard.</p>
+            <a href="#" class="service-link">Explore →</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-
-
-
-   
- 
-
-
- 
-   <style>
-.feature-section {
-  width: 100%;
-  background: var(--gray-100);
-  padding: 36px 0;
-  overflow: hidden;
-  position: relative;
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-}
-.scroll-wrapper {
-  display: flex;
-  width: max-content;
-  animation: moveLeft 18s linear infinite;
-}
-.scroll-wrapper:hover {
-  animation-play-state: paused;
-}
-.feature-strip-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0 50px;
-  min-width: max-content;
-}
-.strip-icon {
-  font-size: 16px;
-  color: var(--green-sage);
-}
-.strip-text {
-  color: var(--text-muted);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-@keyframes moveLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-</style>
-<!-- ===== SCROLLING FEATURE STRIP ===== -->
+  <!-- ===== SCROLLING FEATURE STRIP ===== -->
   <section class="feature-section" id="featureStrip">
     <div class="scroll-wrapper" id="scrollContent">
-      <div class="feature-strip-item">
-        <div class="strip-icon">✣</div>
-        <div class="strip-text">Ecosystem</div>
-      </div>
-      <div class="feature-strip-item">
-        <div class="strip-icon">⚗</div>
-        <div class="strip-text">Integration</div>
-      </div>
-      <div class="feature-strip-item">
-        <div class="strip-icon">⌘</div>
-        <div class="strip-text">Continuity</div>
-      </div>
-      <div class="feature-strip-item">
-        <div class="strip-icon">✚</div>
-        <div class="strip-text">Coordination</div>
-      </div>
-      <div class="feature-strip-item">
-        <div class="strip-icon">🛡</div>
-        <div class="strip-text">Compliance</div>
-      </div>
+      <div class="feature-strip-item"><div class="strip-icon">✣</div><div class="strip-text">Patient Care Ecosystem</div></div>
+      <div class="feature-strip-item"><div class="strip-icon">⚗</div><div class="strip-text">Integrated Records</div></div>
+      <div class="feature-strip-item"><div class="strip-icon">⌘</div><div class="strip-text">Continuity of Care</div></div>
+      <div class="feature-strip-item"><div class="strip-icon">✚</div><div class="strip-text">Medical Coordination</div></div>
+      <div class="feature-strip-item"><div class="strip-icon">🛡</div><div class="strip-text">HIPAA Privacy Compliant</div></div>
     </div>
   </section>
 
-
-  <script>
-
-    // Duplicate items dynamically for smooth infinite effect
-
-    const scrollContent = document.getElementById("scrollContent");
-
-    scrollContent.innerHTML += scrollContent.innerHTML;
-
-  </script>
-
- <!-- ===== DASHBOARD SECTION ===== -->
-
-  <section class="dashboard-section" id="dashboard">
-    <div class="container dashboard-inner">
-      <div class="dashboard-image fade-in">
-        <div class="device-mockup">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80" alt="Dashboard" />
-        </div>
-      </div>
-      <div class="dashboard-text fade-in delay-1">
-        <div class="section-tag">Pulse one</div>
-        <h2 class="section-title"><em>Healthcare</em><br />Access<br />Infrastructure</h2>
-        <p class="section-body">
-         We build the physical and digital pipelines that allow hospitals to operate at peak efficiency while providing patients  with immediate bedside care.
-        </p>
-        <div class="dashboard-metrics">
-          <div class="metric">
-            <span class="metric-val">98%</span>
-            <span class="metric-label">Uptime</span>
-          </div>
-          <div class="metric">
-            <span class="metric-val">2.1s</span>
-            <span class="metric-label">Avg. Response</span>
-          </div>
-          <div class="metric">
-            <span class="metric-val">256-bit</span>
-            <span class="metric-label">Encryption</span>
-          </div>
-        </div>
-        <a href="#" class="btn btn-primary">Learn more about our infrastructure  -></a>
-      </div>
-    </div>
-  </section>
-
-<!-- ===== GREEN BANNER SECTION ===== -->
-    <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    body{
-      font-family:'Inter',sans-serif;
-      background:#ffffff;
-      color:#0d1f12;
-    }
-
-    :root{
-      --primary:#0d1f12;
-      --green:#5b8767;
-      --light:#f3f4f5;
-      --text:#7d7d7d;
-      --border:#ececec;
-    }
-
-    /* =========================
-       TOP STATS SECTION
-    ==========================*/
-
-    .stats-wrapper{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      padding:40px 20px;
-      background:#ffffff;
-    }
-
-    .stats-card{
-      width:100%;
-      max-width:1050px;
-      border:1px solid var(--border);
-      border-radius:32px;
-      padding:40px 45px;
-
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-
-      background:#fff;
-    }
-
-    .stats-left{
-      max-width:520px;
-    }
-
-    .stats-left h2{
-      font-size:36px;
-      line-height:1.15;
-      color:var(--green);
-      font-weight:800;
-      margin-bottom:18px;
-    }
-
-    .stats-left p{
-      font-size:14px;
-      line-height:1.8;
-      color:#6f6f6f;
-    }
-
-    .stats-right{
-      display:flex;
-      align-items:center;
-      gap:45px;
-    }
-
-    .stat-box{
-      text-align:center;
-      position:relative;
-    }
-
-    .stat-box:not(:last-child)::after{
-      content:'';
-      position:absolute;
-      right:-24px;
-      top:5px;
-      width:1px;
-      height:70px;
-      background:#e8e8e8;
-    }
-
-    .stat-box h3{
-      font-size:60px;
-      color:var(--green);
-      font-weight:800;
-      line-height:1;
-      margin-bottom:10px;
-    }
-
-    .stat-box span{
-      font-size:10px;
-      letter-spacing:1px;
-      color:#8a8a8a;
-      font-weight:700;
-      text-transform:uppercase;
-    }
-
-    /* =========================
-       PROVIDERS SECTION
-    ==========================*/
-
-    .providers-section{
-      width:100%;
-      background:#f2f3f4;
-      padding:110px 20px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .providers-container{
-      width:100%;
-      max-width:1150px;
-
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      align-items:center;
-      gap:80px;
-    }
-
-    /* IMAGE */
-
-    .providers-image img{
-      width:100%;
-      border-radius:28px;
-
-      box-shadow:
-      0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    /* CONTENT */
-
-    .providers-content small{
-      display:block;
-      font-size:11px;
-      letter-spacing:3px;
-      color:#6b8c74;
-      font-weight:700;
-      text-transform:uppercase;
-      margin-bottom:18px;
-    }
-
-    .providers-content h2{
-      font-size:64px;
-      line-height:0.95;
-      color:#5f8868;
-      font-weight:800;
-      margin-bottom:45px;
-      letter-spacing:-2px;
-    }
-
-    .feature-item{
-      display:flex;
-      align-items:flex-start;
-      gap:18px;
-      margin-bottom:34px;
-    }
-
-    .feature-icon{
-      color:#5f8868;
-      font-size:18px;
-      margin-top:6px;
-      min-width:20px;
-    }
-
-    .feature-text h3{
-      font-size:22px;
-      color:#2d2d2d;
-      margin-bottom:10px;
-      font-weight:700;
-    }
-
-    .feature-text p{
-      font-size:15px;
-      line-height:1.8;
-      color:#7a7a7a;
-      max-width:450px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ==========================*/
-
-    @media(max-width:992px){
-
-      .providers-container{
-        grid-template-columns:1fr;
-        gap:60px;
-      }
-
-      .providers-content h2{
-        font-size:52px;
-      }
-
-      .stats-card{
-        flex-direction:column;
-        gap:45px;
-        align-items:flex-start;
-      }
-
-      .stats-right{
-        width:100%;
-        justify-content:space-between;
-      }
-
-    }
-
-    @media(max-width:768px){
-
-      .stats-card{
-        padding:32px 28px;
-      }
-
-      .stats-left h2{
-        font-size:28px;
-      }
-
-      .stat-box h3{
-        font-size:42px;
-      }
-
-      .providers-section{
-        padding:80px 20px;
-      }
-
-      .providers-content h2{
-        font-size:42px;
-      }
-
-      .feature-text h3{
-        font-size:18px;
-      }
-
-      .feature-text p{
-        font-size:14px;
-      }
-
-    }
-
-  </style>
-</head>
-
-<body>
-
-  <!-- =========================
-       STATS SECTION
-  ==========================-->
-
-  <section class="stats-wrapper">
-
+  <!-- ===== ROYALTY / STATS BANNER SECTION ===== -->
+  <section class="stats-wrapper" id="royalty">
     <div class="stats-card">
-
       <div class="stats-left">
-        <h2>
-          Diagnostics & Coordinated Care
-        </h2>
-
-        <p>
-          Integrated reporting ensures your doctor is always in the
-          loop, reducing wait times by up to 40%.
-        </p>
+        <h2>Diagnostics &amp; Coordinated Membership</h2>
+        <p>Our exclusive Royalty Program ensures swift reporting tracks, priority appointment scheduling, and reduced treatment processing delays by up to 40%.</p>
       </div>
-
       <div class="stats-right">
-
         <div class="stat-box">
           <h3>40%</h3>
-          <span>FASTER RESULTS</span>
+          <span>Faster Results</span>
         </div>
-
         <div class="stat-box">
           <h3>2.5k+</h3>
-          <span>SPECIALISED TESTS</span>
+          <span>Covered Treatments</span>
         </div>
-
       </div>
-
     </div>
-
   </section>
 
-
-
-  <!-- =========================
-       PROVIDERS SECTION
-  ==========================-->
-
-  <section class="providers-section">
-
-    <div class="providers-container">
-
-      <!-- IMAGE -->
-
-      <div class="providers-image">
-
-        <img src="ww.jpg" alt="Medical Dashboard">
-
-      </div>
-
-      <!-- CONTENT -->
-
-      <div class="providers-content">
-
-        <small>
-          Medical Partners
-        </small>
-
-        <h2>
-          Structured <br>
-          Growth For <br>
-          Providers
-        </h2>
-
-        <!-- ITEM -->
-
-        <div class="feature-item">
-
-          <div class="feature-icon">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-          </div>
-
-          <div class="feature-text">
-
-            <h3>Patient Acquisition</h3>
-
-            <p>
-              Tap into the PulseOne ecosystem of members actively
-              seeking high-end coordinated care solutions.
-            </p>
-
-          </div>
-
-        </div>
-
-        <!-- ITEM -->
-
-        <div class="feature-item">
-
-          <div class="feature-icon">
-            <i class="fa-solid fa-users"></i>
-          </div>
-
-          <div class="feature-text">
-
-            <h3>Retention Protocols</h3>
-
-            <p>
-              Leverage our continuity protocols to increase patient
-              loyalty and lifetime engagement value.
-            </p>
-
-          </div>
-
-        </div>
-
-        <!-- ITEM -->
-
-        <div class="feature-item">
-
-          <div class="feature-icon">
-            <i class="fa-solid fa-diamond"></i>
-          </div>
-
-          <div class="feature-text">
-
-            <h3>Direct Lab Integration</h3>
-
-            <p>
-              Seamlessly connect your clinical systems with our tier-1
-              diagnostic partners for instant data flow.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ===== ABOUT / ELDERCARE SECTION ===== -->
+  <!-- ===== ABOUT SECTION (PULSEONE INDIA FOCUS) ===== -->
   <section class="about-section" id="about">
     <div class="container about-inner">
       <div class="about-image fade-in">
         <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600&q=80" alt="Eldercare" />
         <div class="about-card">
-          <div class="about-card-icon">⭐</div>
+          <div class="about-card-icon">🇮🇳</div>
           <div>
-            <div class="about-card-num">4.9/5</div>
-            <div class="about-card-text">Patient Rating</div>
+            <div class="about-card-num">20+</div>
+            <div class="about-card-text">Towns Covered</div>
           </div>
         </div>
       </div>
       <div class="about-text fade-in delay-1">
-        <div class="section-tag">DIAGNOSTIC EXCELLENCE</div>
-        <h2 class="section-title">Healthcare<br /><em>That Feels</em><br />Organized and Personal</h2>
+        <div class="section-tag">WE ARE PULSEONE</div>
+        <h2 class="section-title">Transforming Healthcare<br /><em>Access in</em><br />Small Town India</h2>
         <p class="section-body">
-         No more lost reports or manual coordination. PulseOne handles the logistics so you can focus entirely on recovery and wellness.
+          PulseOne is dedicated to bridging critical healthcare gaps by connecting hospitals, patients, and financial partners through a seamless and integrated digital ecosystem. We are driven by the mission to make quality healthcare accessible, affordable, and transparent for underserved communities in rural and small-town India.
         </p>
-        <div class="about-stats">
-          <div class="about-stat">
-            <span class="about-stat-num">15+</span>
-            <span class="about-stat-label">Years Experience</span>
+
+        <!-- CORE VALUES MINI LAYOUT -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px;">
+          <div>
+            <span style="font-size: 15px; font-weight: 700; color: #2f6f4f; display: block; margin-bottom: 4px;">Accessibility</span>
+            <span style="font-size: 11.5px; color: #666; line-height: 1.4; display: block;">Equal access to quality healthcare services regardless of location variables.</span>
           </div>
-          <div class="about-stat">
-            <span class="about-stat-num">300K+</span>
-            <span class="about-stat-label">Patients Treated</span>
+          <div>
+            <span style="font-size: 15px; font-weight: 700; color: #2f6f4f; display: block; margin-bottom: 4px;">Transparency</span>
+            <span style="font-size: 11.5px; color: #666; line-height: 1.4; display: block;">Clear, open communication protocols and absolute cost transparency profiles.</span>
+          </div>
+          <div>
+            <span style="font-size: 15px; font-weight: 700; color: #2f6f4f; display: block; margin-bottom: 4px;">Collaboration</span>
+            <span style="font-size: 11.5px; color: #666; line-height: 1.4; display: block;">Unifying hospitals, caregivers, and financial institutions safely.</span>
           </div>
         </div>
-        <a href="#" class="btn btn-primary">Our Story</a>
+
+        <a href="#team-anchor" class="btn btn-primary" style="margin-top: 30px;">Meet Our Team</a>
       </div>
     </div>
   </section>
 
-
-
-   <section class="po-surgery-section">
-
-  <div class="po-surgery-container">
-
-    <p class="po-subtitle">
-      ADVANCED CLINICAL SUPPORT
-    </p>
-
-    <h1 class="po-title">
-      Surgery Requires Precision <br>
-      Coordination
-    </h1>
-
-    <p class="po-description">
-      Surgery isn’t just a procedure; it’s a journey. PulseOne provides
-      the end-to-end framework—from pre-op diagnostics to rehabilitation.
-    </p>
-
-    <div class="po-cards">
-
-      <!-- Card 1 -->
-      <div class="po-card">
-
-        <div class="po-icon-box">
-          <div class="po-icon">✦</div>
-        </div>
-
-        <h3>
-          Precision <br>
-          Sourcing
-        </h3>
-
-        <p>
-          Matching your condition with the highest-rated surgical facilities
-          and surgeons in our global network.
-        </p>
-
+  <!-- ===== EXPERT PRACTITIONERS (DOCTORS NETWORK) ===== -->
+  <section class="doctors-section" id="doctors" style="background: #fdfdfd; border-top: 1px solid #ececec;">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="section-tag">Ecosystem Network</div>
+        <h2 class="section-title">Expert <em>Practitioners</em></h2>
       </div>
-
-      <!-- Card 2 -->
-      <div class="po-card">
-
-        <div class="po-icon-box">
-          <div class="po-icon">📋</div>
+      <div class="doctors-grid">
+        <!-- DOCTOR 1 -->
+        <div class="doctor-card fade-in">
+          <div class="doctor-img-wrap">
+            <img src="u.jpg" alt="Dr. Marcus Webb" />
+            <div class="doctor-available">Available</div>
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Marcus Webb</h3>
+            <span class="doctor-specialty">Cardiologist</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Specializes in preventive cardiology and advanced heart failure therapies with over 12 years of clinical experience across small-town clinical centers.</p>
+            <div class="doctor-contact" style="font-size:12px; font-weight:600; color:#2f6f4f; margin-bottom:8px;"><i class="fa-solid fa-phone"></i> Ext. 401</div>
+            <div class="doctor-rating">★ 4.9 <span>(234 reviews)</span></div>
+          </div>
         </div>
-
-        <h3>
-          Protocol <br>
-          Adherence
-        </h3>
-
-        <p>
-          Standardized clinical pathways that reduce post-surgical
-          complication rates by up to 30%.
-        </p>
-
-      </div>
-
-      <!-- Card 3 -->
-      <div class="po-card">
-
-        <div class="po-icon-box">
-          <div class="po-icon">⌂</div>
+        <!-- DOCTOR 2 -->
+        <div class="doctor-card fade-in delay-1">
+          <div class="doctor-img-wrap">
+            <img src="p.jpg" alt="Dr. Elena Santos" />
+            <div class="doctor-available">Available</div>
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Elena Santos</h3>
+            <span class="doctor-specialty">Neurologist</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Expertise in neurodegenerative conditions, complex migraine therapy pathways, and comprehensive nervous system diagnostics.</p>
+            <div class="doctor-contact" style="font-size:12px; font-weight:600; color:#2f6f4f; margin-bottom:8px;"><i class="fa-solid fa-phone"></i> Ext. 108</div>
+            <div class="doctor-rating">★ 4.8 <span>(189 reviews)</span></div>
+          </div>
         </div>
-
-        <h3>
-          Rehab <br>
-          Continuity
-        </h3>
-
-        <p>
-          Integrated post-care monitoring through our virtual health suite
-          for immediate recovery support.
-        </p>
-
+        <!-- DOCTOR 3 -->
+        <div class="doctor-card fade-in delay-2">
+          <div class="doctor-img-wrap">
+            <img src="r.jpg" alt="Dr. Arjun Khan" />
+            <div class="doctor-available busy">Busy</div>
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Arjun Khan</h3>
+            <span class="doctor-specialty">Orthopedist</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Dedicated surgical practitioner focused heavily on minimally invasive joint replacements and sports trauma recovery programs.</p>
+            <div class="doctor-contact" style="font-size:12px; font-weight:600; color:#2f6f4f; margin-bottom:8px;"><i class="fa-solid fa-phone"></i> Ext. 312</div>
+            <div class="doctor-rating">★ 4.9 <span>(312 reviews)</span></div>
+          </div>
+        </div>
+        <!-- DOCTOR 4 -->
+        <div class="doctor-card fade-in delay-3">
+          <div class="doctor-img-wrap">
+            <img src="f.jpg" alt="Dr. Priya Patel" />
+            <div class="doctor-available">Available</div>
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Priya Patel</h3>
+            <span class="doctor-specialty">Pediatrician</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Providing compassionate, patient-first primary care solutions, childhood development planning, and routine immunizations.</p>
+            <div class="doctor-contact" style="font-size:12px; font-weight:600; color:#2f6f4f; margin-bottom:8px;"><i class="fa-solid fa-phone"></i> Ext. 225</div>
+            <div class="doctor-rating">★ 5.0 <span>(421 reviews)</span></div>
+          </div>
+        </div>
       </div>
-
+      <div class="doctors-cta">
+        <a href="#contact" class="btn btn-outline">Schedule Consultation</a>
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- ===== CORPORATE LEADERSHIP TEAM SECTION ===== -->
+  <section class="doctors-section" id="team-anchor" style="background: #ffffff; border-top: 1px solid #ececec;">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="section-tag">PulseOne Executive Board</div>
+        <h2 class="section-title">Meet the <em>Leadership</em> Team</h2>
+      </div>
+      <div class="doctors-grid">
+        <!-- CEO -->
+        <div class="doctor-card fade-in">
+          <div class="doctor-img-wrap">
+            <img src="salmanKhan.png" alt="Salman Khan" />
+          </div>
+          <div class="doctor-info">
+            <h3>Salman Khan</h3>
+            <span class="doctor-specialty" style="background: #e7f3ed; color: #234734; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Chief Executive Officer</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Salman leads ZeenCare with a vision to make healthcare smarter, accessible, and patient-centric. With expertise in business leadership and healthcare partnerships, he drives growth by aligning innovation with impact.</p>
+          </div>
+        </div>
+        <!-- CSO -->
+        <div class="doctor-card fade-in delay-1">
+          <div class="doctor-img-wrap">
+            <img src="akashRana.png" alt="Akash Rana" />
+          </div>
+          <div class="doctor-info">
+            <h3>Akash Rana</h3>
+            <span class="doctor-specialty" style="background: #e7f3ed; color: #234734; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Chief Strategy Officer</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Akash is the architect behind ZeenCare’s long-term roadmap. Combining deep market insight with a systems-thinking approach, he designs strategies that bridge healthcare delivery with financial access.</p>
+          </div>
+        </div>
+        <!-- CPO -->
+        <div class="doctor-card fade-in delay-2">
+          <div class="doctor-img-wrap">
+            <img src="himanshusingh.png" alt="Himanshu Singh" />
+          </div>
+          <div class="doctor-info">
+            <h3>Himanshu Singh</h3>
+            <span class="doctor-specialty" style="background: #e7f3ed; color: #234734; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Chief Product Officer</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Armed with a passion for solving real problems for hospitals and patients - Himanshu leads product innovation at ZeenCare, bringing together technology, usability, and healthcare workflows into powerful digital solutions.</p>
+          </div>
+        </div>
+        <!-- TECH LEAD -->
+        <div class="doctor-card fade-in delay-3">
+          <div class="doctor-img-wrap">
+            <img src="prashantYadav.png" alt="Prashant Yadav" />
+          </div>
+          <div class="doctor-info">
+            <h3>Prashant Yadav</h3>
+            <span class="doctor-specialty" style="background: #e7f3ed; color: #234734; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Technology Lead, Product Dev</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Prashant drives backend architectural development and frontend team alignment, delivering high performance systems and ensuring intuitive digital workflows across all functional platforms.</p>
+          </div>
+        </div>
+        <!-- DESIGN LEAD -->
+        <div class="doctor-card fade-in">
+          <div class="doctor-img-wrap">
+            <img src="ullhasAbraham.png" alt="Ulhas Abraham" />
+          </div>
+          <div class="doctor-info">
+            <h3>Ulhas Abraham</h3>
+            <span class="doctor-specialty" style="background: #e7f3ed; color: #234734; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Product Design Lead</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Ulhas is a Product Designer at ZeenCare. His role involves leading UX research and translating insights into user-centered designs. He ensures intuitive experiences, drives design quality, and collaborates across teams to align solutions with real patient needs.</p>
+          </div>
+        </div>
+        <!-- BRAND LEAD -->
+        <div class="doctor-card fade-in delay-1">
+          <div class="doctor-img-wrap">
+            <img src="prachi.png" alt="Prachi Deopa" />
+          </div>
+          <div class="doctor-info">
+            <h3>Prachi Deopa</h3>
+            <span class="doctor-specialty" style="background: #e7f3ed; color: #234734; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Product &amp; Brand Experience Lead</span>
+            <p class="doctor-desc" style="font-size:13px; color:#666; margin:8px 0;">Prachi creates seamless digital experiences by blending design, usability, and brand identity. With strong frontend expertise, she ensures products are intuitive, visually consistent, and engaging—strengthening customer trust and aligning user interactions with overall brand experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</section>
+  <!-- ===== SURGERY COORDINATION SECTION ===== -->
+  <section class="po-surgery-section">
+    <div class="po-surgery-container">
+      <p class="po-subtitle">ADVANCED CLINICAL SUPPORT</p>
+      <h1 class="po-title">Surgery Requires Precision <br>Coordination</h1>
+      <p class="po-description">
+        Surgery isn’t just a localized clinical procedure; it’s a detailed personal journey. PulseOne provides the end-to-end support framework—from pre-op diagnostics to standard rehabilitation paths.
+      </p>
 
-<style>
-
-/* =========================
-   SAFE UNIQUE STYLES
-========================= */
-
-.po-surgery-section{
-  width:100%;
-  background:linear-gradient(to right,#071b12,#0a2417);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:80px 20px;
-  overflow:hidden;
-}
-
-.po-surgery-container{
-  max-width:1200px;
-  width:100%;
-  text-align:center;
-}
-
-.po-subtitle{
-  color:#d7d7d7;
-  letter-spacing:4px;
-  font-size:11px;
-  margin-bottom:20px;
-  font-weight:600;
-}
-
-.po-title{
-  font-size:58px;
-  line-height:1.1;
-  color:#ffffff;
-  font-weight:700;
-  margin-bottom:25px;
-}
-
-.po-description{
-  color:#8d9390;
-  max-width:700px;
-  margin:0 auto 70px;
-  line-height:1.7;
-  font-size:16px;
-}
-
-.po-cards{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  flex-wrap:wrap;
-}
-
-.po-card{
-  width:320px;
-  padding:45px 35px;
-  border-radius:28px;
-  background:rgba(10,30,20,0.85);
-  border:1px solid rgba(0,255,170,0.08);
-  position:relative;
-  overflow:hidden;
-  text-align:left;
-  transition:0.3s ease;
-  backdrop-filter:blur(8px);
-}
-
-.po-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(
-    circle at top left,
-    rgba(0,255,170,0.12),
-    transparent 60%
-  );
-  pointer-events:none;
-}
-
-.po-card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(0,255,170,0.2);
-}
-
-.po-icon-box{
-  width:55px;
-  height:55px;
-  border-radius:14px;
-  background:rgba(0,255,170,0.08);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:30px;
-}
-
-.po-icon{
-  color:#00d9a6;
-  font-size:24px;
-}
-
-.po-card h3{
-  color:#ffffff;
-  font-size:24px;
-  line-height:1.3;
-  margin-bottom:18px;
-}
-
-.po-card p{
-  color:#8a908d;
-  font-size:15px;
-  line-height:1.8;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:992px){
-
-  .po-title{
-    font-size:42px;
-  }
-
-  .po-cards{
-    gap:20px;
-  }
-
-  .po-card{
-    width:100%;
-    max-width:400px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .po-surgery-section{
-    padding:60px 15px;
-  }
-
-  .po-title{
-    font-size:32px;
-  }
-
-  .po-description{
-    font-size:14px;
-  }
-
-  .po-card{
-    padding:35px 25px;
-  }
-
-}
-
-</style>
- 
-
-
-   
+      <div class="po-cards">
+        <div class="po-card">
+          <div class="po-icon-box"><div class="po-icon">✦</div></div>
+          <h3>Precision Sourcing</h3>
+          <p>Matching your specific health condition with the highest-rated surgical facilities and surgeons across our globally vetted health network.</p>
+        </div>
+        <div class="po-card">
+          <div class="po-icon-box"><div class="po-icon">📋</div></div>
+          <h3>Protocol Adherence</h3>
+          <p>Standardized healthcare pathways that seamlessly guide preparation actions and effectively reduce post-surgical complication rates by up to 30%.</p>
+        </div>
+        <div class="po-card">
+          <div class="po-icon-box"><div class="po-icon">⌂</div></div>
+          <h3>Rehab Continuity</h3>
+          <p>Integrated post-care tracking metrics and direct virtual health communication modules for immediate, helpful at-home recovery support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== TESTIMONIALS SECTION ===== -->
   <section class="testimonials-section" id="testimonials">
@@ -1545,7 +906,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card   fade-in delay-1">
+        <div class="testimonial-card fade-in delay-1">
           <div class="stars light">★★★★★</div>
           <p>"Incredible experience! Booked a specialist appointment in minutes and had my lab results available the same day. Revolutionary healthcare."</p>
           <div class="testimonial-author">
@@ -1571,294 +932,34 @@
     </div>
   </section>
 
-  <!-- ===== DOCTORS SECTION ===== -->
-  <section class="doctors-section" id="doctors">
-    <div class="container">
-      <div class="section-header centered">
-        <div class="section-tag">Our Team</div>
-        <h2 class="section-title">Our Best <em>Practitioners</em></h2>
-      </div>
-      <div class="doctors-grid">
-        <div class="doctor-card fade-in">
-          <div class="doctor-img-wrap">
-            <img src="u.jpg" alt="Dr. Marcus" />
-            <div class="doctor-available">Available</div>
-          </div>
-          <div class="doctor-info">
-            <h3>Dr. Marcus Webb</h3>
-            <span class="doctor-specialty">Cardiologist</span>
-            <div class="doctor-rating">★ 4.9 <span>(234 reviews)</span></div>
-          </div>
-        </div>
-        <div class="doctor-card fade-in delay-1">
-          <div class="doctor-img-wrap">
-            <img src="p.jpg" alt="Dr. Elena" />
-            <div class="doctor-available">Available</div>
-          </div>
-          <div class="doctor-info">
-            <h3>Dr. Elena Santos</h3>
-            <span class="doctor-specialty">Neurologist</span>
-            <div class="doctor-rating">★ 4.8 <span>(189 reviews)</span></div>
-          </div>
-        </div>
-        <div class="doctor-card fade-in delay-2">
-          <div class="doctor-img-wrap">
-            <img src="r.jpg" alt="Dr. Khan" />
-            <div class="doctor-available busy">Busy</div>
-          </div>
-          <div class="doctor-info">
-            <h3>Dr. Arjun Khan</h3>
-            <span class="doctor-specialty">Orthopedist</span>
-            <div class="doctor-rating">★ 4.9 <span>(312 reviews)</span></div>
-          </div>
-        </div>
-        <div class="doctor-card fade-in delay-3">
-          <div class="doctor-img-wrap">
-            <img src="f.jpg" alt="Dr. Patel" />
-            <div class="doctor-available">Available</div>
-          </div>
-          <div class="doctor-info">
-            <h3>Dr. Priya Patel</h3>
-            <span class="doctor-specialty">Pediatrician</span>
-            <div class="doctor-rating">★ 5.0 <span>(421 reviews)</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="doctors-cta">
-        <a href="#" class="btn btn-outline">View All Doctors</a>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- =========================
-     ECOSYSTEM PARTNERS SECTION
-     SAFE UNIQUE CLASSES
-========================= -->
-
-<section class="po-partners-section">
-
-  <div class="po-partners-container">
-
-    <h1 class="po-partners-title">
-      Our Ecosystem Partners
-    </h1>
-
-    <div class="po-partners-grid">
-      
-         
-      <!-- Card 2 -->
-      <div class="po-partner-card">
-
-        <div class="po-icon">🏢</div>
-
-        <h3>
-          ELITE <br>
-          HOSPITALS
-        </h3>
-
-      </div>
-
-      <!-- Card 2 -->
-      <div class="po-partner-card">
-
-        <div class="po-icon">⚕️</div>
-
-        <h3>
-          TIER-1 <br>
-          DIAGNOSTICS
-        </h3>
-
-      </div>
-
-      <!-- Card 3 -->
-      <div class="po-partner-card">
-
-        <div class="po-icon">🤝</div>
-
-        <h3>
-          STRATEGIC <br>
-          ALLIANCES
-        </h3>
-
-      </div>
-
-      <!-- Card 4 -->
-      <div class="po-partner-card">
-
-        <div class="po-icon">💵</div>
-
-        <h3>
-          GLOBAL <br>
-          INVESTORS
-        </h3>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<style>
-
-/* =========================
-   SAFE UNIQUE STYLES
-========================= */
-
-.po-partners-section{
-  width:100%;
-  background:linear-gradient(to right,#071c13,#0a2418);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:80px 20px;
-  overflow:hidden;
-}
-
-.po-partners-container{
-  width:100%;
-  max-width:1200px;
-  text-align:center;
-}
-
-.po-partners-title{
-  color:#ffffff;
-  font-size:52px;
-  font-weight:700;
-  margin-bottom:70px;
-  line-height:1.2;
-}
-
-.po-partners-grid{
-  display:flex;
-  justify-content:center;
-  gap:28px;
-  flex-wrap:wrap;
-}
-
-.po-partner-card{
-  width:250px;
-  height:220px;
-  border-radius:30px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.04);
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  transition:0.35s ease;
-  position:relative;
-  overflow:hidden;
-
-  backdrop-filter:blur(8px);
-}
-
-.po-partner-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:radial-gradient(
-    circle at top left,
-    rgba(255,255,255,0.08),
-    transparent 65%
-  );
-
-  pointer-events:none;
-}
-
-.po-partner-card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(255,255,255,0.12);
-  background:rgba(255,255,255,0.08);
-}
-
-.po-icon{
-  font-size:42px;
-  color:#ffffff;
-  margin-bottom:25px;
-}
-
-.po-partner-card h3{
-  color:#ffffff;
-  font-size:17px;
-  line-height:1.8;
-  letter-spacing:2px;
-  font-weight:700;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:992px){
-
-  .po-partners-title{
-    font-size:40px;
-  }
-
-  .po-partner-card{
-    width:220px;
-    height:200px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .po-partners-section{
-    padding:60px 15px;
-  }
-
-  .po-partners-title{
-    font-size:30px;
-    margin-bottom:50px;
-  }
-
-  .po-partner-card{
-    width:100%;
-    max-width:320px;
-  }
-
-}
-
-</style>
-
-  
-
-  <!-- ===== CONTACT / NEWSLETTER ===== -->
+  <!-- ===== CONTACT / APPOINTMENT BOOKING ===== -->
   <section class="contact-section" id="contact">
     <div class="container contact-inner">
       <div class="contact-text fade-in">
         <div class="section-tag">Get in Touch</div>
-        <h2 class="section-title">Ready to <em>Transform</em><br />Your Healthcare?</h2>
-        <p class="section-body">Join thousands of patients and providers already using our platform. Start your free trial today, no credit card required.</p>
+        <h2 class="section-title">Ready to <em>Schedule</em><br />Your Appointment?</h2>
+        <p class="section-body">Join thousands of patients receiving world-class medical coordination. Book your clinical consultation or reach out with any basic queries instantly.</p>
         <div class="contact-info">
-          <div class="contact-item"><span>📧</span> support@medicare.com</div>
-          <div class="contact-item"><span>📞</span> +1 (800) 123-4567</div>
-          <div class="contact-item"><span>📍</span> 123 Health Ave, NY 10001</div>
+          <div class="contact-item"><span>📧</span> wecare@pulseone.in</div>
+          <div class="contact-item"><span>📞</span> +91 8130855300</div>
+          <div class="contact-item"><span>📍</span> A-167, First Floor, Sector 63 Rd, Noida, UP 201309</div>
         </div>
       </div>
       <div class="contact-form-wrap fade-in delay-1">
         <form class="contact-form" onsubmit="handleForm(event)">
           <div class="form-group">
             <label>Full Name</label>
-            <input type="text" placeholder="John Smith" />
+            <input type="text" placeholder="John Smith" required />
           </div>
           <div class="form-group">
             <label>Email Address</label>
-            <input type="email" placeholder="john@example.com" />
+            <input type="email" placeholder="john@example.com" required />
           </div>
           <div class="form-group">
-            <label>Message</label>
-            <textarea rows="4" placeholder="How can we help you?"></textarea>
+            <label>Requested Service / Note</label>
+            <textarea rows="4" placeholder="How can we help you? (e.g., General Checkup, Cardiology consultation query)"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary w-full">Send Message</button>
+          <button type="submit" class="btn btn-primary w-full">Request Appointment</button>
         </form>
       </div>
     </div>
@@ -1870,93 +971,74 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="#" class="nav-logo">
-            <span class="logo-icon">✦</span>
-            <span class="logo-text">Medi<strong>Care</strong></span>
+            <span class="logo-icon" style="color: var(--green);">✦</span>
+            <span class="logo-text" style="color: #ffffff;">Pulse<strong>One</strong></span>
           </a>
-          <p>The most trusted healthcare platform connecting patients with world-class medical professionals.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="Twitter">𝕏</a>
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="LinkedIn">in</a>
+          <p style="margin-top: 15px; color: #a1a1a1; font-size: 14px; line-height: 1.6;">
+            Transforming healthcare access through innovative technology and seamless connectivity. Built explicitly for underserved small towns across India.
+          </p>
+          <div class="social-links" style="margin-top: 20px;">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
+        
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>Ecosystem Options</h4>
           <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Partners</a></li>
+            <li><a href="#about">Our Core Values</a></li>
+            <li><a href="#services">Our Digital Services</a></li>
+            <li><a href="#doctors">Practitioners Network</a></li>
+            <li><a href="#team-anchor">Our Team Blueprint</a></li>
+            <li><a href="#royalty">Royalty Benefits</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#">Telemedicine</a></li>
-            <li><a href="#">Lab Testing</a></li>
-            <li><a href="#">Pharmacy</a></li>
-            <li><a href="#">Mental Health</a></li>
-            <li><a href="#">Surgery Care</a></li>
-          </ul>
+          <h4>Corporate Headquarters</h4>
+          <p style="color: #a1a1a1; font-size: 13.5px; line-height: 1.7; font-weight: 400;">
+            A-167, First Floor,<br />
+            Sector 63 Rd, A Block,<br />
+            Sector 63, Noida,<br />
+            Uttar Pradesh 201309
+          </p>
         </div>
+
         <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Cookie Policy</a></li>
-            <li><a href="#">HIPAA</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Download App</h4>
-          <div class="app-badges">
-            <a href="#" class="app-badge">
-              <span class="app-icon">🍎</span>
-              <div>
-                <div class="app-badge-sub">Download on</div>
-                <div class="app-badge-main">App Store</div>
-              </div>
-            </a>
-            <a href="#" class="app-badge">
-              <span class="app-icon">▶</span>
-              <div>
-                <div class="app-badge-sub">Get it on</div>
-                <div class="app-badge-main">Google Play</div>
-              </div>
-            </a>
-          </div>
+          <h4>Direct Inquiries</h4>
+          <p style="color: #a1a1a1; font-size: 13.5px; line-height: 1.8;">
+            <i class="fa-regular fa-envelope" style="color: var(--green); margin-right: 5px;"></i> wecare@pulseone.in<br />
+            <i class="fa-solid fa-phone" style="color: var(--green); margin-right: 5px;"></i> +91 8130855300
+          </p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2025 MediCare Platform. All rights reserved.</p>
+
+      <div class="footer-bottom" style="border-top: 1px solid #222; padding-top: 30px; margin-top: 40px;">
+        <p>© 2026 PulseOne - Product of Zeencare Healthtech Pvt Ltd. All rights reserved.</p>
         <div class="footer-nav">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Cookies</a>
+          <a href="#">HIPAA Governance</a>
+          <a href="#">Privacy Framework</a>
+          <a href="#">Terms of Use</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <script>
+    // Duplicate scrolling strip items dynamically for continuous effect
+    const scrollContent = document.getElementById("scrollContent");
+    if(scrollContent) {
+      scrollContent.innerHTML += scrollContent.innerHTML;
+    }
+
+    // Basic placeholder form submission handler
+    function handleForm(event) {
+      event.preventDefault();
+      alert("Thank you! Your appointment request has been submitted.");
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
