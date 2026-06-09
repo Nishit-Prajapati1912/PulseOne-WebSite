@@ -1,0 +1,1104 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseOne — Patient Intake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f0f2f0;
+  color: #1a2e24;
+  min-height: 100vh;
+}
+
+/* ── Variables ───────────────────────────────────────────────────────────── */
+:root {
+  --green-dark:    #1a4a3a;
+  --green-mid:     #2d9a7a;
+  --green-light:   #5ab894;
+  --green-pale:    #e8f5f0;
+  --green-border:  #c8e8d8;
+  --bg:            #f0f2f0;
+  --surface:       #ffffff;
+  --surface2:      #f8faf8;
+  --border:        #e2e8e4;
+  --text-main:     #1a2e24;
+  --text-secondary:#5a6e62;
+  --text-muted:    #8a9e94;
+  --red-soft:      #fee2e2;
+  --red-text:      #c0392b;
+  --radius:        12px;
+  --radius-sm:     8px;
+  --shadow-sm:     0 1px 3px rgba(10,40,25,0.06), 0 1px 2px rgba(10,40,25,0.04);
+  --shadow-md:     0 4px 16px rgba(10,40,25,0.08), 0 2px 6px rgba(10,40,25,0.05);
+}
+
+/* ── Top Nav ─────────────────────────────────────────────────────────────── */
+.topnav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--green-dark);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green-mid);
+  border-radius: 50%;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: color .18s, background .18s;
+}
+
+.nav-links a:hover { color: var(--text-main); background: var(--bg); }
+
+.nav-links a.active {
+  color: var(--green-dark);
+  font-weight: 600;
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -19px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--green-dark);
+  border-radius: 2px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-login {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 7px 14px;
+  border-radius: 6px;
+  transition: color .18s, background .18s;
+}
+
+.btn-login:hover { color: var(--text-main); background: var(--bg); }
+
+.btn-started {
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background .18s, transform .15s;
+}
+
+.btn-started:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+/* ── Page Shell ──────────────────────────────────────────────────────────── */
+.page-wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 28px 16px 48px;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px 16px;
+  position: sticky;
+  top: 76px;
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  padding: 0 4px;
+}
+
+.step-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 10px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .18s;
+  position: relative;
+}
+
+.step-item:hover { background: var(--surface2); }
+
+.step-item.active { background: var(--green-pale); }
+
+.step-item::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  bottom: -12px;
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+}
+
+.step-item:last-of-type::after { display: none; }
+
+.step-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.step-item.active .step-icon {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  color: #fff;
+}
+
+.step-item.done .step-icon {
+  background: var(--green-pale);
+  border-color: var(--green-border);
+  color: var(--green-mid);
+}
+
+.step-item.locked .step-icon {
+  background: var(--surface2);
+  border-color: var(--border);
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.step-text { line-height: 1; }
+
+.step-num {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.step-item.active .step-num { color: var(--green-mid); }
+
+.step-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.step-item.locked .step-name { color: var(--text-muted); opacity: 0.7; }
+
+.step-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.sidebar-divider {
+  margin: 18px 0;
+  height: 1px;
+  background: var(--border);
+}
+
+.support-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .18s;
+}
+
+.support-block:hover { background: var(--surface2); }
+
+.support-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--green-pale);
+  border: 1.5px solid var(--green-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-mid);
+  flex-shrink: 0;
+}
+
+.support-text p { font-size: 11px; color: var(--text-muted); }
+.support-text strong { font-size: 12px; color: var(--text-main); font-weight: 600; }
+
+/* ── Main Content ────────────────────────────────────────────────────────── */
+.main-content { display: flex; flex-direction: column; gap: 16px; }
+
+/* Page Header */
+.page-header { margin-bottom: 4px; }
+
+.page-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 480px;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Search Card */
+.search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  background: var(--surface2);
+  transition: border-color .18s, box-shadow .18s;
+  cursor: text;
+}
+
+.search-wrap:focus-within {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(45,154,122,0.1);
+  background: var(--surface);
+}
+
+.search-wrap svg { color: var(--text-muted); flex-shrink: 0; }
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-main);
+  flex: 1;
+  font-weight: 400;
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.quick-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 14px 0 10px;
+}
+
+.symptom-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all .18s;
+  min-width: 64px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  user-select: none;
+}
+
+.chip:hover {
+  border-color: var(--green-border);
+  background: var(--green-pale);
+  color: var(--green-dark);
+}
+
+.chip.selected {
+  border-color: var(--green-mid);
+  background: var(--green-pale);
+  color: var(--green-dark);
+}
+
+.chip-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Severity + Details row */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* Severity Card */
+.severity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.severity-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.severity-badge {
+  background: var(--red-soft);
+  color: var(--red-text);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.01em;
+}
+
+.severity-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.slider-wrap { padding: 0 2px; }
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Custom range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(to right, var(--green-light) 0%, var(--green-light) 70%, var(--border) 70%, var(--border) 100%);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--green-dark);
+  border: 3px solid #fff;
+  box-shadow: 0 1px 6px rgba(10,40,25,0.25);
+  cursor: pointer;
+  transition: transform .15s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--green-dark);
+  border: 3px solid #fff;
+  box-shadow: 0 1px 6px rgba(10,40,25,0.25);
+  cursor: pointer;
+}
+
+.range-end-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 7px;
+  font-weight: 400;
+}
+
+/* Details Card */
+.details-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.details-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.details-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-main);
+  background: var(--surface2);
+  resize: none;
+  height: 108px;
+  outline: none;
+  line-height: 1.6;
+  font-weight: 400;
+  transition: border-color .18s, box-shadow .18s;
+}
+
+.details-textarea:focus {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(45,154,122,0.1);
+  background: var(--surface);
+}
+
+/* ── Banner Card ─────────────────────────────────────────────────────────── */
+.banner-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  height: 156px;
+  box-shadow: var(--shadow-md);
+}
+
+.banner-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d2a22 0%, #1a3a2e 35%, #1e4a3a 55%, #0f2218 100%);
+  position: absolute;
+  inset: 0;
+}
+
+/* Animated subtle glow orbs */
+.banner-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.orb1 {
+  width: 160px; height: 160px;
+  background: rgba(45,154,122,0.3);
+  right: 80px; top: -40px;
+  animation: orbFloat 6s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 100px; height: 100px;
+  background: rgba(90,184,148,0.2);
+  right: 180px; bottom: -20px;
+  animation: orbFloat 8s ease-in-out infinite reverse;
+}
+
+/* Abstract medical equipment hints */
+.banner-img-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.banner-img-layer svg {
+  position: absolute;
+  right: 0; top: 0;
+  height: 100%;
+  width: 55%;
+  opacity: 0.18;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.04); }
+}
+
+.banner-dots {
+  position: absolute;
+  bottom: 18px;
+  right: 20px;
+  display: flex;
+  gap: 6px;
+}
+
+.banner-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+
+.dot-amber { background: #f59e0b; }
+.dot-green { background: var(--green-light); }
+
+.banner-content {
+  position: absolute;
+  inset: 0;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.banner-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 6px;
+}
+
+.banner-eyebrow svg { opacity: 0.6; }
+
+.banner-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ── Footer Actions ──────────────────────────────────────────────────────── */
+.footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 0;
+}
+
+.btn-draft {
+  background: var(--surface);
+  color: var(--text-main);
+  border: 1.5px solid var(--border);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .18s;
+}
+
+.btn-draft:hover {
+  border-color: var(--green-border);
+  background: var(--green-pale);
+  color: var(--green-dark);
+}
+
+.btn-continue {
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .2s;
+  letter-spacing: -0.01em;
+}
+
+.btn-continue:hover {
+  background: var(--green-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26,74,58,0.3);
+}
+
+.btn-continue svg {
+  transition: transform .18s;
+}
+
+.btn-continue:hover svg { transform: translateX(3px); }
+
+/* ── Toast notification ──────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--green-dark);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all .28s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(10,40,25,0.3);
+  z-index: 999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .page-wrap { grid-template-columns: 1fr; }
+  .sidebar { position: static; display: none; }
+  .two-col { grid-template-columns: 1fr; }
+  .topnav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .page-header h1 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Top Nav ─────────────────────────────────────────────────────────── -->
+<nav class="topnav">
+  <div class="nav-logo">
+    <span class="nav-logo-dot"></span>
+    PulseOne
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Solutions</a></li>
+    <li><a href="#">Infrastructure</a></li>
+    <li><a href="#">Network</a></li>
+    <li><a href="#">Membership</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-login">Login</button>
+    <button class="btn-started">Get Started</button>
+  </div>
+</nav>
+
+<!-- ── Page ────────────────────────────────────────────────────────────── -->
+<div class="page-wrap">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Patient Intake</div>
+    <ul class="step-list">
+
+      <li class="step-item active" onclick="setStep(0)">
+        <div class="step-icon">
+          <!-- heart icon -->
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div class="step-text">
+          <div class="step-num">Step 1</div>
+          <div class="step-name">Assessment</div>
+          <div class="step-sub">Symptom details</div>
+        </div>
+      </li>
+
+      <li class="step-item locked" onclick="setStep(1)">
+        <div class="step-icon">
+          <!-- layers icon -->
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+          </svg>
+        </div>
+        <div class="step-text">
+          <div class="step-num">Step 2</div>
+          <div class="step-name">Matching</div>
+          <div class="step-sub">Provider analysis</div>
+        </div>
+      </li>
+
+      <li class="step-item locked" onclick="setStep(2)">
+        <div class="step-icon">
+          <!-- check circle icon -->
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div class="step-text">
+          <div class="step-num">Step 3</div>
+          <div class="step-name">Selection</div>
+          <div class="step-sub">Confirm appointment</div>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="support-block">
+      <div class="support-avatar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="support-text">
+        <p>Need help?</p>
+        <strong>Contact Support</strong>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+
+    <!-- Header -->
+    <div class="page-header">
+      <h1>How are you feeling today?</h1>
+      <p>Tell us about your symptoms. PulseOne's clinical engine will analyze your inputs to match you with the right specialist.</p>
+    </div>
+
+    <!-- Search + Chips Card -->
+    <div class="card">
+      <div class="search-wrap" onclick="document.getElementById('symptomSearch').focus()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input id="symptomSearch" class="search-input" type="text" placeholder="Persistent Chest Pain" value="Persistent Chest Pain">
+      </div>
+
+      <div class="quick-label">Quick select common symptoms</div>
+
+      <div class="symptom-chips">
+        <button class="chip selected" onclick="toggleChip(this)">
+          <span class="chip-icon">🫀</span>
+          Chest Pain
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip-icon">🌡️</span>
+          Fever
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip-icon">🦴</span>
+          Joint Pain
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip-icon">💨</span>
+          Shortness
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip-icon">🌿</span>
+          Allergies
+        </button>
+        <button class="chip" onclick="toggleChip(this)">
+          <span class="chip-icon">🤕</span>
+          Headache
+        </button>
+      </div>
+    </div>
+
+    <!-- Severity + Details -->
+    <div class="two-col">
+
+      <!-- Severity Card -->
+      <div class="card">
+        <div class="severity-header">
+          <span class="severity-title">Severity Scale</span>
+          <span class="severity-badge" id="severityBadge">Severe (7/10)</span>
+        </div>
+        <p class="severity-desc">Rate the intensity of your discomfort from 1 (mild) to 10 (unbearable).</p>
+        <div class="slider-wrap">
+          <div class="range-labels">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+            <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+          </div>
+          <input type="range" id="severitySlider" min="1" max="10" value="7" oninput="updateSeverity(this.value)">
+          <div class="range-end-labels">
+            <span>Mild</span>
+            <span>Moderate</span>
+            <span>Severe</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Details Card -->
+      <div class="card">
+        <div class="details-title">Additional Details</div>
+        <p class="details-desc">Mention any patterns, triggers, or duration.</p>
+        <textarea class="details-textarea" id="detailsText" placeholder="Describe your symptoms...">Pain started four days ago, primarily during light exercise. It feels like a dull pressure behind the sternum and sometimes radiates to the left shoulder.</textarea>
+      </div>
+
+    </div>
+
+    <!-- Banner Card -->
+    <div class="banner-card">
+      <div class="banner-bg"></div>
+      <div class="banner-orb orb1"></div>
+      <div class="banner-orb orb2"></div>
+
+      <!-- Abstract equipment SVG layer -->
+      <div class="banner-img-layer">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMid slice">
+          <!-- Monitor / equipment silhouettes -->
+          <rect x="40" y="20" width="180" height="120" rx="8" fill="none" stroke="white" stroke-width="1.5"/>
+          <rect x="52" y="32" width="156" height="95" rx="4" fill="none" stroke="white" stroke-width="1"/>
+          <!-- ECG line on screen -->
+          <polyline points="58,80 80,80 88,55 95,105 102,80 115,80 122,68 126,92 130,80 155,80 163,50 170,110 177,80 200,80" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Stand -->
+          <rect x="118" y="140" width="24" height="12" rx="3" fill="none" stroke="white" stroke-width="1.2"/>
+          <rect x="104" y="150" width="52" height="5" rx="2.5" fill="none" stroke="white" stroke-width="1"/>
+          <!-- Second device -->
+          <rect x="250" y="30" width="130" height="100" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
+          <circle cx="315" cy="75" rx="32" ry="32" fill="none" stroke="white" stroke-width="1" cx="315" cy="75" r="32"/>
+          <circle cx="315" cy="75" r="20" fill="none" stroke="white" stroke-width="1"/>
+          <circle cx="315" cy="75" r="8" fill="none" stroke="white" stroke-width="1.5"/>
+          <!-- Small data pills -->
+          <rect x="52" y="134" width="50" height="10" rx="5" fill="none" stroke="white" stroke-width="0.8" opacity="0.5"/>
+          <rect x="108" y="134" width="35" height="10" rx="5" fill="none" stroke="white" stroke-width="0.8" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <!-- Status dots -->
+      <div class="banner-dots">
+        <div class="banner-dot dot-amber"></div>
+        <div class="banner-dot dot-green" style="animation: pulse-dot 2s ease-in-out infinite;"></div>
+      </div>
+
+      <div class="banner-content">
+        <div class="banner-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          PulseOne Analysis
+        </div>
+        <div class="banner-title">Powered by Clinical Intelligence</div>
+      </div>
+    </div>
+
+    <!-- Footer Actions -->
+    <div class="footer-actions">
+      <button class="btn-draft" onclick="saveDraft()">Save Draft</button>
+      <button class="btn-continue" onclick="continueToMatching()">
+        Continue to Matching
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+    </div>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<style>
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.75); }
+}
+</style>
+
+<script>
+// ── Chip toggle ──────────────────────────────────────────────────────────────
+function toggleChip(el) {
+  el.classList.toggle('selected');
+  const selected = [...document.querySelectorAll('.chip.selected')]
+    .map(c => c.textContent.trim()).join(', ');
+  if (selected) {
+    document.getElementById('symptomSearch').value = selected;
+  }
+}
+
+// ── Severity slider ──────────────────────────────────────────────────────────
+function updateSeverity(val) {
+  val = parseInt(val);
+  const badge = document.getElementById('severityBadge');
+  const slider = document.getElementById('severitySlider');
+
+  let label, color, bg;
+  if (val <= 3) {
+    label = 'Mild';
+    color = '#2d7a3a';
+    bg    = '#dcfce7';
+  } else if (val <= 6) {
+    label = 'Moderate';
+    color = '#b45309';
+    bg    = '#fef3c7';
+  } else {
+    label = 'Severe';
+    color = '#c0392b';
+    bg    = '#fee2e2';
+  }
+
+  badge.textContent = `${label} (${val}/10)`;
+  badge.style.color = color;
+  badge.style.background = bg;
+
+  // Update slider fill
+  const pct = ((val - 1) / 9) * 100;
+  slider.style.background = `linear-gradient(to right, #5ab894 0%, #5ab894 ${pct}%, #e2e8e4 ${pct}%, #e2e8e4 100%)`;
+}
+
+// Initialise slider fill
+updateSeverity(document.getElementById('severitySlider').value);
+
+// ── Step navigation ──────────────────────────────────────────────────────────
+function setStep(idx) {
+  const items = document.querySelectorAll('.step-item');
+  if (idx > 0) {
+    showToast('Complete Step 1 first to proceed.');
+    return;
+  }
+  items.forEach((item, i) => {
+    item.classList.remove('active', 'done', 'locked');
+    if (i < idx)       item.classList.add('done');
+    else if (i === idx) item.classList.add('active');
+    else               item.classList.add('locked');
+  });
+}
+
+// ── Toast ────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── Actions ──────────────────────────────────────────────────────────────────
+function saveDraft() {
+  const btn = document.querySelector('.btn-draft');
+  btn.textContent = '✓ Draft Saved';
+  btn.style.background = '#e8f5f0';
+  btn.style.borderColor = '#c8e8d8';
+  btn.style.color = '#1a4a3a';
+  showToast('Draft saved successfully.');
+  setTimeout(() => {
+    btn.textContent = 'Save Draft';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+  }, 2500);
+}
+
+function continueToMatching() {
+  const details = document.getElementById('detailsText').value.trim();
+  if (!details) {
+    showToast('Please add some details about your symptoms.');
+    document.getElementById('detailsText').focus();
+    return;
+  }
+  const btn = document.querySelector('.btn-continue');
+  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Analysing...`;
+  btn.style.background = '#2d9a7a';
+
+  showToast('Matching with specialists…');
+
+  setTimeout(() => {
+    // Mark step 1 done, activate step 2
+    const items = document.querySelectorAll('.step-item');
+    items[0].classList.remove('active');
+    items[0].classList.add('done');
+    items[1].classList.remove('locked');
+    items[1].classList.add('active');
+    showToast('Assessment complete. Matching providers now.');
+    btn.innerHTML = `Continue to Matching <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+    btn.style.background = '';
+  }, 1800);
+}
+
+// ── Search input sync ────────────────────────────────────────────────────────
+document.getElementById('symptomSearch').addEventListener('input', function() {
+  // Deselect all chips when user types custom symptom
+  document.querySelectorAll('.chip.selected').forEach(c => c.classList.remove('selected'));
+});
+</script>
+</body>
+</html>
