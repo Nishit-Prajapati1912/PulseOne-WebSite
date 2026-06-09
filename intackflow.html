@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PulseOne – Intake Flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:       #2e7d6e;
+  --green-dark:  #1f5c50;
+  --green-light: #e6f3f0;
+  --teal-text:   #046734;
+  --blue-link:   #1a73c4;
+  --orange:      #e07b2a;
+  --text-primary:   #1a1a1a;
+  --text-secondary: #555;
+  --text-muted:     #888;
+  --border:      #e0e4e8;
+  --bg-page:     #f5f7f9;
+  --bg-white:    #ffffff;
+  --sidebar-w:   168px;
+  --header-h:    52px;
+  --radius-card: 10px;
+  --shadow-card: 0 1px 4px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* ════════════════════════════════
+   LAYOUT SHELL
+   ════════════════════════════════ */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── TOP HEADER ── */
+.header {
+  height: var(--header-h);
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+
+.header-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  margin: 0 16px;
+}
+
+.header-step {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  transition: background 0.15s;
+}
+.header-icon-btn:hover { background: var(--bg-page); }
+.header-icon-btn svg { width: 18px; height: 18px; }
+
+.header-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  background: linear-gradient(135deg, #a8d8cf, #2e7d6e);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ── BODY ROW ── */
+.body-row {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ════════════════════════════════
+   LEFT SIDEBAR
+   ════════════════════════════════ */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--bg-white);
+  border-right: 1px solid var(--border);
+  padding: 24px 0 24px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-section-label {
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+/* Steps */
+.steps-list {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+  position: relative;
+}
+
+/* Connector line */
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 26px;
+  width: 1px;
+  height: calc(100% - 4px);
+  background: var(--border);
+}
+
+.step-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg-white);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  z-index: 1;
+}
+.step-dot.done {
+  background: var(--green);
+  border-color: var(--green);
+}
+.step-dot.active {
+  background: var(--green);
+  border-color: var(--green);
+}
+.step-dot.done svg,
+.step-dot.active svg {
+  display: block;
+}
+.step-dot svg {
+  display: none;
+  width: 10px; height: 10px;
+  color: #fff;
+}
+
+.step-text { flex: 1; }
+.step-number {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.step-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+.step-item.active .step-name {
+  color: var(--green-dark);
+}
+
+/* Refine Results */
+.refine-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.filter-group {
+  padding: 0 16px;
+  margin-bottom: 18px;
+}
+.filter-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+/* Price range */
+.price-range-wrap {
+  position: relative;
+  padding-bottom: 4px;
+}
+.price-range-input {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--green) 30%, #e0e4e8 30%);
+  outline: none;
+  cursor: pointer;
+}
+.price-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+.price-range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.price-range-labels span {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Checkboxes */
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.checkbox-item input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px; height: 15px;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg-white);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+.checkbox-item input[type="checkbox"]:checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+.checkbox-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px; top: 1.5px;
+  width: 5px; height: 8px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+.checkbox-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Consultation type toggle */
+.toggle-row {
+  display: flex;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.toggle-btn {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-white);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+}
+.toggle-btn.active {
+  background: var(--bg-white);
+  color: var(--green-dark);
+  font-weight: 600;
+  border: 1.5px solid var(--green);
+  margin: -1.5px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Apply Filters */
+.apply-btn {
+  margin: 8px 16px 0;
+  width: calc(100% - 32px);
+  padding: 11px 0;
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.01em;
+}
+.apply-btn:hover { background: var(--green-dark); }
+
+/* ════════════════════════════════
+   MAIN CONTENT
+   ════════════════════════════════ */
+.main-content {
+  flex: 1;
+  padding: 32px 36px 48px;
+  max-width: 1500px;
+  overflow-y: auto;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--teal-text);
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+.page-subtitle .highlight {
+  color: var(--blue-link);
+  font-weight: 500;
+}
+
+/* ── DOCTOR CARDS ── */
+.doctor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.doctor-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.doctor-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+/* Doctor photo */
+.doctor-photo-wrap {
+  width: 140px;
+  min-height: 160px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background: #c5d8d4;
+}
+.doctor-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Top Rated badge */
+.top-rated-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.72);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+/* Doctor info */
+.doctor-info {
+  flex: 1;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.doctor-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.doctor-name-block { flex: 1; }
+
+.doctor-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.doctor-specialty {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--teal-text);
+  margin-bottom: 8px;
+}
+
+.doctor-specialty .sep {
+  color: var(--text-muted);
+  font-weight: 400;
+  margin: 0 4px;
+}
+
+.doctor-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.doctor-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.doctor-meta-item svg {
+  width: 13px; height: 13px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Rating badge */
+.rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff8ee;
+  border: 1px solid #f5d88a;
+  border-radius: 6px;
+  padding: 4px 9px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.rating-star {
+  color: var(--orange);
+  font-size: 13px;
+}
+.rating-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Pricing + action row */
+.doctor-action-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.doctor-price-block {}
+.price-label {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+.price-value {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.price-value .price-unit {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+.select-btn {
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  letter-spacing: 0.01em;
+}
+.select-btn:hover { background: var(--green-dark); }
+
+/* View more */
+.view-more-link {
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 28px;
+}
+.view-more-link a {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+.view-more-link a:hover { color: var(--green); }
+
+/* View More button (bottom right) */
+.view-more-row {
+  display: flex;
+  justify-content: flex-end;
+}
+.view-more-btn {
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.view-more-btn:hover { background: var(--green-dark); }
+
+/* ════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════ */
+@media (max-width: 860px) {
+  .main-content { padding: 24px 20px 40px; }
+}
+
+@media (max-width: 720px) {
+  .sidebar { display: none; }
+  .doctor-photo-wrap { width: 110px; min-height: 130px; }
+  .page-title { font-size: 21px; }
+  .main-content { padding: 20px 16px 40px; }
+}
+
+@media (max-width: 520px) {
+  .doctor-card { flex-direction: column; }
+  .doctor-photo-wrap { width: 100%; height: 180px; min-height: unset; }
+  .top-rated-badge { bottom: 10px; }
+  .doctor-action-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .select-btn { width: 100%; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <span class="header-title">Intake Flow</span>
+    <div class="header-divider"></div>
+    <span class="header-step">Step 3 of 5</span>
+
+    <div class="header-actions">
+      <!-- Bell icon -->
+      <button class="header-icon-btn" aria-label="Notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+      </button>
+      <!-- Avatar -->
+      <div class="header-avatar">JD</div>
+      <!-- Settings icon -->
+      <button class="header-icon-btn" aria-label="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── BODY ROW ── -->
+  <div class="body-row">
+
+    <!-- ════ LEFT SIDEBAR ════ -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section-label">Patient Intake</div>
+
+      <!-- Steps -->
+      <div class="steps-list">
+
+        <div class="step-item">
+          <div class="step-dot done">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2 5 4.5 7.5 8.5 2.5"/>
+            </svg>
+          </div>
+          <div class="step-text">
+            <div class="step-number">Step 1</div>
+            <div class="step-name">Personal Info</div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-dot done">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2 5 4.5 7.5 8.5 2.5"/>
+            </svg>
+          </div>
+          <div class="step-text">
+            <div class="step-number">Step 2</div>
+            <div class="step-name">Symptom Checker</div>
+          </div>
+        </div>
+
+        <div class="step-item active">
+          <div class="step-dot active">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2 5 4.5 7.5 8.5 2.5"/>
+            </svg>
+          </div>
+          <div class="step-text">
+            <div class="step-number">Step 3</div>
+            <div class="step-name">Selection</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Refine Results -->
+      <div class="refine-title">Refine Results</div>
+
+      <!-- Price Range -->
+      <div class="filter-group">
+        <div class="filter-label">Price Range (Consultation)</div>
+        <div class="price-range-wrap">
+          <input
+            type="range"
+            class="price-range-input"
+            id="priceRange"
+            min="500"
+            max="5000"
+            value="2000"
+          />
+          <div class="price-range-labels">
+            <span>₹500</span>
+            <span>₹5,000+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hospital Network -->
+      <div class="filter-group">
+        <div class="filter-label">Hospital Network</div>
+        <div class="checkbox-list">
+          <label class="checkbox-item">
+            <input type="checkbox" checked />
+            <span class="checkbox-label">PulseOne Prime</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" />
+            <span class="checkbox-label">Apollo Health</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" />
+            <span class="checkbox-label">Max Healthcare</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Consultation Type -->
+      <div class="filter-group">
+        <div class="filter-label">Consultation Type</div>
+        <div class="toggle-row">
+          <button class="toggle-btn active" id="videoBtn" onclick="setConsultType('video')">Video</button>
+          <button class="toggle-btn" id="inPersonBtn" onclick="setConsultType('inperson')">In-Person</button>
+        </div>
+      </div>
+
+      <button class="apply-btn" onclick="applyFilters()">Apply Filters</button>
+
+    </aside>
+
+    <!-- ════ MAIN CONTENT ════ -->
+    <main class="main-content">
+
+      <h1 class="page-title">Recommended Specialists for You</h1>
+      <p class="page-subtitle">
+        Based on your symptoms of <span class="highlight">Persistent Chest Pain</span>, we have identified these
+        top-tier cardiovascular specialists from the PulseOne network.
+      </p>
+
+      <!-- Doctor Cards -->
+      <div class="doctor-list">
+
+        <!-- ── Dr. Arjan Singh ── -->
+        <div class="doctor-card">
+          <div class="doctor-photo-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=280&q=80"
+              alt="Dr. Arjan Singh"
+            />
+            <div class="top-rated-badge">Top Rated</div>
+          </div>
+          <div class="doctor-info">
+            <div class="doctor-info-top">
+              <div class="doctor-name-block">
+                <div class="doctor-name">Dr. Arjan Singh</div>
+                <div class="doctor-specialty">
+                  Senior Cardiologist<span class="sep">•</span>Interventional Cardiology
+                </div>
+                <div class="doctor-meta">
+                  <div class="doctor-meta-item">
+                    <!-- Location pin -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    Metro Cardiac Centre, New Delhi
+                  </div>
+                  <div class="doctor-meta-item">
+                    <!-- Clock -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    15+ Years Exp.
+                  </div>
+                </div>
+              </div>
+              <div class="rating-badge">
+                <span class="rating-star">★</span>
+                <span class="rating-value">4.9/5</span>
+              </div>
+            </div>
+
+            <div class="doctor-action-row">
+              <div class="doctor-price-block">
+                <div class="price-label">Starting Consultation</div>
+                <div class="price-value">₹1,200 <span class="price-unit">/ visit</span></div>
+              </div>
+              <button class="select-btn">Select This Provider</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Dr. Elena Rodriguez ── -->
+        <div class="doctor-card">
+          <div class="doctor-photo-wrap" style="background:#b8d4ce;">
+             <img
+              src="drrr.jpg"
+              alt="Dr. Gita Gupta"
+            />
+          </div>
+          <div class="doctor-info">
+            <div class="doctor-info-top">
+              <div class="doctor-name-block">
+                <div class="doctor-name">Dr. Elena Rodriguez</div>
+                <div class="doctor-specialty">
+                  Cardiac Surgeon<span class="sep">•</span>Thoracic Specialist
+                </div>
+                <div class="doctor-meta">
+                  <div class="doctor-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    PulseOne Hub, Bangalore
+                  </div>
+                  <div class="doctor-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    12+ Years Exp.
+                  </div>
+                </div>
+              </div>
+              <div class="rating-badge">
+                <span class="rating-star">★</span>
+                <span class="rating-value">4.8/5</span>
+              </div>
+            </div>
+
+            <div class="doctor-action-row">
+              <div class="doctor-price-block">
+                <div class="price-label">Starting Consultation</div>
+                <div class="price-value">₹950 <span class="price-unit">/ visit</span></div>
+              </div>
+              <button class="select-btn">Select This Provider</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Dr. David Chen ── -->
+        <div class="doctor-card">
+          <div class="doctor-photo-wrap" style="background:#a8c4be;">
+            <img
+              src="drr.jpg"
+              alt="Dr. David Chen"
+            />
+          </div>
+          <div class="doctor-info">
+            <div class="doctor-info-top">
+              <div class="doctor-name-block">
+                <div class="doctor-name">Dr. David Chen</div>
+                <div class="doctor-specialty">
+                  Cardiovascular Diagnostics<span class="sep">•</span>Imaging
+                </div>
+                <div class="doctor-meta">
+                  <div class="doctor-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    City Specialty Hospital, Mumbai
+                  </div>
+                  <div class="doctor-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    8+ Years Exp.
+                  </div>
+                </div>
+              </div>
+              <div class="rating-badge">
+                <span class="rating-star">★</span>
+                <span class="rating-value">4.7/5</span>
+              </div>
+            </div>
+
+            <div class="doctor-action-row">
+              <div class="doctor-price-block">
+                <div class="price-label">Starting Consultation</div>
+                <div class="price-value">₹800 <span class="price-unit">/ visit</span></div>
+              </div>
+              <button class="select-btn">Select This Provider</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.doctor-list -->
+
+      <!-- View more specialists link -->
+      <div class="view-more-link">
+        <a href="#">View more specialists ∨</a>
+      </div>
+
+      <!-- View More button -->
+      <div class="view-more-row">
+        <button class="view-more-btn">
+          View More &gt;
+        </button>
+      </div>
+
+    </main>
+
+  </div><!-- /.body-row -->
+</div><!-- /.app-shell -->
+
+<script>
+// ── Consultation type toggle ──
+function setConsultType(type) {
+  const videoBtn    = document.getElementById('videoBtn');
+  const inPersonBtn = document.getElementById('inPersonBtn');
+  if (type === 'video') {
+    videoBtn.classList.add('active');
+    inPersonBtn.classList.remove('active');
+  } else {
+    inPersonBtn.classList.add('active');
+    videoBtn.classList.remove('active');
+  }
+}
+
+// ── Price range gradient update ──
+const priceRange = document.getElementById('priceRange');
+function updateRangeGradient() {
+  const min = priceRange.min;
+  const max = priceRange.max;
+  const val = priceRange.value;
+  const pct = ((val - min) / (max - min)) * 100;
+  priceRange.style.background =
+    `linear-gradient(to right, #2e7d6e ${pct}%, #e0e4e8 ${pct}%)`;
+}
+priceRange.addEventListener('input', updateRangeGradient);
+updateRangeGradient();
+
+// ── Apply Filters (feedback) ──
+function applyFilters() {
+  const btn = document.querySelector('.apply-btn');
+  const orig = btn.textContent;
+  btn.textContent = 'Filters Applied ✓';
+  btn.style.background = '#1f5c50';
+  setTimeout(() => {
+    btn.textContent = orig;
+    btn.style.background = '';
+  }, 1800);
+}
+
+// ── Select Provider (feedback) ──
+document.querySelectorAll('.select-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const orig = this.textContent;
+    this.textContent = 'Selected ✓';
+    this.style.background = '#1f5c50';
+    // deselect others
+    document.querySelectorAll('.select-btn').forEach(b => {
+      if (b !== this) { b.textContent = 'Select This Provider'; b.style.background = ''; }
+    });
+    setTimeout(() => {
+      this.textContent = orig;
+      this.style.background = '';
+    }, 2200);
+  });
+});
+</script>
+</body>
+</html>
