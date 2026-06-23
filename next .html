@@ -53,7 +53,6 @@ body {
   z-index: 100;
   box-shadow: var(--shadow-sm);
 }
-
 .nav-logo {
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
@@ -64,21 +63,18 @@ body {
   align-items: center;
   gap: 8px;
 }
-
 .nav-logo-dot {
   width: 8px;
   height: 8px;
   background: var(--green-mid);
   border-radius: 50%;
 }
-
 .nav-links {
   display: flex;
   align-items: center;
   gap: 4px;
   list-style: none;
 }
-
 .nav-links a {
   text-decoration: none;
   font-size: 14px;
@@ -88,15 +84,12 @@ body {
   border-radius: 6px;
   transition: color .18s, background .18s;
 }
-
 .nav-links a:hover { color: var(--text-main); background: var(--bg); }
-
 .nav-links a.active {
   color: var(--green-dark);
   font-weight: 600;
   position: relative;
 }
-
 .nav-links a.active::after {
   content: '';
   position: absolute;
@@ -107,13 +100,11 @@ body {
   background: var(--green-dark);
   border-radius: 2px;
 }
-
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 .btn-login {
   background: transparent;
   border: none;
@@ -126,9 +117,7 @@ body {
   border-radius: 6px;
   transition: color .18s, background .18s;
 }
-
 .btn-login:hover { color: var(--text-main); background: var(--bg); }
-
 .btn-started {
   background: var(--green-dark);
   color: #fff;
@@ -141,7 +130,6 @@ body {
   cursor: pointer;
   transition: background .18s, transform .15s;
 }
-
 .btn-started:hover { background: var(--green-mid); transform: translateY(-1px); }
 
 /* ── Page Shell ──────────────────────────────────────────────────────────── */
@@ -165,7 +153,6 @@ body {
   top: 76px;
   box-shadow: var(--shadow-sm);
 }
-
 .sidebar-label {
   font-size: 9px;
   font-weight: 700;
@@ -175,9 +162,7 @@ body {
   margin-bottom: 14px;
   padding: 0 4px;
 }
-
 .step-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-
 .step-item {
   display: flex;
   align-items: flex-start;
@@ -188,11 +173,8 @@ body {
   transition: background .18s;
   position: relative;
 }
-
 .step-item:hover { background: var(--surface2); }
-
 .step-item.active { background: var(--green-pale); }
-
 .step-item::after {
   content: '';
   position: absolute;
@@ -202,9 +184,7 @@ body {
   height: 12px;
   background: var(--border);
 }
-
 .step-item:last-of-type::after { display: none; }
-
 .step-icon {
   width: 28px;
   height: 28px;
@@ -218,58 +198,47 @@ body {
   font-size: 12px;
   color: var(--text-muted);
 }
-
 .step-item.active .step-icon {
   background: var(--green-mid);
   border-color: var(--green-mid);
   color: #fff;
 }
-
 .step-item.done .step-icon {
   background: var(--green-pale);
   border-color: var(--green-border);
   color: var(--green-mid);
 }
-
 .step-item.locked .step-icon {
   background: var(--surface2);
   border-color: var(--border);
   color: var(--text-muted);
   opacity: 0.6;
 }
-
 .step-text { line-height: 1; }
-
 .step-num {
   font-size: 10px;
   color: var(--text-muted);
   font-weight: 500;
   margin-bottom: 3px;
 }
-
 .step-item.active .step-num { color: var(--green-mid); }
-
 .step-name {
   font-size: 13px;
   font-weight: 600;
   color: var(--text-main);
   margin-bottom: 2px;
 }
-
 .step-item.locked .step-name { color: var(--text-muted); opacity: 0.7; }
-
 .step-sub {
   font-size: 11px;
   color: var(--text-muted);
   font-weight: 400;
 }
-
 .sidebar-divider {
   margin: 18px 0;
   height: 1px;
   background: var(--border);
 }
-
 .support-block {
   display: flex;
   align-items: center;
@@ -279,9 +248,7 @@ body {
   cursor: pointer;
   transition: background .18s;
 }
-
 .support-block:hover { background: var(--surface2); }
-
 .support-avatar {
   width: 30px;
   height: 30px;
@@ -294,7 +261,6 @@ body {
   color: var(--green-mid);
   flex-shrink: 0;
 }
-
 .support-text p { font-size: 11px; color: var(--text-muted); }
 .support-text strong { font-size: 12px; color: var(--text-main); font-weight: 600; }
 
@@ -303,7 +269,6 @@ body {
 
 /* Page Header */
 .page-header { margin-bottom: 4px; }
-
 .page-header h1 {
   font-family: 'DM Serif Display', serif;
   font-size: 28px;
@@ -313,7 +278,6 @@ body {
   line-height: 1.15;
   margin-bottom: 8px;
 }
-
 .page-header p {
   font-size: 14px;
   color: var(--text-secondary);
@@ -343,15 +307,12 @@ body {
   transition: border-color .18s, box-shadow .18s;
   cursor: text;
 }
-
 .search-wrap:focus-within {
   border-color: var(--green-mid);
   box-shadow: 0 0 0 3px rgba(45,154,122,0.1);
   background: var(--surface);
 }
-
 .search-wrap svg { color: var(--text-muted); flex-shrink: 0; }
-
 .search-input {
   border: none;
   outline: none;
@@ -362,9 +323,7 @@ body {
   flex: 1;
   font-weight: 400;
 }
-
 .search-input::placeholder { color: var(--text-muted); }
-
 .quick-label {
   font-size: 10px;
   font-weight: 700;
@@ -373,13 +332,11 @@ body {
   color: var(--text-muted);
   margin: 14px 0 10px;
 }
-
 .symptom-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-
 .chip {
   display: flex;
   flex-direction: column;
@@ -397,23 +354,17 @@ body {
   font-weight: 500;
   user-select: none;
 }
-
 .chip:hover {
   border-color: var(--green-border);
   background: var(--green-pale);
   color: var(--green-dark);
 }
-
 .chip.selected {
   border-color: var(--green-mid);
   background: var(--green-pale);
   color: var(--green-dark);
 }
-
-.chip-icon {
-  font-size: 18px;
-  line-height: 1;
-}
+.chip-icon { font-size: 18px; line-height: 1; }
 
 /* Severity + Details row */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -425,14 +376,12 @@ body {
   justify-content: space-between;
   margin-bottom: 10px;
 }
-
 .severity-title {
   font-size: 15px;
   font-weight: 600;
   color: var(--text-main);
   letter-spacing: -0.01em;
 }
-
 .severity-badge {
   background: var(--red-soft);
   color: var(--red-text);
@@ -442,7 +391,6 @@ body {
   border-radius: 20px;
   letter-spacing: 0.01em;
 }
-
 .severity-desc {
   font-size: 13px;
   color: var(--text-secondary);
@@ -450,9 +398,7 @@ body {
   margin-bottom: 20px;
   font-weight: 300;
 }
-
 .slider-wrap { padding: 0 2px; }
-
 .range-labels {
   display: flex;
   justify-content: space-between;
@@ -461,8 +407,6 @@ body {
   font-weight: 500;
   margin-bottom: 8px;
 }
-
-/* Custom range slider */
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
@@ -472,7 +416,6 @@ input[type="range"] {
   outline: none;
   cursor: pointer;
 }
-
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 20px;
@@ -484,9 +427,7 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   transition: transform .15s;
 }
-
 input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
-
 input[type="range"]::-moz-range-thumb {
   width: 20px;
   height: 20px;
@@ -496,7 +437,6 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 1px 6px rgba(10,40,25,0.25);
   cursor: pointer;
 }
-
 .range-end-labels {
   display: flex;
   justify-content: space-between;
@@ -514,7 +454,6 @@ input[type="range"]::-moz-range-thumb {
   letter-spacing: -0.01em;
   margin-bottom: 6px;
 }
-
 .details-desc {
   font-size: 13px;
   color: var(--text-secondary);
@@ -522,7 +461,6 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1.5;
   font-weight: 300;
 }
-
 .details-textarea {
   width: 100%;
   border: 1.5px solid var(--border);
@@ -539,7 +477,6 @@ input[type="range"]::-moz-range-thumb {
   font-weight: 400;
   transition: border-color .18s, box-shadow .18s;
 }
-
 .details-textarea:focus {
   border-color: var(--green-mid);
   box-shadow: 0 0 0 3px rgba(45,154,122,0.1);
@@ -554,7 +491,6 @@ input[type="range"]::-moz-range-thumb {
   height: 156px;
   box-shadow: var(--shadow-md);
 }
-
 .banner-bg {
   width: 100%;
   height: 100%;
@@ -562,35 +498,28 @@ input[type="range"]::-moz-range-thumb {
   position: absolute;
   inset: 0;
 }
-
-/* Animated subtle glow orbs */
 .banner-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(40px);
 }
-
 .orb1 {
   width: 160px; height: 160px;
   background: rgba(45,154,122,0.3);
   right: 80px; top: -40px;
   animation: orbFloat 6s ease-in-out infinite;
 }
-
 .orb2 {
   width: 100px; height: 100px;
   background: rgba(90,184,148,0.2);
   right: 180px; bottom: -20px;
   animation: orbFloat 8s ease-in-out infinite reverse;
 }
-
-/* Abstract medical equipment hints */
 .banner-img-layer {
   position: absolute;
   inset: 0;
   overflow: hidden;
 }
-
 .banner-img-layer svg {
   position: absolute;
   right: 0; top: 0;
@@ -598,12 +527,10 @@ input[type="range"]::-moz-range-thumb {
   width: 55%;
   opacity: 0.18;
 }
-
 @keyframes orbFloat {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-8px) scale(1.04); }
 }
-
 .banner-dots {
   position: absolute;
   bottom: 18px;
@@ -611,15 +538,9 @@ input[type="range"]::-moz-range-thumb {
   display: flex;
   gap: 6px;
 }
-
-.banner-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-}
-
+.banner-dot { width: 10px; height: 10px; border-radius: 50%; }
 .dot-amber { background: #f59e0b; }
 .dot-green { background: var(--green-light); }
-
 .banner-content {
   position: absolute;
   inset: 0;
@@ -628,7 +549,6 @@ input[type="range"]::-moz-range-thumb {
   flex-direction: column;
   justify-content: flex-end;
 }
-
 .banner-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -640,9 +560,7 @@ input[type="range"]::-moz-range-thumb {
   color: rgba(255,255,255,0.55);
   margin-bottom: 6px;
 }
-
 .banner-eyebrow svg { opacity: 0.6; }
-
 .banner-title {
   font-family: 'DM Serif Display', serif;
   font-size: 22px;
@@ -659,7 +577,6 @@ input[type="range"]::-moz-range-thumb {
   justify-content: space-between;
   padding: 16px 0 0;
 }
-
 .btn-draft {
   background: var(--surface);
   color: var(--text-main);
@@ -672,20 +589,18 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   transition: all .18s;
 }
-
 .btn-draft:hover {
   border-color: var(--green-border);
   background: var(--green-pale);
   color: var(--green-dark);
 }
-
 .btn-continue {
   background: var(--green-dark);
   color: #fff;
   border: none;
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 11px 22px;
   border-radius: 8px;
   cursor: pointer;
@@ -695,20 +610,15 @@ input[type="range"]::-moz-range-thumb {
   transition: all .2s;
   letter-spacing: -0.01em;
 }
-
 .btn-continue:hover {
   background: var(--green-mid);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(26,74,58,0.3);
 }
-
-.btn-continue svg {
-  transition: transform .18s;
-}
-
+.btn-continue svg { transition: transform .18s; }
 .btn-continue:hover svg { transform: translateX(3px); }
 
-/* ── Toast notification ──────────────────────────────────────────────────── */
+/* ── Toast ───────────────────────────────────────────────────────────────── */
 .toast {
   position: fixed;
   bottom: 28px;
@@ -727,10 +637,15 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 8px 24px rgba(10,40,25,0.3);
   z-index: 999;
 }
-
 .toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+/* ── Animations ─────────────────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.75); }
 }
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */
@@ -774,7 +689,6 @@ input[type="range"]::-moz-range-thumb {
 
       <li class="step-item active" onclick="setStep(0)">
         <div class="step-icon">
-          <!-- heart icon -->
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
@@ -788,7 +702,6 @@ input[type="range"]::-moz-range-thumb {
 
       <li class="step-item locked" onclick="setStep(1)">
         <div class="step-icon">
-          <!-- layers icon -->
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 2 7 12 12 22 7 12 2"/>
             <polyline points="2 17 12 22 22 17"/>
@@ -803,7 +716,6 @@ input[type="range"]::-moz-range-thumb {
 
       <li class="step-item locked" onclick="setStep(2)">
         <div class="step-icon">
-          <!-- check circle icon -->
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <polyline points="9 12 11 14 15 10"/>
@@ -920,29 +832,22 @@ input[type="range"]::-moz-range-thumb {
       <div class="banner-orb orb1"></div>
       <div class="banner-orb orb2"></div>
 
-      <!-- Abstract equipment SVG layer -->
       <div class="banner-img-layer">
         <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMid slice">
-          <!-- Monitor / equipment silhouettes -->
           <rect x="40" y="20" width="180" height="120" rx="8" fill="none" stroke="white" stroke-width="1.5"/>
           <rect x="52" y="32" width="156" height="95" rx="4" fill="none" stroke="white" stroke-width="1"/>
-          <!-- ECG line on screen -->
           <polyline points="58,80 80,80 88,55 95,105 102,80 115,80 122,68 126,92 130,80 155,80 163,50 170,110 177,80 200,80" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Stand -->
           <rect x="118" y="140" width="24" height="12" rx="3" fill="none" stroke="white" stroke-width="1.2"/>
           <rect x="104" y="150" width="52" height="5" rx="2.5" fill="none" stroke="white" stroke-width="1"/>
-          <!-- Second device -->
           <rect x="250" y="30" width="130" height="100" rx="6" fill="none" stroke="white" stroke-width="1.2"/>
-          <circle cx="315" cy="75" rx="32" ry="32" fill="none" stroke="white" stroke-width="1" cx="315" cy="75" r="32"/>
+          <circle cx="315" cy="75" r="32" fill="none" stroke="white" stroke-width="1"/>
           <circle cx="315" cy="75" r="20" fill="none" stroke="white" stroke-width="1"/>
           <circle cx="315" cy="75" r="8" fill="none" stroke="white" stroke-width="1.5"/>
-          <!-- Small data pills -->
           <rect x="52" y="134" width="50" height="10" rx="5" fill="none" stroke="white" stroke-width="0.8" opacity="0.5"/>
           <rect x="108" y="134" width="35" height="10" rx="5" fill="none" stroke="white" stroke-width="0.8" opacity="0.5"/>
         </svg>
       </div>
 
-      <!-- Status dots -->
       <div class="banner-dots">
         <div class="banner-dot dot-amber"></div>
         <div class="banner-dot dot-green" style="animation: pulse-dot 2s ease-in-out infinite;"></div>
@@ -961,7 +866,7 @@ input[type="range"]::-moz-range-thumb {
 
     <!-- Footer Actions -->
     <div class="footer-actions">
-      <button class="btn-draft" onclick="saveDraft()">Save Draft</button>
+      <button class="btn-draft" onclick="saveDraft()">Back</button>
       <button class="btn-continue" onclick="continueToMatching()">
         Continue to Matching
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -977,15 +882,8 @@ input[type="range"]::-moz-range-thumb {
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<style>
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.75); }
-}
-</style>
-
 <script>
-// ── Chip toggle ──────────────────────────────────────────────────────────────
+/* ── Chip toggle ──────────────────────────────────────────────────────────── */
 function toggleChip(el) {
   el.classList.toggle('selected');
   const selected = [...document.querySelectorAll('.chip.selected')]
@@ -995,110 +893,131 @@ function toggleChip(el) {
   }
 }
 
-// ── Severity slider ──────────────────────────────────────────────────────────
+/* ── Severity slider ─────────────────────────────────────────────────────── */
 function updateSeverity(val) {
   val = parseInt(val);
-  const badge = document.getElementById('severityBadge');
+  const badge  = document.getElementById('severityBadge');
   const slider = document.getElementById('severitySlider');
 
   let label, color, bg;
   if (val <= 3) {
-    label = 'Mild';
-    color = '#2d7a3a';
-    bg    = '#dcfce7';
+    label = 'Mild';     color = '#2d7a3a'; bg = '#dcfce7';
   } else if (val <= 6) {
-    label = 'Moderate';
-    color = '#b45309';
-    bg    = '#fef3c7';
+    label = 'Moderate'; color = '#b45309'; bg = '#fef3c7';
   } else {
-    label = 'Severe';
-    color = '#c0392b';
-    bg    = '#fee2e2';
+    label = 'Severe';   color = '#c0392b'; bg = '#fee2e2';
   }
 
-  badge.textContent = `${label} (${val}/10)`;
-  badge.style.color = color;
-  badge.style.background = bg;
+  badge.textContent        = label + ' (' + val + '/10)';
+  badge.style.color        = color;
+  badge.style.background   = bg;
 
-  // Update slider fill
   const pct = ((val - 1) / 9) * 100;
-  slider.style.background = `linear-gradient(to right, #5ab894 0%, #5ab894 ${pct}%, #e2e8e4 ${pct}%, #e2e8e4 100%)`;
+  slider.style.background  =
+    'linear-gradient(to right, #5ab894 0%, #5ab894 ' + pct + '%, #e2e8e4 ' + pct + '%, #e2e8e4 100%)';
 }
-
-// Initialise slider fill
 updateSeverity(document.getElementById('severitySlider').value);
 
-// ── Step navigation ──────────────────────────────────────────────────────────
+/* ── Step navigation ─────────────────────────────────────────────────────── */
 function setStep(idx) {
   const items = document.querySelectorAll('.step-item');
-  if (idx > 0) {
-    showToast('Complete Step 1 first to proceed.');
-    return;
-  }
-  items.forEach((item, i) => {
+  if (idx > 0) { showToast('Complete Step 1 first to proceed.'); return; }
+  items.forEach(function(item, i) {
     item.classList.remove('active', 'done', 'locked');
-    if (i < idx)       item.classList.add('done');
+    if      (i < idx)  item.classList.add('done');
     else if (i === idx) item.classList.add('active');
     else               item.classList.add('locked');
   });
 }
 
-// ── Toast ────────────────────────────────────────────────────────────────────
+/* ── Toast ───────────────────────────────────────────────────────────────── */
 function showToast(msg) {
-  const t = document.getElementById('toast');
+  var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  window._toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2800);
 }
 
-// ── Actions ──────────────────────────────────────────────────────────────────
+/* ── Save Draft ──────────────────────────────────────────────────────────── */
+
 function saveDraft() {
-  const btn = document.querySelector('.btn-draft');
-  btn.textContent = '✓ Draft Saved';
-  btn.style.background = '#e8f5f0';
-  btn.style.borderColor = '#c8e8d8';
-  btn.style.color = '#1a4a3a';
+  var btn = document.querySelector('.btn-draft');
+  btn.textContent         = '✓ Draft Saved';
+  btn.style.background    = '#e8f5f0';
+  btn.style.borderColor   = '#c8e8d8';
+  btn.style.color         = '#1a4a3a';
   showToast('Draft saved successfully.');
-  setTimeout(() => {
-    btn.textContent = 'Save Draft';
-    btn.style.background = '';
+  setTimeout(function() {
+    btn.textContent       = 'Save Draft';
+    btn.style.background  = '';
     btn.style.borderColor = '';
-    btn.style.color = '';
+    btn.style.color       = '';
   }, 2500);
 }
 
+
+function saveDraft() {
+  var btn = document.querySelector('.btn-draft');
+
+  btn.textContent = 'Back';
+  btn.style.background = '#e8f5f0';
+  btn.style.borderColor = '#c8e8d8';
+  btn.style.color = '#1a4a3a';
+
+   
+
+  setTimeout(function() {
+  
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+
+    // Redirect to intex.html
+    window.location.href = 'index .html';
+  }, 2500);
+}
+
+
+
+/* ── Continue to Matching ────────────────────────────────────────────────── */
 function continueToMatching() {
-  const details = document.getElementById('detailsText').value.trim();
+  var details = document.getElementById('detailsText').value.trim();
   if (!details) {
-    showToast('Please add some details about your symptoms.');
+    alert('Please add some details about your symptoms.');
     document.getElementById('detailsText').focus();
     return;
   }
-  const btn = document.querySelector('.btn-continue');
-  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Analysing...`;
+
+  var btn = document.querySelector('.btn-continue');
+  btn.innerHTML =
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' +
+    ' Analysing...';
   btn.style.background = '#2d9a7a';
+  btn.disabled = true;
 
-  showToast('Matching with specialists…');
-
-  setTimeout(() => {
-    // Mark step 1 done, activate step 2
-    const items = document.querySelectorAll('.step-item');
+  setTimeout(function() {
+    /* Mark step 1 done, activate step 2 */
+    var items = document.querySelectorAll('.step-item');
     items[0].classList.remove('active');
     items[0].classList.add('done');
     items[1].classList.remove('locked');
     items[1].classList.add('active');
     showToast('Assessment complete. Matching providers now.');
-    btn.innerHTML = `Continue to Matching <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
-    btn.style.background = '';
-  }, 1800);
+
+    /* Redirect to next page */
+    window.location.href = 'patient.html';
+  }, 1500);
 }
 
-// ── Search input sync ────────────────────────────────────────────────────────
+/* ── Search input sync ───────────────────────────────────────────────────── */
 document.getElementById('symptomSearch').addEventListener('input', function() {
-  // Deselect all chips when user types custom symptom
-  document.querySelectorAll('.chip.selected').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.chip.selected').forEach(function(c) {
+    c.classList.remove('selected');
+  });
 });
 </script>
+
 </body>
 </html>
+ 

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmed</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#f3f4f3;
+color:#033118;
+}
+
+.navbar{
+height:72px;
+background:#fff;
+border-bottom:1px solid #d8d8d8;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 48px;
+}
+
+.logo-wrap{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:700;
+font-size:28px;
+}
+
+.logo-box{
+width:34px;
+height:34px;
+background:#0c2c25;
+border-radius:8px;
+}
+
+nav{
+display:flex;
+gap:34px;
+}
+
+nav a{
+text-decoration:none;
+font-size:14px;
+color:#5f6662;
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.nav-right button{
+background:#03291f;
+color:#fff;
+border:none;
+padding:10px 22px;
+border-radius:4px;
+font-weight:600;
+cursor:pointer;
+}
+
+.page{
+padding:40px;
+max-width:1400px;
+margin:auto;
+}
+
+.back{
+font-size:28px;
+margin-bottom:20px;
+}
+
+.hero{
+text-align:center;
+margin-bottom:60px;
+}
+
+.success-icon{
+width:70px;
+height:70px;
+background:#62f087;
+border-radius:12px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+font-weight:bold;
+color:#003c22;
+margin-bottom:24px;
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:62px;
+margin-bottom:14px;
+}
+
+.hero p{
+color:#666;
+font-size:22px;
+margin-bottom:25px;
+}
+
+.order-id{
+display:inline-flex;
+gap:10px;
+padding:14px 20px;
+background:#fff;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.order-id span{
+font-size:12px;
+letter-spacing:1px;
+color:#777;
+}
+
+.content-grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:24px;
+}
+
+.card{
+background:#fff;
+border:1px solid #ddd;
+border-radius:8px;
+box-shadow:0 2px 8px rgb(1, 59, 22);
+}
+
+.summary{
+padding:28px;
+border-left:4px solid #51e37d;
+}
+
+.summary-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.confirmed{
+background:#5de684;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.summary-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.summary small{
+display:block;
+color:#999;
+font-weight:700;
+margin-bottom:8px;
+}
+
+.summary h4{
+font-size:24px;
+margin-bottom:8px;
+}
+
+.prep{
+margin-top:20px;
+padding:28px;
+}
+
+.prep h3{
+margin-bottom:20px;
+}
+
+.tip{
+display:flex;
+gap:18px;
+background:#f5f5f5;
+padding:18px;
+border-radius:6px;
+margin-bottom:15px;
+}
+
+.timeline{
+padding:28px;
+}
+
+.timeline h3{
+margin-bottom:25px;
+}
+
+.step{
+display:flex;
+gap:15px;
+margin-bottom:24px;
+}
+
+.dot{
+width:28px;
+height:28px;
+border-radius:50%;
+background:#03291f;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+}
+
+.dot.light{
+background:#ececec;
+color:#666;
+}
+
+.download{
+width:100%;
+height:54px;
+background:#03372b;
+color:#fff;
+border:none;
+border-radius:4px;
+margin-top:18px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+}
+
+.dashboard{
+width:100%;
+height:54px;
+background:#fff;
+border:2px solid #17372d;
+color:#17372d;
+margin-top:12px;
+border-radius:4px;
+font-weight:600;
+cursor:pointer;
+}
+
+.support{
+margin-top:18px;
+padding:26px;
+border:1px dashed #bbb;
+background:#fff;
+text-align:center;
+}
+
+.support p{
+color:#666;
+margin-bottom:10px;
+}
+
+.support h4{
+font-size:22px;
+}
+
+footer{
+margin-top:70px;
+background:#022e10;
+color:#fff;
+padding:60px 50px 20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:80px;
+}
+
+.footer-grid h2{
+margin-bottom:15px;
+}
+
+.footer-grid h5{
+margin-bottom:16px;
+}
+
+.footer-grid ul{
+list-style:none;
+}
+
+.footer-grid li{
+margin-bottom:10px;
+color:#c5c5c5;
+}
+
+.copyright{
+margin-top:40px;
+padding-top:20px;
+border-top:1px solid rgba(10, 68, 34, 0.1);
+color:#aaa;
+font-size:14px;
+}
+
+@media(max-width:1000px){
+
+.content-grid{
+grid-template-columns:1fr;
+}
+
+nav{
+display:none;
+}
+
+.hero h1{
+font-size:42px;
+}
+}
+</style>
+<!-- NAVBAR -->
+<header class="navbar">
+    
+        <img src="assets/logo.png" width="200" height="50" viewBox="0 0 24 24" fill="none"/>
+       
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Solutions</a>
+        <a href="#">Medical Access Support</a>
+        <a href="#">Royalty Program</a>
+    </nav>
+
+    <div class="nav-right">
+        <span>📍</span>
+        <span>🛒</span>
+        <button>Login</button>
+    </div>
+</header>
+
+<!-- PAGE -->
+<div class="page">
+
+    <div class="back">←</div>
+
+    <!-- SUCCESS -->
+    <section class="hero">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>Booking Confirmed</h1>
+
+        <p>
+            Your diagnostic appointment has been successfully scheduled.
+        </p>
+
+        <div class="order-id">
+            <span>ORDER ID</span>
+            <strong>PO-882941-XL</strong>
+        </div>
+
+    </section>
+
+    <!-- CONTENT -->
+    <div class="content-grid">
+
+        <!-- LEFT -->
+        <div class="left">
+
+            <div class="card summary">
+
+                <div class="summary-header">
+                    <h3>🗓 Collection Summary</h3>
+                    <span class="confirmed">Confirmed</span>
+                </div>
+
+                <div class="summary-grid">
+
+                    <div>
+                        <small>DATE & TIME</small>
+                        <h4>Tuesday, Oct 24th, 2024</h4>
+                        <p>07:30 AM - 08:30 AM</p>
+                    </div>
+
+                    <div>
+                        <small>COLLECTION ADDRESS</small>
+                        <h4>Residency Estates, Unit 402</h4>
+                        <p>Skyline Heights, West District</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card prep">
+
+                <h3>☑ Preparing for your test</h3>
+
+                <div class="tip">
+                    <div class="icon">🥗</div>
+                    <div>
+                        <h4>8–12 Hour Fasting Required</h4>
+                        <p>Do not consume food or beverages except plain water after 9:00 PM the night before.</p>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="icon">💧</div>
+                    <div>
+                        <h4>Stay Hydrated</h4>
+                        <p>Drink plenty of water before the test to help with blood circulation and collection.</p>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="icon">🧾</div>
+                    <div>
+                        <h4>Morning Medications</h4>
+                        <p>You may take regular medications unless specified otherwise by your physician.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right">
+
+            <div class="card timeline">
+
+                <h3>What happens next</h3>
+
+                <div class="step active">
+                    <div class="dot">✓</div>
+                    <div>
+                        <h4>Assigned Phlebotomist</h4>
+                        <p>Dr. Sarah Jenkins (Senior Collector) has been assigned to your order.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="dot">2</div>
+                    <div>
+                        <h4>Pre-arrival Notification</h4>
+                        <p>You will receive a real-time tracking link via SMS 30 mins before arrival.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="dot light">3</div>
+                    <div>
+                        <h4>Report Availability</h4>
+                        <p>Digital reports will be available within 24 hours of sample collection.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="download">
+                ⬇ Download Receipt
+            </button>
+
+            <button class="dashboard">
+                ⊞ Back to Dashboard
+            </button>
+
+            <div class="support">
+                <p>Need to reschedule or have questions?</p>
+                <h4>Call +1-800-PULSE-01</h4>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+            <h2>PulseOne</h2>
+            <p>
+                Leading diagnostic aggregator providing reliable
+                health insights at your doorstep.
+            </p>
+        </div>
+
+        <div>
+            <h5>COMPANY</h5>
+            <ul>
+                <li>Privacy</li>
+                <li>Policy</li>
+                <li>Terms of Service</li>
+                <li>Partner with Us</li>
+            </ul>
+        </div>
+
+        <div>
+            <h5>SUPPORT</h5>
+            <ul>
+                <li>Contact Support</li>
+                <li>FAQs</li>
+                <li>Help Center</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2024 PulseOne Healthcare. All rights reserved.
+    </div>
+
+</footer>
+
+<script>
+    document.querySelector(".download").addEventListener("click", () => {
+    alert("Downloading Receipt...");
+});
+
+document.querySelector(".dashboard").addEventListener("click", () => {
+    alert("Redirecting to Dashboard...");
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseOne — Your Cart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  --green:      #1a6b4a;
+  --green-mid:  #2d8c5e;
+  --green-pale: #e8f5ee;
+  --green-btn:  #1a3d2b;
+  --teal:       #0d9488;
+  --red:        #ef4444;
+  --border:     #e5e7eb;
+  --bg:         #f9fafb;
+  --surface:    #ffffff;
+  --text-1:     #111827;
+  --text-2:     #6b7280;
+  --text-3:     #9ca3af;
+  --discount:   #059669;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.08);
+}
+
+/* ─── NAV ───────────────────────────────────────────────── */
+.topnav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+
+.logo-box {
+  width: 32px; height: 32px;
+  background: var(--green);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13.5px;
+  color: var(--text-2);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 400;
+  transition: color .15s, background .15s;
+}
+
+.nav-links a:hover { color: var(--text-1); background: var(--bg); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-2);
+  transition: background .15s;
+}
+
+.nav-icon-btn:hover { background: var(--bg); }
+
+.btn-login {
+  background: var(--green-btn);
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .18s;
+  letter-spacing: -0.01em;
+}
+
+.btn-login:hover { background: var(--green-mid); }
+
+/* ─── PAGE WRAPPER ──────────────────────────────────────── */
+.page-wrap {
+  flex: 1;
+  max-width: 1060px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+/* Back arrow */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 18px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: color .15s;
+}
+
+.back-link:hover { color: var(--text-1); }
+
+/* Page title */
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+/* Grid: left (cart) + right (summary) */
+.cart-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ─── CART ITEMS ────────────────────────────────────────── */
+.cart-items { display: flex; flex-direction: column; gap: 0; }
+
+.cart-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  border-left: 3px solid var(--green);
+}
+
+.cart-item:last-child { margin-bottom: 0; }
+
+.item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.item-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.item-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.badge-best {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.badge-popular {
+  background: #ede9fe;
+  color: #5b21b6;
+  border: 1px solid #c4b5fd;
+}
+
+.item-price-col {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.item-price-original {
+  font-size: 12px;
+  color: var(--text-3);
+  text-decoration: line-through;
+  margin-bottom: 1px;
+}
+
+.item-price-final {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.item-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.item-meta-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--text-2);
+}
+
+.item-remove {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--red);
+  cursor: pointer;
+  font-weight: 500;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  transition: opacity .15s;
+  padding: 0;
+}
+
+.item-remove:hover { opacity: 0.75; }
+
+.item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ─── DATE & TIME PICKER ────────────────────────────────── */
+.datetime-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 12px;
+}
+
+.datetime-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.datetime-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Calendar */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cal-month {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.cal-nav {
+  display: flex;
+  gap: 6px;
+}
+
+.cal-nav-btn {
+  width: 24px; height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-2);
+  font-size: 12px;
+  transition: background .15s;
+}
+
+.cal-nav-btn:hover { background: var(--bg); }
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-day-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-align: center;
+  padding: 4px 0;
+  letter-spacing: 0.04em;
+}
+
+.cal-day {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  color: var(--text-2);
+  cursor: pointer;
+  margin: 0 auto;
+  transition: background .15s, color .15s;
+  font-weight: 400;
+}
+
+.cal-day:hover:not(.empty):not(.disabled) {
+  background: var(--green-pale);
+  color: var(--green);
+}
+
+.cal-day.active {
+  background: var(--green-btn);
+  color: #fff;
+  font-weight: 600;
+}
+
+.cal-day.disabled {
+  color: var(--text-3);
+  cursor: default;
+  opacity: 0.5;
+}
+
+.cal-day.empty { cursor: default; }
+
+/* Time slots */
+.time-section { display: flex; flex-direction: column; gap: 12px; }
+
+.time-period-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.time-btn {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all .15s;
+}
+
+.time-btn:hover:not(.disabled) {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.time-btn.active {
+  background: var(--green-btn);
+  border-color: var(--green-btn);
+  color: #fff;
+  font-weight: 600;
+}
+
+.time-btn.disabled {
+  color: var(--text-3);
+  cursor: default;
+  background: var(--bg);
+  text-decoration: line-through;
+}
+
+/* ─── ORDER SUMMARY ─────────────────────────────────────── */
+.order-summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 76px;
+}
+
+.summary-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.summary-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.summary-value.green { color: var(--discount); font-weight: 600; }
+.summary-value.free  { color: var(--discount); font-weight: 700; }
+
+.summary-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 10px 0 14px;
+}
+
+.summary-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.summary-total-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.summary-total-amount {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+
+.summary-save-note {
+  font-size: 11.5px;
+  color: var(--discount);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* Coupon */
+.coupon-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+
+.coupon-row {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.coupon-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 9px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--text-1);
+  background: var(--surface);
+}
+
+.coupon-input::placeholder { color: var(--text-3); }
+
+.coupon-btn {
+  background: none;
+  border: none;
+  border-left: 1px solid var(--border);
+  padding: 9px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.coupon-btn:hover { background: var(--green-pale); }
+
+/* Proceed button */
+.btn-proceed {
+  width: 100%;
+  background: var(--green-btn);
+  color: #fff;
+  border: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: -0.01em;
+  transition: all .2s;
+  margin-bottom: 14px;
+}
+
+.btn-proceed:hover {
+  background: var(--green-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px rgba(26,107,74,0.3);
+}
+
+/* Safe collection notice */
+.safe-notice {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.safe-notice-icon {
+  width: 22px; height: 22px;
+  background: var(--green-pale);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.safe-notice-text h5 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 3px;
+}
+
+.safe-notice-text p {
+  font-size: 11px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+/* Payment icons */
+.payment-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pay-icon {
+  width: 36px; height: 22px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-3);
+}
+
+/* ─── TRUST BAR ─────────────────────────────────────────── */
+.trust-bar {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 20px;
+  margin-top: 28px;
+}
+
+.trust-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trust-icon {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+.trust-text strong {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.trust-text span {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* ─── FOOTER COPY ───────────────────────────────────────── */
+.footer-copy {
+  background: #111827;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 14px;
+  font-size: 11.5px;
+}
+
+/* ─── FOOTER ────────────────────────────────────────────── */
+.footer {
+  background: #0f1a15;
+  color: rgba(255,255,255,0.65);
+  padding: 40px 28px 28px;
+}
+
+.footer-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-brand-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.footer-brand-desc {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.65;
+  max-width: 240px;
+  margin-bottom: 16px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.social-btn {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  transition: all .18s;
+}
+
+.social-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+.footer-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.footer-links a {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.footer-links a:hover { color: rgba(255,255,255,0.9); }
+
+/* ─── TOAST ─────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: #1a3d2b;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .25s;
+  z-index: 999;
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(0,0,0,.2);
+}
+
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cart-grid { grid-template-columns: 1fr; }
+  .datetime-body { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .order-summary { position: static; }
+}
+
+@media (max-width: 480px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .trust-inner { justify-content: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP NAV ════════════════════════════════════════════ -->
+<header class="topnav">
+  <a class="nav-logo" href="#">
+    <div class="logo-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    PulseOne
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Solutions</a></li>
+    <li><a href="#">Medical Access Support</a></li>
+    <li><a href="#">Royalty Program</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <!-- Location icon -->
+    <div class="nav-icon-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+    </div>
+    <!-- Cart icon -->
+    <div class="nav-icon-btn" style="position:relative;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <span style="position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">2</span>
+    </div>
+    <button class="btn-login">Login</button>
+  </div>
+</header>
+
+<!-- ═══ PAGE CONTENT ════════════════════════════════════════ -->
+<div class="page-wrap">
+
+  <!-- Back arrow -->
+  <a class="back-link" onclick="history.back(); return false;" href="#">←</a>
+
+  <!-- Page title -->
+  <h1 class="page-title">Your Cart (2 Items)</h1>
+
+  <!-- Two-column grid -->
+  <div class="cart-grid">
+
+    <!-- LEFT: Cart items + Date picker -->
+    <div>
+
+      <!-- ── Cart Item 1: CBC Test ── -->
+      <div class="cart-item">
+        <div class="item-header">
+          <div class="item-name-row">
+            <span class="item-name">CBC Test</span>
+            <span class="badge badge-best">Best Price</span>
+          </div>
+          <div class="item-price-col">
+            <div class="item-price-original">₹850</div>
+            <div class="item-price-final">₹499</div>
+          </div>
+        </div>
+
+        <div class="item-meta">
+          <div class="item-meta-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            </svg>
+            Tata 1mg Labs
+          </div>
+          <div class="item-meta-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            6h TAT
+          </div>
+          <div class="item-meta-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home Collection
+          </div>
+        </div>
+
+        <div class="item-footer">
+          <button class="item-remove" onclick="removeItem(this, 'CBC Test')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+              <path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+            </svg>
+            Remove
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Cart Item 2: Thyroid Profile ── -->
+      <div class="cart-item">
+        <div class="item-header">
+          <div class="item-name-row">
+            <span class="item-name">Thyroid Profile (Total T3, T4, TSH)</span>
+            <span class="badge badge-popular">Popular</span>
+          </div>
+          <div class="item-price-col">
+            <div class="item-price-original">₹1,200</div>
+            <div class="item-price-final">₹799</div>
+          </div>
+        </div>
+
+        <div class="item-meta">
+          <div class="item-meta-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            </svg>
+            PulseOne Diagnostic Center
+          </div>
+          <div class="item-meta-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            12h TAT
+          </div>
+          <div class="item-meta-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home Collection
+          </div>
+        </div>
+
+        <div class="item-footer">
+          <button class="item-remove" onclick="removeItem(this, 'Thyroid Profile')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+              <path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+            </svg>
+            Remove
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Date & Time Picker ── -->
+      <div class="datetime-card">
+        <div class="datetime-title">Select Date &amp; Time</div>
+
+        <div class="datetime-body">
+
+          <!-- Calendar -->
+          <div class="calendar">
+            <div class="calendar-header">
+              <span class="cal-month">September 2024</span>
+              <div class="cal-nav">
+                <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+                <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+              </div>
+            </div>
+
+            <div class="calendar-grid" id="calGrid">
+              <!-- Day labels -->
+              <div class="cal-day-label">SU</div>
+              <div class="cal-day-label">MO</div>
+              <div class="cal-day-label">TU</div>
+              <div class="cal-day-label">WE</div>
+              <div class="cal-day-label">TH</div>
+              <div class="cal-day-label">FR</div>
+              <div class="cal-day-label">SA</div>
+
+              <!-- Week 1: Sep starts on Sunday -->
+              <div class="cal-day disabled">28</div>
+              <div class="cal-day disabled">29</div>
+              <div class="cal-day disabled">30</div>
+              <div class="cal-day disabled">31</div>
+              <div class="cal-day" onclick="selectDay(this)">1</div>
+              <div class="cal-day" onclick="selectDay(this)">2</div>
+              <div class="cal-day" onclick="selectDay(this)">3</div>
+              <!-- Week 2 -->
+              <div class="cal-day" onclick="selectDay(this)">4</div>
+              <div class="cal-day" onclick="selectDay(this)">5</div>
+              <div class="cal-day" onclick="selectDay(this)">6</div>
+              <div class="cal-day active" onclick="selectDay(this)">7</div>
+              <div class="cal-day" onclick="selectDay(this)">8</div>
+              <div class="cal-day" onclick="selectDay(this)">9</div>
+              <div class="cal-day" onclick="selectDay(this)">10</div>
+              <!-- Week 3 -->
+              <div class="cal-day" onclick="selectDay(this)">11</div>
+              <div class="cal-day" onclick="selectDay(this)">12</div>
+              <div class="cal-day" onclick="selectDay(this)">13</div>
+              <div class="cal-day" onclick="selectDay(this)">14</div>
+              <div class="cal-day" onclick="selectDay(this)">15</div>
+            </div>
+          </div>
+
+          <!-- Time slots -->
+          <div class="time-section">
+
+            <div>
+              <div class="time-period-label">Morning</div>
+              <div class="time-slots">
+                <button class="time-btn" onclick="selectTime(this)">07:00 AM</button>
+                <button class="time-btn active" onclick="selectTime(this)">08:30 AM</button>
+                <button class="time-btn" onclick="selectTime(this)">09:15 AM</button>
+                <button class="time-btn" onclick="selectTime(this)">10:00 AM</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="time-period-label">Afternoon</div>
+              <div class="time-slots">
+                <button class="time-btn" onclick="selectTime(this)">01:30 PM</button>
+                <button class="time-btn" onclick="selectTime(this)">02:45 PM</button>
+                <button class="time-btn disabled">04:00 PM</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="time-period-label">Evening</div>
+              <div class="time-slots">
+                <button class="time-btn" onclick="selectTime(this)">06:00 PM</button>
+                <button class="time-btn" onclick="selectTime(this)">07:30 PM</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /left col -->
+
+    <!-- RIGHT: Order Summary -->
+    <div class="order-summary">
+      <div class="summary-title">Order Summary</div>
+
+      <div class="summary-row">
+        <span class="summary-label">Total MRP</span>
+        <span class="summary-value">₹2,050</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Discount</span>
+        <span class="summary-value green">-₹752</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Sample Collection Fee</span>
+        <span class="summary-value free">FREE</span>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-total-row">
+        <span class="summary-total-label">Total Amount</span>
+        <span class="summary-total-amount">₹1,298</span>
+      </div>
+      <div class="summary-save-note">You save ₹752 on this booking</div>
+
+      <!-- Coupon -->
+      <div class="coupon-label">Apply Coupon Code</div>
+      <div class="coupon-row">
+        <input type="text" class="coupon-input" id="couponInput" placeholder="PULSE20" value="PULSE20">
+        <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+      </div>
+
+      <!-- Proceed to Checkout -->
+      <button class="btn-proceed" onclick="proceed()">
+        Proceed to Checkout
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+
+      <!-- Safe collection notice -->
+      <div class="safe-notice">
+        <div class="safe-notice-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="safe-notice-text">
+          <h5>Safe &amp; Painless Sample Collection</h5>
+          <p>Our phlebotomists follow 20+ safety protocols including sanitization &amp; fresh kits.</p>
+        </div>
+      </div>
+
+      <!-- Payment icons -->
+      <div class="payment-icons">
+        <div class="pay-icon">VISA</div>
+        <div class="pay-icon">MC</div>
+        <div class="pay-icon">UPI</div>
+      </div>
+    </div>
+
+  </div><!-- /cart-grid -->
+</div><!-- /page-wrap -->
+
+<!-- ═══ TRUST BAR ═══════════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="trust-inner">
+
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <strong>NABL Certified</strong>
+        <span>Quality labs only</span>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <strong>Secure Data</strong>
+        <span>256-bit encryption</span>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <strong>Clinically Valid</strong>
+        <span>Expert reviewed</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ FOOTER COPYRIGHT ═════════════════════════════════════ -->
+<div class="footer-copy">
+  © 2024 PulseOne Healthcare. All clinical data is encrypted and secure.
+</div>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+
+    <!-- Brand -->
+    <div>
+      <div class="footer-brand-name">PulseOne</div>
+      <p class="footer-brand-desc">
+        Leading diagnostic aggregator providing reliable health insights at your doorstep.
+      </p>
+      <div class="footer-social">
+        <div class="social-btn" title="Twitter">𝕏</div>
+        <div class="social-btn" title="Facebook">f</div>
+        <div class="social-btn" title="Website">🌐</div>
+      </div>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Partner with Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Support -->
+    <div>
+      <div class="footer-col-title">Support</div>
+      <ul class="footer-links">
+        <li><a href="#">Contact Support</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Help Center</a></li>
+      </ul>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Toast ──────────────────────────────────────────────────
+function showToast(msg, dur = 3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => t.classList.remove('show'), dur);
+}
+
+// ── Remove cart item ───────────────────────────────────────
+function removeItem(btn, name) {
+  const item = btn.closest('.cart-item');
+  item.style.transition = 'opacity .3s, transform .3s';
+  item.style.opacity = '0';
+  item.style.transform = 'translateX(-12px)';
+  setTimeout(() => {
+    item.remove();
+    updateCartCount();
+    showToast(`"${name}" removed from cart.`);
+  }, 320);
+}
+
+function updateCartCount() {
+  const items = document.querySelectorAll('.cart-item').length;
+  document.querySelector('.page-title').textContent = `Your Cart (${items} Item${items !== 1 ? 's' : ''})`;
+  const badge = document.querySelector('.nav-icon-btn span');
+  if (badge) badge.textContent = items;
+}
+
+// ── Calendar day select ────────────────────────────────────
+function selectDay(el) {
+  if (el.classList.contains('disabled') || el.classList.contains('empty')) return;
+  document.querySelectorAll('.cal-day.active').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+  showToast(`Selected: September ${el.textContent.trim()}, 2024`);
+}
+
+// ── Time slot select ───────────────────────────────────────
+function selectTime(btn) {
+  if (btn.classList.contains('disabled')) return;
+  document.querySelectorAll('.time-btn.active').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ── Month navigation (visual only) ────────────────────────
+let monthOffset = 0;
+const months = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
+function changeMonth(dir) {
+  monthOffset += dir;
+  const idx = (8 + monthOffset) % 12; // base: September = index 8
+  const year = 2024 + Math.floor((8 + monthOffset) / 12);
+  document.querySelector('.cal-month').textContent = `${months[(idx + 12) % 12]} ${year}`;
+  showToast(`Switched to ${months[(idx + 12) % 12]} ${year}`);
+}
+
+// ── Apply coupon ───────────────────────────────────────────
+function applyCoupon() {
+  const code = document.getElementById('couponInput').value.trim().toUpperCase();
+  if (code === 'PULSE20') {
+    showToast('Coupon PULSE20 applied! ₹752 discount saved. ✓');
+  } else if (code === '') {
+    showToast('Please enter a coupon code.');
+  } else {
+    showToast(`Invalid coupon code: "${code}". Try PULSE20.`);
+  }
+}
+
+// ── Proceed to checkout ────────────────────────────────────
+function proceed() {
+  const activeDay  = document.querySelector('.cal-day.active');
+  const activeTime = document.querySelector('.time-btn.active');
+  if (!activeDay || !activeTime) {
+    showToast('Please select a date and time slot before proceeding.');
+    return;
+  }
+  const btn = document.querySelector('.btn-proceed');
+  btn.textContent = 'Processing…';
+  btn.disabled = true;
+  btn.style.background = '#2d8c5e';
+  showToast('Redirecting to secure checkout…');
+  setTimeout(() => {
+    btn.innerHTML = `✓ Proceeding to Checkout`;
+    btn.style.background = '#1a6b4a';
+    setTimeout(() => {
+      btn.innerHTML = `Proceed to Checkout <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+      btn.disabled = false;
+      btn.style.background = '';
+    }, 2000);
+  }, 1400);
+}
+
+// ── Coupon Enter key ───────────────────────────────────────
+document.getElementById('couponInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') applyCoupon();
+});
+</script>
+</body>
+</html>

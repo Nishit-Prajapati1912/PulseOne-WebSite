@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseOne Search Tests</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f7f7f7;
+color:#222;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+background:#fff;
+height:72px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+border-bottom:1px solid #ddd;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:28px;
+font-weight:700;
+color:#123d30;
+}
+
+.logo-box{
+width:28px;
+height:28px;
+background:#123d30;
+border-radius:6px;
+}
+
+.nav-links{
+display:flex;
+gap:35px;
+font-size:14px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#555;
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.login-btn{
+background:#123d30;
+color:white;
+padding:10px 25px;
+border:none;
+border-radius:4px;
+cursor:pointer;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+padding:30px 0;
+}
+
+.back-btn{
+width:36px;
+height:36px;
+border:1px solid #ccc;
+background:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+.search-box{
+margin:25px 0;
+position:relative;
+width:700px;
+max-width:100%;
+}
+
+.search-box input{
+width:100%;
+height:55px;
+padding-left:50px;
+border:1px solid #aaa;
+border-radius:6px;
+font-size:15px;
+background:white;
+}
+
+.search-box i{
+position:absolute;
+left:18px;
+top:18px;
+color:#777;
+}
+
+/* ================= CARD ================= */
+
+.card{
+background:white;
+border:1px solid #ccc;
+border-radius:18px;
+padding:40px 60px;
+}
+
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.section-head h3{
+font-size:24px;
+color:#02330a;
+}
+
+.clear{
+font-size:12px;
+font-weight:600;
+color:#009a55;
+cursor:pointer;
+}
+
+.test-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
+border-bottom:1px solid #e5e5e5;
+}
+
+.left-test{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.tag{
+background:#7ff7a3;
+padding:4px 10px;
+font-size:10px;
+border-radius:20px;
+color:#056939;
+font-weight:600;
+}
+
+.delete-btn,
+.add-btn{
+cursor:pointer;
+color:#0b6e42;
+font-size:18px;
+}
+
+.popular-title{
+font-size:24px;
+font-weight:700;
+margin:45px 0 20px;
+}
+
+.compare-btn{
+margin-top:35px;
+background:#00562f;
+color:white;
+font-size:18px;
+font-weight:700;
+border:none;
+padding:16px 50px;
+border-radius:16px;
+cursor:pointer;
+}
+
+/* ================= INFO BOX ================= */
+
+.info-box{
+margin-top:35px;
+background:#eaf5ff;
+padding:18px;
+border-radius:8px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.info-left{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.info-icon{
+width:40px;
+height:40px;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:8px;
+color:#123d30;
+}
+
+.click-btn{
+padding:10px 22px;
+border:1px solid #00854b;
+background:white;
+color:#00854b;
+font-weight:700;
+border-radius:4px;
+cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+margin-top:60px;
+background:#01240c;
+color:white;
+padding:50px 0 20px;
+}
+
+.footer-container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:50px;
+}
+
+.footer-logo{
+font-size:34px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.footer-text{
+color:#bdbdbd;
+max-width:300px;
+line-height:1.6;
+}
+
+.socials{
+margin-top:20px;
+display:flex;
+gap:15px;
+font-size:20px;
+}
+
+.footer-links h4{
+margin-bottom:15px;
+}
+
+.footer-links a{
+display:block;
+color:#ccc;
+text-decoration:none;
+margin-bottom:10px;
+}
+
+.copy{
+margin-top:40px;
+padding-top:20px;
+border-top:1px solid #1f312c;
+color:#aaa;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+.nav-links{
+display:none;
+}
+
+.card{
+padding:25px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.info-box{
+flex-direction:column;
+gap:15px;
+text-align:center;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+ 
+ <img src="assets/logo.png" width="200" height="50" viewBox="0 0 24 24" fill="none"/>
+</div>
+
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#">About Us</a>
+<a href="#">Solutions</a>
+<a href="#">Medical Access Support</a>
+<a href="#">Royalty Program</a>
+</div>
+
+<div class="nav-right">
+<i class="fa-solid fa-location-dot"></i>
+<i class="fa-solid fa-cart-shopping"></i>
+<button class="login-btn">Login</button>
+</div>
+
+</nav>
+
+<!-- MAIN -->
+
+<div class="container">
+<button class="back-btn" onclick="window.location.href='lab .html'">
+    <i class="fa-solid fa-arrow-left"></i>
+</button>
+ 
+
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" placeholder="Search for lab tests">
+</div>
+
+<div class="card">
+
+<div class="section-head">
+<h3>Recent Searches</h3>
+<div class="clear">CLEAR ALL</div>
+</div>
+
+<div class="test-item">
+<div class="left-test">
+<span>CBC Test (Complete Blood Count)</span>
+<span class="tag">TESTS</span>
+</div>
+
+<i class="fa-regular fa-trash-can delete-btn"></i>
+</div>
+
+<div class="test-item">
+<div class="left-test">
+<span>KFT with Electrolytes (Kidney Function)</span>
+<span class="tag">TESTS</span>
+</div>
+
+<i class="fa-regular fa-trash-can delete-btn"></i>
+</div>
+
+<h3 class="popular-title">Popular Tests</h3>
+
+<div class="test-item">
+<span>CBC Test (Complete Blood Count)</span>
+<i class="fa-regular fa-circle-plus add-btn"></i>
+</div>
+
+<div class="test-item">
+<span>PPBS Test (Post-Prandial Blood Sugar)</span>
+<i class="fa-regular fa-circle-plus add-btn"></i>
+</div>
+
+<div class="test-item">
+<span>Urine Routine Test</span>
+<i class="fa-regular fa-circle-plus add-btn"></i>
+</div>
+<a href="compare.html">
+    <button class="compare-btn">Compare</button>
+</a>
+ 
+<div class="info-box">
+
+<div class="info-left">
+<div class="info-icon">
+<i class="fa-regular fa-file-lines"></i>
+</div>
+
+<div>
+Looking for X-Ray or Ultrasound?
+Explore Radiology at PulseOne
+</div>
+</div>
+
+<button class="click-btn">
+CLICK HERE
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-container">
+
+<div class="footer-grid">
+
+<div>
+<div class="footer-logo">PulseOne</div>
+
+<p class="footer-text">
+Leading diagnostic aggregator providing reliable health insights at your doorstep.
+</p>
+
+<div class="socials">
+<i class="fa-brands fa-facebook"></i>
+<i class="fa-brands fa-instagram"></i>
+<i class="fa-solid fa-globe"></i>
+</div>
+</div>
+
+<div class="footer-links">
+<h4>COMPANY</h4>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+<a href="#">Partner with Us</a>
+</div>
+
+<div class="footer-links">
+<h4>SUPPORT</h4>
+<a href="#">Contact Support</a>
+<a href="#">FAQs</a>
+<a href="#">Help Center</a>
+</div>
+
+</div>
+
+<div class="copy">
+© 2024 PulseOne Healthcare. All rights reserved.
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+// Remove recent search
+document.querySelectorAll(".delete-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+btn.parentElement.remove();
+});
+
+});
+
+// Add test
+
+document.querySelectorAll(".add-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+btn.classList.remove("fa-circle-plus");
+btn.classList.add("fa-circle-check");
+
+});
+
+});
+
+document.querySelector(".clear").addEventListener("click",()=>{
+
+document.querySelectorAll(".delete-btn").forEach(btn=>{
+btn.parentElement.remove();
+});
+
+});
+
+</script>
+
+</body>
+</html>

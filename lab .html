@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseOne — Lab Tests & Health Packages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+}
+
+:root {
+  --green:       #0f5c3e;
+  --green-mid:   #1a7a52;
+  --green-light: #2d9a6b;
+  --green-pale:  #e8f5ee;
+  --green-bright:#22c55e;
+  --teal:        #0d9488;
+  --border:      #e5e7eb;
+  --bg:          #f9fafb;
+  --surface:     #ffffff;
+  --text-1:      #111827;
+  --text-2:      #6b7280;
+  --text-3:      #9ca3af;
+  --discount:    #dc2626;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.07);
+  --shadow-md:   0 4px 16px rgba(0,0,0,.08);
+  --radius:      10px;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: 'Inter', sans-serif; }
+img { display: block; max-width: 100%; }
+
+/* ════════════════════════════════════════════
+   TOP NAV
+════════════════════════════════════════════ */
+.topnav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+
+.logo-box {
+  width: 34px; height: 34px;
+  background: var(--green);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13.5px;
+  color: var(--text-2);
+  padding: 6px 13px;
+  border-radius: 6px;
+  font-weight: 400;
+  transition: color .15s, background .15s;
+}
+
+.nav-links a:hover { color: var(--text-1); background: var(--bg); }
+
+.nav-right { display: flex; align-items: center; gap: 10px; }
+
+.nav-icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-2);
+  transition: background .15s;
+  position: relative;
+}
+
+.nav-icon-btn:hover { background: var(--bg); }
+
+.cart-badge {
+  position: absolute;
+  top: -4px; right: -4px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.btn-login {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 7px;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: background .18s;
+  letter-spacing: -0.01em;
+}
+
+.btn-login:hover { background: var(--green-mid); }
+
+/* ════════════════════════════════════════════
+   LOCATION BAR
+════════════════════════════════════════════ */
+.location-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.location-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.location-left svg { color: var(--text-2); }
+
+.location-label { color: var(--text-2); }
+
+.location-pincode {
+  font-weight: 700;
+  color: var(--text-1);
+  font-size: 14px;
+}
+
+.location-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  margin: 0 14px;
+}
+
+.detect-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--green-light);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: opacity .15s;
+}
+
+.detect-btn:hover { opacity: 0.75; }
+
+.service-notice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+/* ════════════════════════════════════════════
+   LAB PARTNERS STRIP
+════════════════════════════════════════════ */
+.partners-strip {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.partners-list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.partner-logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.partner-logo:hover {
+  border-color: var(--green-light);
+  box-shadow: 0 2px 8px rgba(15,92,62,.1);
+}
+
+.partner-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.partner-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 1.2;
+}
+
+.partner-sub {
+  font-size: 9.5px;
+  color: var(--text-3);
+  line-height: 1.2;
+}
+
+.view-all-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green-light);
+  flex-shrink: 0;
+  margin-left: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s;
+}
+
+.view-all-link:hover { color: var(--green); }
+
+/* ════════════════════════════════════════════
+   SEARCH BAR
+════════════════════════════════════════════ */
+.search-section {
+  background: var(--surface);
+  padding: 20px 32px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-box {
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 30px;
+  padding: 10px 18px;
+  background: var(--surface);
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+  transition: border-color .18s, box-shadow .18s;
+}
+
+.search-box:focus-within {
+  border-color: var(--green-light);
+  box-shadow: 0 0 0 3px rgba(45,154,107,.1);
+}
+
+.search-box svg { color: var(--text-3); flex-shrink: 0; }
+
+.search-input {
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--text-1);
+  flex: 1;
+  background: transparent;
+}
+
+.search-input::placeholder { color: var(--text-3); }
+
+/* ════════════════════════════════════════════
+   SECTIONS COMMON
+════════════════════════════════════════════ */
+.section { padding: 28px 32px; }
+.section-bg { background: var(--surface); }
+.section-gray { background: var(--bg); }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+
+.view-all-btn {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color .15s;
+}
+
+.view-all-btn:hover { color: var(--green); }
+
+/* ════════════════════════════════════════════
+   HEALTH CONDITIONS GRID
+════════════════════════════════════════════ */
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.condition-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+  transition: all .18s;
+}
+
+.condition-chip:hover {
+  border-color: var(--green-light);
+  background: var(--green-pale);
+  color: var(--green);
+}
+
+.condition-icon {
+  width: 28px; height: 28px;
+  background: var(--green-pale);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green-light);
+  flex-shrink: 0;
+  transition: background .18s;
+}
+
+.condition-chip:hover .condition-icon { background: rgba(45,154,107,.15); }
+
+/* ════════════════════════════════════════════
+   PACKAGE CARDS (Doctor Created + Popular)
+════════════════════════════════════════════ */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.pkg-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s, transform .2s;
+}
+
+.pkg-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.pkg-img {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+
+.pkg-img-bg {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #0a3d28 0%, #0f5c3e 40%, #1a3d30 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.pkg-img-bg.blue { background: linear-gradient(135deg, #0a2a3d 0%, #0f3e5c 40%, #1a2d3d 100%); }
+.pkg-img-bg.dna  { background: linear-gradient(135deg, #1a3d1a 0%, #2d5c1a 40%, #0f3d0f 100%); }
+
+.pkg-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge-seller { background: #22c55e; color: #fff; }
+.badge-aged   { background: #14b8a6; color: #fff; }
+.badge-exec   { background: #8b5cf6; color: #fff; }
+
+.pkg-body { padding: 16px; }
+
+.pkg-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.pkg-tests {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-2);
+  margin-bottom: 12px;
+}
+
+.pkg-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.pkg-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+
+.pkg-original {
+  font-size: 12px;
+  color: var(--text-3);
+  text-decoration: line-through;
+}
+
+.pkg-discount {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--discount);
+}
+
+.btn-select {
+  width: 100%;
+  background: var(--text-1);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 7px;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: background .18s;
+  letter-spacing: -0.01em;
+}
+
+.btn-select:hover { background: #374151; }
+
+/* ════════════════════════════════════════════
+   TOP BOOKED TESTS
+════════════════════════════════════════════ */
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.test-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s, transform .2s;
+  position: relative;
+}
+
+.test-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.test-img-area {
+  height: 90px;
+  background: #e8f5ee;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+
+.test-img-area svg { color: #6dbc96; }
+
+.popular-tag {
+  position: absolute;
+  top: 8px; left: 8px;
+  background: #22c55e;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.test-body { padding: 12px; }
+
+.test-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.test-tat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--text-2);
+  margin-bottom: 10px;
+}
+
+.test-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.test-price {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+
+.add-btn {
+  width: 28px; height: 28px;
+  background: var(--text-1);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .18s, transform .15s;
+  line-height: 1;
+}
+
+.add-btn:hover { background: var(--green); transform: scale(1.1); }
+
+/* ════════════════════════════════════════════
+   PRESCRIPTION + REPORTS BANNER ROW
+════════════════════════════════════════════ */
+.banner-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 18px;
+  padding: 0 32px 28px;
+  background: var(--bg);
+}
+
+.prescription-banner {
+  background: #0f2218;
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 140px;
+}
+
+.prescription-banner::before {
+  content: '';
+  position: absolute;
+  right: -10px; top: 0; bottom: 0;
+  width: 130px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 120' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='5' y='5' width='70' height='110' rx='6' fill='none' stroke='rgba(45,154,107,0.25)' stroke-width='1.5'/%3E%3Crect x='12' y='18' width='56' height='8' rx='2' fill='rgba(45,154,107,0.15)'/%3E%3Crect x='12' y='32' width='40' height='5' rx='2' fill='rgba(45,154,107,0.1)'/%3E%3Crect x='12' y='42' width='50' height='5' rx='2' fill='rgba(45,154,107,0.1)'/%3E%3Crect x='12' y='52' width='35' height='5' rx='2' fill='rgba(45,154,107,0.1)'/%3E%3C/svg%3E") center/contain no-repeat;
+  opacity: 0.6;
+}
+
+.presc-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.presc-desc {
+  font-size: 12.5px;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 16px;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  width: fit-content;
+  position: relative;
+  z-index: 1;
+  transition: background .18s;
+}
+
+.btn-upload:hover { background: #16a34a; }
+
+.reports-banner {
+  background: #f3f4f6;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 140px;
+}
+
+.reports-content { flex: 1; }
+
+.reports-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.reports-desc {
+  font-size: 12.5px;
+  color: var(--text-2);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.btn-view-reports {
+  background: transparent;
+  color: var(--text-1);
+  border: 1.5px solid var(--text-1);
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all .18s;
+}
+
+.btn-view-reports:hover {
+  background: var(--text-1);
+  color: #fff;
+}
+
+.reports-icon-area {
+  width: 56px; height: 56px;
+  background: var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+.footer {
+  background: #0f1a15;
+  color: rgba(255,255,255,.65);
+  padding: 40px 32px 24px;
+  margin-top: 0;
+}
+
+.footer-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 28px;
+}
+
+.footer-brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.footer-desc {
+  font-size: 12.5px;
+  color: rgba(255,255,255,.42);
+  line-height: 1.65;
+  max-width: 220px;
+  margin-bottom: 16px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icon {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.45);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .18s;
+}
+
+.social-icon:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+
+.footer-col-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.footer-links a {
+  font-size: 12.5px;
+  color: rgba(255,255,255,.45);
+  transition: color .15s;
+}
+
+.footer-links a:hover { color: rgba(255,255,255,.9); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 18px;
+  text-align: center;
+  font-size: 11.5px;
+  color: rgba(255,255,255,.3);
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(14px);
+  background: #0f5c3e;
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .25s;
+  z-index: 999;
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(0,0,0,.2);
+}
+
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .conditions-grid { grid-template-columns: repeat(3, 1fr); }
+  .packages-grid { grid-template-columns: repeat(2, 1fr); }
+  .tests-grid { grid-template-columns: repeat(2, 1fr); }
+  .banner-row { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .partners-list { gap: 8px; }
+}
+
+@media (max-width: 560px) {
+  .conditions-grid { grid-template-columns: repeat(2, 1fr); }
+  .packages-grid { grid-template-columns: 1fr; }
+  .tests-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .topnav, .location-bar, .section, .banner-row { padding-left: 16px; padding-right: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ TOP NAV ════════════════════════════════════════════ -->
+<header class="topnav">
+  <a class="nav-logo" href="#">
+     
+
+   <img src="assets/logo.png" width="200" height="50" viewBox="0 0 24 24" fill="none"/>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Solutions</a></li>
+    <li><a href="#">Medical Access Support</a></li>
+    <li><a href="#">Royalty Program</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="nav-icon-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+    </div>
+    <div class="nav-icon-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <span class="cart-badge">2</span>
+    </div>
+    <button class="btn-login">Login</button>
+  </div>
+<div>
+  <a href="index .html" class="btn-login">Back</a>
+</div>
+</header>
+
+<!-- ════ LOCATION BAR ═══════════════════════════════════════ -->
+<div class="location-bar">
+  <div style="display:flex;align-items:center;">
+    <div style="display:flex;align-items:center;gap:6px;font-size:13px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span class="location-label">Deliver to:</span>
+      <span class="location-pincode">110001</span>
+    </div>
+    <div class="location-sep"></div>
+    <button class="detect-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+      </svg>
+      Detect location
+    </button>
+  </div>
+  <div class="service-notice">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </svg>
+    Service available in your area
+  </div>
+</div>
+
+<!-- ════ LAB PARTNERS ═══════════════════════════════════════ -->
+<style>
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.partners-section{
+    width:100%;
+    background:#f5f5f5;
+    padding:20px;
+}
+
+.partners-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    overflow-x:auto;
+}
+
+.partner-box{
+    min-width:160px;
+    height:70px;
+    background:#fff;
+    border:1px solid #e5e5e5;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.partner-box:hover{
+    transform:translateY(-4px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.partner-box img{
+    max-width:100%;
+    max-height:50px;
+    object-fit:contain;
+}
+
+.view-all{
+    min-width:100px;
+    text-align:center;
+}
+
+.view-all a{
+    text-decoration:none;
+    color:#222;
+    font-weight:600;
+}
+
+.partners-container::-webkit-scrollbar{
+    height:6px;
+}
+
+.partners-container::-webkit-scrollbar-thumb{
+    background:#0d5b3c;
+    border-radius:10px;
+}
+</style>
+</head>
+
+
+<section class="partners-section">
+
+    <div class="partners-container">
+
+        <div class="partner-box">
+            <img src="agilus.png" alt="Agilus">
+        </div>
+
+        <div class="partner-box">
+            <img src="thyrocare.png" alt="Thyrocare">
+        </div>
+
+        <div class="partner-box">
+            <img src="pharmeasy.png" alt="PharmEasy">
+        </div>
+
+        <div class="partner-box">
+            <img src="apollo.png" alt="Apollo">
+        </div>
+
+        <div class="partner-box">
+            <img src="metropolis.png" alt="Metropolis">
+        </div>
+
+        <div class="view-all">
+            <a href="#">View All</a>
+        </div>
+
+    </div>
+
+</section>
+<script>
+  const slider = document.querySelector(".partners-container");
+
+let scrollAmount = 0;
+
+setInterval(() => {
+
+    scrollAmount += 180;
+
+    if(scrollAmount >= slider.scrollWidth - slider.clientWidth){
+        scrollAmount = 0;
+    }
+
+    slider.scrollTo({
+        left: scrollAmount,
+        behavior: "smooth"
+    });
+
+}, 2500);
+</script>
+
+<!-- ════ SEARCH ═════════════════════════════════════════════ -->
+ <div class="search-section">
+  <div class="search-box" onclick="window.location.href='search.html'" style="cursor:pointer;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Search lab tests, health packages, thyroid, diabetes, vitamin…"
+      readonly
+    >
+  </div>
+</div>
+ 
+
+<!-- ════ BROWSE BY HEALTH CONDITIONS ════════════════════════ -->
+<div class="section section-bg">
+  <div class="section-header">
+    <h2 class="section-title">Browse by Health Conditions</h2>
+  </div>
+  <div class="conditions-grid">
+
+    <div class="condition-chip" onclick="showToast('Browsing CBT tests…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+      </div>
+      CBT
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Cardiac Care…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      Cardiac Care
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Stomach Care…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a9 9 0 0 1 9 9c0 3.18-3 6-3 9H6c0-3-3-5.82-3-9a9 9 0 0 1 9-9z"/>
+        </svg>
+      </div>
+      Stomach Care
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Pain Relief…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      Pain Relief
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Liver Care…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      Liver Care
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Oral Care…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a5 5 0 0 1 5 5c0 6-5 11-5 11S7 13 7 7a5 5 0 0 1 5-5z"/>
+        </svg>
+      </div>
+      Oral Care
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Respiratory…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 16.5c-1.1 0-2-.9-2-2V8a5 5 0 0 1 10 0v6.5c0 1.1-.9 2-2 2H7z"/>
+          <path d="M12 8v8"/>
+        </svg>
+      </div>
+      Respiratory
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Sexual Health…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      Sexual Health
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Elderly Care…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="3"/>
+          <path d="M12 8v13"/>
+          <path d="M8 12l4-4 4 4"/>
+        </svg>
+      </div>
+      Elderly Care
+    </div>
+
+    <div class="condition-chip" onclick="showToast('Browsing Child & Maternity…')">
+      <div class="condition-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/>
+          <line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+      </div>
+      Child &amp; Maternity
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ DOCTOR CREATED HEALTH CHECKS ══════════════════════ -->
+<div class="section section-gray">
+  <div class="section-header">
+    <h2 class="section-title">Doctor Created Health Checks</h2>
+    <button class="view-all-btn" onclick="showToast('Viewing all health checks…')">View All</button>
+  </div>
+
+  <div class="packages-grid">
+
+    <!-- Comprehensive Full Body Check -->
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <div class="pkg-img-bg">
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none" opacity="0.3">
+            <circle cx="50" cy="50" r="40" stroke="#2d9a6b" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="28" stroke="#2d9a6b" stroke-width="1"/>
+            <circle cx="50" cy="50" r="15" fill="rgba(45,154,107,0.3)"/>
+            <line x1="10" y1="50" x2="90" y2="50" stroke="#2d9a6b" stroke-width="0.8"/>
+            <line x1="50" y1="10" x2="50" y2="90" stroke="#2d9a6b" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <span class="pkg-badge badge-seller">Best Seller</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name">Comprehensive Full Body Check</div>
+        <div class="pkg-tests">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          86 Tests included
+        </div>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₹2,999</span>
+          <span class="pkg-original">₹5,999</span>
+          <span class="pkg-discount">50% OFF</span>
+        </div>
+        <button class="btn-select" onclick="addToCart('Comprehensive Full Body Check', 2999)">Select Package</button>
+      </div>
+    </div>
+
+    <!-- Senior Citizen Advanced Panel -->
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <div class="pkg-img-bg blue">
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none" opacity="0.35">
+            <path d="M50 20 C30 20 15 35 15 50 C15 65 30 80 50 80 C70 80 85 65 85 50 C85 35 70 20 50 20Z" stroke="#2d9a6b" stroke-width="1.5" fill="none"/>
+            <polyline points="25,50 38,50 43,35 50,65 57,35 62,50 75,50" stroke="#2d9a6b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="pkg-badge badge-aged">Aged Care</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name">Senior Citizen Advanced Panel</div>
+        <div class="pkg-tests">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          72 Tests included
+        </div>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₹3,499</span>
+          <span class="pkg-original">₹6,999</span>
+          <span class="pkg-discount">50% OFF</span>
+        </div>
+        <button class="btn-select" onclick="addToCart('Senior Citizen Advanced Panel', 3499)">Select Package</button>
+      </div>
+    </div>
+
+    <!-- PulseOne Pro Executive Pack -->
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <div class="pkg-img-bg dna">
+          <svg width="60" height="80" viewBox="0 0 60 100" fill="none" opacity="0.35">
+            <path d="M10 10 Q30 25 50 10 Q30 40 10 55 Q30 70 50 55 Q30 85 10 100" stroke="#2d9a6b" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M50 10 Q30 25 10 10 Q30 40 50 55 Q30 70 10 55 Q30 85 50 100" stroke="#22c55e" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+        </div>
+        <span class="pkg-badge badge-exec">Executive</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name">PulseOne Pro Executive Pack</div>
+        <div class="pkg-tests">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          98 Tests included
+        </div>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₹4,999</span>
+          <span class="pkg-original">₹9,999</span>
+          <span class="pkg-discount">50% OFF</span>
+        </div>
+        <button class="btn-select" onclick="addToCart('PulseOne Pro Executive Pack', 4999)">Select Package</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ TOP BOOKED TESTS ════════════════════════════════════ -->
+<div class="section section-bg">
+  <div class="section-header">
+    <h2 class="section-title">Top Booked Tests</h2>
+    <button class="view-all-btn" onclick="showToast('Viewing all tests…')">View All</button>
+  </div>
+
+  <div class="tests-grid">
+
+    <!-- Thyroid Profile -->
+    <div class="test-card">
+      <div class="test-img-area">
+        <span class="popular-tag">POPULAR</span>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+        </svg>
+      </div>
+      <div class="test-body">
+        <div class="test-name">Thyroid Profile</div>
+        <div class="test-tat">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          24 hr reports
+        </div>
+        <div class="test-price-row">
+          <span class="test-price">₹399</span>
+          <button class="add-btn" onclick="addToCart('Thyroid Profile', 399)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lipid Profile -->
+    <div class="test-card">
+      <div class="test-img-area">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+      </div>
+      <div class="test-body">
+        <div class="test-name">Lipid Profile</div>
+        <div class="test-tat">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          12 hr reports
+        </div>
+        <div class="test-price-row">
+          <span class="test-price">₹549</span>
+          <button class="add-btn" onclick="addToCart('Lipid Profile', 549)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vitamin D -->
+    <div class="test-card">
+      <div class="test-img-area">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3l3 3 3-3M9 21l3-3 3 3M3 9l3 3-3 3M21 9l-3 3 3 3"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+      </div>
+      <div class="test-body">
+        <div class="test-name">Vitamin D (25 OH)</div>
+        <div class="test-tat">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          24 hr reports
+        </div>
+        <div class="test-price-row">
+          <span class="test-price">₹1,199</span>
+          <button class="add-btn" onclick="addToCart('Vitamin D (25 OH)', 1199)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HBA1C Glycated -->
+    <div class="test-card">
+      <div class="test-img-area">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/>
+          <path d="M8.56 14.33A6 6 0 0 0 6 19v1h12v-1a6 6 0 0 0-2.56-4.67"/>
+        </svg>
+      </div>
+      <div class="test-body">
+        <div class="test-name">HBA1C Glycated</div>
+        <div class="test-tat">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          8 hr reports
+        </div>
+        <div class="test-price-row">
+          <span class="test-price">₹499</span>
+          <button class="add-btn" onclick="addToCart('HBA1C Glycated', 499)">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ PRESCRIPTION + REPORTS ════════════════════════════ -->
+<div class="banner-row">
+
+  <div class="prescription-banner">
+    <div class="presc-title">Order with Prescription</div>
+    <div class="presc-desc">Upload your doctor's note and we'll handle the rest.</div>
+    <button class="btn-upload" onclick="showToast('Uploading prescription…')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      Upload Now
+    </button>
+  </div>
+
+  <div class="reports-banner">
+    <div class="reports-content">
+      <div class="reports-title">Access Your Reports</div>
+      <div class="reports-desc">Securely view and download all your past lab results.</div>
+      <button class="btn-view-reports" onclick="showToast('Opening lab reports…')">View Lab Reports</button>
+    </div>
+    <div class="reports-icon-area">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════ POPULAR HEALTH CHECKUP PACKAGES ════════════════════ -->
+<div class="section section-bg">
+  <div class="section-header">
+    <h2 class="section-title">Popular Health Checkup Packages</h2>
+  </div>
+
+  <div class="packages-grid">
+
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <div class="pkg-img-bg">
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none" opacity="0.3">
+            <circle cx="50" cy="50" r="40" stroke="#2d9a6b" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="28" stroke="#2d9a6b" stroke-width="1"/>
+            <circle cx="50" cy="50" r="15" fill="rgba(45,154,107,0.3)"/>
+          </svg>
+        </div>
+        <span class="pkg-badge badge-seller">Best Seller</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name">Comprehensive Full Body Check</div>
+        <div class="pkg-tests">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          86 Tests included
+        </div>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₹2,999</span>
+          <span class="pkg-original">₹5,999</span>
+          <span class="pkg-discount">50% OFF</span>
+        </div>
+        <button class="btn-select" onclick="addToCart('Comprehensive Full Body Check', 2999)">Select Package</button>
+      </div>
+    </div>
+
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <div class="pkg-img-bg blue">
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none" opacity="0.35">
+            <path d="M50 20 C30 20 15 35 15 50 C15 65 30 80 50 80 C70 80 85 65 85 50 C85 35 70 20 50 20Z" stroke="#2d9a6b" stroke-width="1.5" fill="none"/>
+            <polyline points="25,50 38,50 43,35 50,65 57,35 62,50 75,50" stroke="#2d9a6b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="pkg-badge badge-aged">Aged Care</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name">Senior Citizen Advanced Panel</div>
+        <div class="pkg-tests">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          72 Tests included
+        </div>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₹3,499</span>
+          <span class="pkg-original">₹6,999</span>
+          <span class="pkg-discount">50% OFF</span>
+        </div>
+        <button class="btn-select" onclick="addToCart('Senior Citizen Advanced Panel', 3499)">Select Package</button>
+      </div>
+    </div>
+
+    <div class="pkg-card">
+      <div class="pkg-img">
+        <div class="pkg-img-bg dna">
+          <svg width="60" height="80" viewBox="0 0 60 100" fill="none" opacity="0.35">
+            <path d="M10 10 Q30 25 50 10 Q30 40 10 55 Q30 70 50 55 Q30 85 10 100" stroke="#2d9a6b" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M50 10 Q30 25 10 10 Q30 40 50 55 Q30 70 10 55 Q30 85 50 100" stroke="#22c55e" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+        </div>
+        <span class="pkg-badge badge-exec">Executive</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-name">PulseOne Pro Executive Pack</div>
+        <div class="pkg-tests">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          98 Tests included
+        </div>
+        <div class="pkg-price-row">
+          <span class="pkg-price">₹4,999</span>
+          <span class="pkg-original">₹9,999</span>
+          <span class="pkg-discount">50% OFF</span>
+        </div>
+        <button class="btn-select" onclick="addToCart('PulseOne Pro Executive Pack', 4999)">Select Package</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+   
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseOne Section</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f7f8f7;
+    color:#1f2d2d;
+}
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+}
+
+/* -------------------- Vital Organs -------------------- */
+
+.section-title{
+    font-size:38px;
+    font-weight:700;
+    color:#133b2f;
+    margin:30px 0 20px;
+}
+
+.title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.view-all{
+    color:#2fa56b;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.organ-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:15px;
+}
+
+.organ-card{
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:.3s;
+}
+
+.organ-card:hover{
+    transform:translateY(-3px);
+}
+
+.organ-icon{
+    width:40px;
+    height:40px;
+    border-radius:6px;
+    background:#f3f3f3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#0b7a4b;
+}
+
+/* ---------------- How It Works ---------------- */
+
+.steps-box{
+    background:#fff;
+    border:1px solid #d8eee0;
+    border-radius:15px;
+    padding:40px;
+    margin:60px 0;
+}
+
+.steps-wrapper{
+    display:grid;
+    grid-template-columns:280px 1fr 1fr 1fr;
+    gap:30px;
+    align-items:center;
+}
+
+.left-heading{
+    font-size:24px;
+    line-height:1.4;
+    color:#173c31;
+    font-weight:700;
+}
+
+.step{
+    position:relative;
+}
+
+.step-tag{
+    display:inline-block;
+    background:#7ff59e;
+    color:#0b5e35;
+    font-size:11px;
+    padding:5px 10px;
+    border-radius:4px;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.step i{
+    font-size:28px;
+    color:#173c31;
+    margin-bottom:10px;
+}
+
+.step h4{
+    margin-bottom:8px;
+}
+
+.step p{
+    color:#666;
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* ---------------- Features ---------------- */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+    margin:30px 0 60px;
+}
+
+.feature{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+}
+
+.feature i{
+    color:#0d7f4b;
+    font-size:28px;
+}
+
+.feature h4{
+    margin-bottom:5px;
+}
+
+.feature p{
+    color:#666;
+    font-size:14px;
+}
+
+/* ---------------- FAQ ---------------- */
+
+.faq-title{
+    text-align:center;
+    font-size:48px;
+    color:#163c31;
+    margin-bottom:30px;
+    font-family:Georgia, serif;
+}
+
+.faq-container{
+    max-width:900px;
+    margin:auto;
+    margin-bottom:70px;
+}
+
+.faq-item{
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:6px;
+    margin-bottom:15px;
+    overflow:hidden;
+}
+
+.faq-question{
+    width:100%;
+    border:none;
+    background:#fff;
+    padding:18px;
+    text-align:left;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+}
+
+.faq-answer{
+    display:none;
+    padding:0 18px 18px;
+    color:#666;
+}
+
+.faq-item.active .faq-answer{
+    display:block;
+}
+
+/* ---------------- Footer ---------------- */
+
+footer{
+    background:#07120f;
+    color:white;
+    padding:50px 0 20px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-logo{
+    font-size:36px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.footer-desc{
+    color:#b6b6b6;
+    max-width:300px;
+    line-height:1.6;
+}
+
+.socials{
+    margin-top:20px;
+}
+
+.socials i{
+    margin-right:15px;
+    cursor:pointer;
+}
+
+.footer-col h4{
+    margin-bottom:15px;
+}
+
+.footer-col a{
+    display:block;
+    color:#cfcfcf;
+    text-decoration:none;
+    margin-bottom:10px;
+}
+
+.copyright{
+    margin-top:40px;
+    border-top:1px solid #20332b;
+    padding-top:20px;
+    color:#aaa;
+}
+
+.chat-btn{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#7af59d;
+    color:#0d5034;
+    border:none;
+    padding:16px 22px;
+    border-radius:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:992px){
+
+.organ-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.steps-wrapper{
+grid-template-columns:1fr;
+}
+
+.features{
+grid-template-columns:1fr 1fr;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+}
+
+@media(max-width:600px){
+
+.features{
+grid-template-columns:1fr;
+}
+
+.organ-grid{
+grid-template-columns:1fr;
+}
+
+.faq-title{
+font-size:34px;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="title-row">
+<h2 class="section-title">Vital Organs (8)</h2>
+<a href="#" class="view-all">View All</a>
+</div>
+
+<div class="organ-grid">
+<div class="organ-card"><div class="organ-icon"><i class="fas fa-heart"></i></div>Thyroid</div>
+<div class="organ-card"><div class="organ-icon"><i class="fas fa-heartbeat"></i></div>Heart</div>
+<div class="organ-card"><div class="organ-icon"><i class="fas fa-bone"></i></div>Joint Pain</div>
+<div class="organ-card"><div class="organ-icon"><i class="fas fa-kidneys"></i></div>Kidney</div>
+<div class="organ-card"><div class="organ-icon"><i class="fas fa-notes-medical"></i></div>Liver</div>
+<div class="organ-card"><div class="organ-icon"><i class="fas fa-walking"></i></div>Bone & Joint</div>
+</div>
+
+<div class="steps-box">
+<div class="steps-wrapper">
+
+<div class="left-heading">
+How to book<br>
+a Lab test<br>
+in 3 simple steps
+</div>
+
+<div class="step">
+<span class="step-tag">STEP 1</span>
+<br>
+<i class="fa-solid fa-hand-pointer"></i>
+<h4>Book Appointment</h4>
+<p>Select a Test/Package and book an appointment on PulseOne</p>
+</div>
+
+<div class="step">
+<span class="step-tag">STEP 2</span>
+<br>
+<i class="fa-solid fa-house-medical"></i>
+<h4>Home Sample Collection</h4>
+<p>A certified PulseOne agent visits you for sample collection.</p>
+</div>
+
+<div class="step">
+<span class="step-tag">STEP 3</span>
+<br>
+<i class="fa-regular fa-file-lines"></i>
+<h4>Fast & Accurate Results</h4>
+<p>Get reports in 12–24 hrs and download anytime.</p>
+</div>
+
+</div>
+</div>
+
+<div class="features">
+
+<div class="feature">
+<i class="fa-solid fa-shield-heart"></i>
+<div>
+<h4>Certified Labs</h4>
+<p>NABL & CAP accredited partners</p>
+</div>
+</div>
+
+<div class="feature">
+<i class="fa-solid fa-house-medical"></i>
+<div>
+<h4>Free Home Sample</h4>
+<p>Safe & painless collection</p>
+</div>
+</div>
+
+<div class="feature">
+<i class="fa-solid fa-tags"></i>
+<div>
+<h4>Best Price</h4>
+<p>Guaranteed savings on every test</p>
+</div>
+</div>
+
+<div class="feature">
+<i class="fa-solid fa-file-medical"></i>
+<div>
+<h4>Digital Records</h4>
+<p>Lifetime report storage</p>
+</div>
+</div>
+
+</div>
+
+<h2 class="faq-title">Frequently Asked Questions</h2>
+
+<div class="faq-container">
+
+<div class="faq-item">
+<button class="faq-question">
+How should I prepare for a health checkup?
+<i class="fas fa-chevron-down"></i>
+</button>
+<div class="faq-answer">
+Avoid heavy meals and follow instructions provided by the healthcare professional.
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+How long does it take to get the reports?
+<i class="fas fa-chevron-down"></i>
+</button>
+<div class="faq-answer">
+Reports are generally available within 12–24 hours.
+</div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+<div class="footer-logo">PulseOne</div>
+<p class="footer-desc">
+Leading diagnostic aggregator providing reliable health insights at your doorstep.
+</p>
+
+<div class="socials">
+<i class="fab fa-facebook"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-instagram"></i>
+</div>
+</div>
+
+<div class="footer-col">
+<h4>COMPANY</h4>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+<a href="#">Partner with Us</a>
+</div>
+
+<div class="footer-col">
+<h4>SUPPORT</h4>
+<a href="#">Contact Support</a>
+<a href="#">FAQs</a>
+<a href="#">Help Center</a>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2024 PulseOne Healthcare. All rights reserved.
+</div>
+
+</div>
+</footer>
+
+<button class="chat-btn">
+💬 Need Help?
+</button>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+btn.parentElement.classList.toggle("active");
+
+});
+
+});
+</script>
+
+</body>
+</html>
+
+ 
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Toast ──────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── Cart ───────────────────────────────────────────────────
+let cartCount = 2;
+
+function addToCart(name, price) {
+  cartCount++;
+  document.querySelector('.cart-badge').textContent = cartCount;
+  showToast(`"${name}" added to cart! ₹${price.toLocaleString('en-IN')}`);
+
+  // Animate badge
+  const badge = document.querySelector('.cart-badge');
+  badge.style.transform = 'scale(1.4)';
+  setTimeout(() => badge.style.transform = 'scale(1)', 300);
+}
+
+// ── Search ─────────────────────────────────────────────────
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const q = e.target.value.trim();
+    if (q) showToast(`Searching for "${q}"…`);
+  }
+});
+
+// ── Scroll reveal ──────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.pkg-card, .test-card, .condition-chip').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity .4s ease, transform .4s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

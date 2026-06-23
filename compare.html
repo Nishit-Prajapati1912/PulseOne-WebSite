@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PulseOne — Compare Lab Prices</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  @keyframes fade-in {
+    from { opacity:0; transform:translateX(-50%) translateY(8px); }
+    to   { opacity:1; transform:translateX(-50%) translateY(0); }
+  }
+  .animate-fade-in { animation: fade-in .22s ease both; }
+  .best-col { background-color: #f0fdf4; }
+  .table-scroll { overflow-x: auto; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- ══ NAV ══ -->
+
+<nav class="sticky top-0 z-50 bg-white border-b border-gray-200 flex items-center justify-between px-6 h-14 shadow-sm">
+
+  <!-- Logo -->
+
+  <div class="flex items-center gap-3">
+    <a href="index.html">
+      <img src="assets/logo.png" alt="Logo" width="200" height="50">
+    </a>
+  </div>
+
+  <!-- Navigation Links -->
+
+  <ul class="hidden md:flex items-center gap-7 text-[13px] font-medium text-gray-600">
+    <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+    <li><a href="#" class="hover:text-gray-900">Solutions</a></li>
+    <li><a href="#" class="hover:text-gray-900">Medical Access Support</a></li>
+    <li><a href="#" class="hover:text-gray-900">Royalty Program</a></li>
+  </ul>
+
+  <!-- Right Side Icons -->
+
+  <div class="flex items-center gap-4">
+
+```
+<button class="text-gray-500 hover:text-gray-800">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+    <circle cx="12" cy="10" r="3"/>
+  </svg>
+</button>
+
+<a href="addcard.html" class="text-gray-500 hover:text-gray-800 relative">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1"/>
+    <circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+  </svg>
+</a>
+
+<a href="login.html" class="bg-emerald-800 hover:bg-emerald-900 text-white text-[12.5px] font-semibold px-4 py-2 rounded-md transition">
+  Login
+</a>
+<a href="search.html" class="bg-emerald-800 hover:bg-emerald-900 text-white text-[12.5px] font-semibold px-4 py-2 rounded-md transition">
+  Back
+</a>
+
+  </div>
+
+</nav>
+
+ 
+<!-- ══ MAIN CONTENT ══ -->
+
+
+  <!-- Breadcrumb -->
+  <div class="flex items-center gap-1 text-[11.5px] text-gray-400 mb-2">
+    <a href="#" class="hover:text-emerald-700">Diagnostic Labs</a>
+    <span>›</span>
+    <span class="text-gray-500">Comparison</span>
+  </div>
+
+  <!-- Title Row -->
+  <div class="flex items-start justify-between flex-wrap gap-3 mb-6">
+    <div>
+      <h1 class="text-[26px] font-extrabold text-gray-900 tracking-tight leading-tight mb-1">Compare Lab Prices</h1>
+      <p class="text-[12.5px] text-gray-500">Comparing 5 major diagnostic brands for your selected tests.</p>
+    </div>
+    <div class="flex items-center gap-2 flex-wrap" id="tagRow">
+      <!-- Tags injected by JS -->
+    </div>
+  </div>
+
+  <!-- Two-col layout -->
+  <div class="flex gap-5 items-start flex-wrap lg:flex-nowrap">
+
+    <!-- LEFT PANEL -->
+    <div class="w-full lg:w-[220px] flex-shrink-0 bg-white rounded-xl border border-gray-200 shadow-sm p-4">
+      <h2 class="text-[12px] font-bold text-gray-700 mb-4 uppercase tracking-wider">Selected Tests (2)</h2>
+
+      <!-- CBC Test -->
+      <div class="flex gap-2 mb-4">
+        <div class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-tight">CBC Test</p>
+          <p class="text-[11.5px] text-gray-500 mt-0.5 leading-snug">Complete Blood Count including ESR, Hemoglobin & more.</p>
+        </div>
+      </div>
+
+      <!-- Thyroid Profile -->
+      <div class="flex gap-2 mb-4">
+        <div class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-tight">Thyroid Profile</p>
+          <p class="text-[11.5px] text-gray-500 mt-0.5 leading-snug">T3, T4, and TSH levels evaluation.</p>
+        </div>
+      </div>
+
+      <div class="border-t border-dashed border-gray-200 my-4"></div>
+
+      <!-- Why compare -->
+      <div class="flex gap-2 mb-4">
+        <div class="flex-shrink-0 mt-0.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <p class="text-[11.5px] font-semibold text-gray-700 mb-1">Why compare?</p>
+          <p class="text-[11px] text-gray-500 leading-relaxed italic">Prices can vary up to 40% between certified labs. We ensure you get the best value without compromising clinical quality.</p>
+        </div>
+      </div>
+
+      <!-- Microscope image placeholder -->
+      <div class="rounded-lg overflow-hidden bg-gray-100 h-[90px] flex items-center justify-center">
+        <div class="flex flex-col items-center gap-1 opacity-30">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/>
+            <path d="M9 14a5 5 0 0 0 5 5"/>
+          </svg>
+          <span class="text-[9px] text-gray-400 font-medium">Lab Equipment</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL — Table -->
+    <div class="flex-1 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+      <div class="table-scroll">
+        <table class="w-full min-w-[580px] border-collapse text-left">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="px-5 py-4 w-[160px] border-r border-gray-100">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Tests / Labs</span>
+              </th>
+              <th class="px-3 py-4 text-center border-r border-gray-100">
+                <div class="flex flex-col items-center gap-1.5">
+                  <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-[13px] font-bold text-blue-600">A</div>
+                  <span class="text-[11.5px] font-semibold text-gray-700">Apollo</span>
+                </div>
+              </th>
+              <th class="px-3 py-4 text-center border-r border-gray-100 bg-emerald-50">
+                <div class="flex flex-col items-center gap-1.5">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-[13px] font-bold text-emerald-700">T</div>
+                  <span class="text-[11.5px] font-semibold text-emerald-700">Tata Tmg</span>
+                </div>
+              </th>
+              <th class="px-3 py-4 text-center border-r border-gray-100">
+                <div class="flex flex-col items-center gap-1.5">
+                  <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-[11px] font-bold text-orange-600">DL</div>
+                  <span class="text-[11.5px] font-semibold text-gray-700">Dr Lal PathLabs</span>
+                </div>
+              </th>
+              <th class="px-3 py-4 text-center border-r border-gray-100">
+                <div class="flex flex-col items-center gap-1.5">
+                  <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-[13px] font-bold text-purple-600">M</div>
+                  <span class="text-[11.5px] font-semibold text-gray-700">Metropolis</span>
+                </div>
+              </th>
+              <th class="px-3 py-4 text-center border-r border-gray-100">
+                <div class="flex flex-col items-center gap-1.5">
+                  <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-[13px] font-bold text-teal-600">Ty</div>
+                  <span class="text-[11.5px] font-semibold text-gray-700">Thyrocare</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- CBC Test Row -->
+            <tr class="border-b border-gray-100 bg-white">
+              <td class="px-5 py-4 border-r border-gray-100 align-middle">
+                <p class="text-[13px] font-semibold text-gray-900 mb-1">CBC Test</p>
+                <span class="inline-flex items-center gap-1 text-[10.5px] text-emerald-700 font-medium">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Certified
+                </span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹450</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle bg-emerald-50">
+                <div class="flex flex-col items-center gap-1">
+                  <span class="text-[14px] font-bold text-emerald-700">₹380</span>
+                  <span class="bg-emerald-700 text-white text-[9px] font-bold px-2 py-0.5 rounded tracking-wide uppercase">Best Price</span>
+                </div>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹420</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹500</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹410</span>
+              </td>
+            </tr>
+
+            <!-- Thyroid Profile Row -->
+            <tr class="border-b border-gray-100 bg-gray-50/40">
+              <td class="px-5 py-4 border-r border-gray-100 align-middle">
+                <p class="text-[13px] font-semibold text-gray-900 mb-1">Thyroid Profile</p>
+                <span class="inline-flex items-center gap-1 text-[10.5px] text-gray-400">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  6h TAT
+                </span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹800</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle bg-emerald-50">
+                <span class="text-[14px] font-bold text-emerald-700">₹750</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹850</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹900</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 align-middle">
+                <span class="text-[14px] font-bold text-gray-800">₹780</span>
+              </td>
+            </tr>
+
+            <!-- Total Row -->
+            <tr class="border-b border-gray-200 bg-gray-50/60">
+              <td class="px-5 py-4 border-r border-gray-100">
+                <span class="text-[12.5px] font-bold text-gray-700">Total Amount</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100">
+                <span class="text-[15px] font-bold text-gray-800">₹1,250</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100 bg-emerald-50">
+                <div class="flex flex-col items-center gap-1">
+                  <span class="text-[15px] font-bold text-emerald-700">₹1,130</span>
+                  <span class="text-[10px] font-semibold text-emerald-600 uppercase tracking-wide">Savings ₹120</span>
+                </div>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100">
+                <span class="text-[15px] font-bold text-gray-800">₹1,270</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100">
+                <span class="text-[15px] font-bold text-gray-800">₹1,400</span>
+              </td>
+              <td class="text-center px-3 py-4 border-r border-gray-100">
+                <span class="text-[15px] font-bold text-gray-800">₹1,190</span>
+              </td>
+            </tr>
+
+            <!-- Action Row -->
+            <tr>
+              <td class="px-5 py-4 border-r border-gray-100 align-middle">
+                <p class="text-[11.5px] text-gray-500 leading-snug">Choose lab to proceed with booking</p>
+              </td>
+              <td class="text-center px-3 py-3 border-r border-gray-100 align-middle">
+                <button onclick="selectLab('Apollo','₹1,250')" class="border border-gray-300 hover:border-emerald-600 hover:text-emerald-700 text-gray-700 text-[11.5px] font-semibold px-4 py-2 rounded-md transition w-full">Select</button>
+              </td>
+
+
+              <td class="text-center px-3 py-3 border-r border-gray-100 align-middle bg-emerald-50">
+  <button onclick="window.location.href='addcard.html'" 
+    class="bg-emerald-800 hover:bg-emerald-900 text-white text-[11.5px] font-semibold px-4 py-2 rounded-md transition w-full">
+    Add to Cart
+  </button>
+</td>
+               
+              <td class="text-center px-3 py-3 border-r border-gray-100 align-middle">
+                <button onclick="selectLab('Dr Lal PathLabs','₹1,270')" class="border border-gray-300 hover:border-emerald-600 hover:text-emerald-700 text-gray-700 text-[11.5px] font-semibold px-4 py-2 rounded-md transition w-full">Select</button>
+              </td>
+              <td class="text-center px-3 py-3 border-r border-gray-100 align-middle">
+                <button onclick="selectLab('Metropolis','₹1,400')" class="border border-gray-300 hover:border-emerald-600 hover:text-emerald-700 text-gray-700 text-[11.5px] font-semibold px-4 py-2 rounded-md transition w-full">Select</button>
+              </td>
+              <td class="text-center px-3 py-3 border-r border-gray-100 align-middle">
+                <button onclick="selectLab('Thyrocare','₹1,190')" class="border border-gray-300 hover:border-emerald-600 hover:text-emerald-700 text-gray-700 text-[11.5px] font-semibold px-4 py-2 rounded-md transition w-full">Select</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature Badges -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 pb-6 border-b border-gray-200">
+    <div class="flex items-start gap-3">
+      <div class="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-emerald-700">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <div>
+        <p class="text-[13px] font-semibold text-gray-900 mb-1">NABL Certified Labs</p>
+        <p class="text-[12px] text-gray-500 leading-relaxed">Every lab on our platform undergoes rigorous quality audits for accuracy.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-emerald-700">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      </div>
+      <div>
+        <p class="text-[13px] font-semibold text-gray-900 mb-1">Best Price Guarantee</p>
+        <p class="text-[12px] text-gray-500 leading-relaxed">Find a lower price for the same lab on any other platform, and we'll match it.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3">
+      <div class="w-9 h-9 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5 text-emerald-700">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div>
+        <p class="text-[13px] font-semibold text-gray-900 mb-1">Free Home Collection</p>
+        <p class="text-[12px] text-gray-500 leading-relaxed">Phlebotomists reach your doorstep within 60 minutes of booking.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="h-20"></div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-6xl mx-auto px-6 pt-12 pb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <p class="text-[17px] font-extrabold tracking-tight mb-3">PulseOne</p>
+        <p class="text-[12.5px] text-gray-400 leading-relaxed max-w-[220px] mb-5">Leading diagnostic aggregator providing reliable health insights at your doorstep.</p>
+        <div class="flex items-center gap-3">
+          <button class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </button>
+          <button class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </button>
+          <button class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </button>
+        </div>
+      </div>
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-4">Company</p>
+        <ul class="space-y-2.5">
+          <li><a href="#" class="text-[12.5px] text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="#" class="text-[12.5px] text-gray-400 hover:text-white transition">Terms of Service</a></li>
+          <li><a href="#" class="text-[12.5px] text-gray-400 hover:text-white transition">Partner with Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-4">Support</p>
+        <ul class="space-y-2.5">
+          <li><a href="#" class="text-[12.5px] text-gray-400 hover:text-white transition">Contact Support</a></li>
+          <li><a href="#" class="text-[12.5px] text-gray-400 hover:text-white transition">FAQs</a></li>
+          <li><a href="#" class="text-[12.5px] text-gray-400 hover:text-white transition">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-5">
+      <p class="text-[11px] text-gray-600 text-center">© 2024 PulseOne Healthcare. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[13px] font-medium px-5 py-2.5 rounded-lg shadow-xl z-50 hidden whitespace-nowrap animate-fade-in"></div>
+
+<script>
+// ── Tags ──────────────────────────────────────────────────
+var tags = ['CBC Test', 'Thyroid Profile'];
+
+function renderTags() {
+  var row = document.getElementById('tagRow');
+  row.innerHTML = '';
+  tags.forEach(function(tag) {
+    var span = document.createElement('span');
+    span.className = 'inline-flex items-center gap-1.5 bg-gray-100 border border-gray-200 text-gray-700 text-[12px] font-medium px-3 py-1.5 rounded-full';
+    span.innerHTML = tag +
+      '<button onclick="removeTag(\'' + tag + '\')" class="text-gray-400 hover:text-gray-700 ml-0.5">' +
+        '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+      '</button>';
+    row.appendChild(span);
+  });
+
+  // Add More button
+  var addBtn = document.createElement('button');
+  addBtn.className = 'inline-flex items-center gap-1 text-[12px] font-semibold text-emerald-700 hover:text-emerald-900 transition';
+  addBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add More';
+  addBtn.onclick = function() { showToast('Add test panel coming soon'); };
+  row.appendChild(addBtn);
+}
+
+function removeTag(tag) {
+  tags = tags.filter(function(t) { return t !== tag; });
+  renderTags();
+  showToast('"' + tag + '" removed from comparison');
+}
+
+// ── Select lab ─────────────────────────────────────────────
+function selectLab(name, price) {
+  showToast('✓ ' + name + ' selected — ' + price);
+}
+
+// ── Toast ──────────────────────────────────────────────────
+var toastTimer = null;
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { t.classList.add('hidden'); }, 2800);
+}
+
+// ── Init ───────────────────────────────────────────────────
+renderTags();
+</script>
+</body>
+</html>
