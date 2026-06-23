@@ -1,486 +1,201 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HealthCare – Premium Medical Platform</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;background:#ffffff;color:#0d1f12;overflow-x:hidden;}
-:root{
-  --primary:#0d1f12;
-  --green:#2f6f4f;
-  --green-sage:#5b8767;
-  --light:#f3f4f5;
-  --text:#7d7d7d;
-  --border:#ececec;
-  --gray-100:#f4f5f4;
-  --gray-200:#e4e4e4;
-  --text-muted:#6d7f75;
-}
-
-/* ===== NAVBAR ===== */
-.navbar{width:100%;background:#f4f5f4;border-bottom:1px solid #e4e4e4;padding:12px 0;position:relative;z-index:1000;}
-.nav-container{width:100%;max-width:1800px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.logo-box{width:40px;height:40px;border-radius:12px;background:#2f6f4f;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0;}
-.logo-text{color:#234734;font-size:20px;font-weight:700;letter-spacing:-0.5px;}
-.nav-links{display:flex;align-items:center;gap:38px;list-style:none;padding:0;margin:0;}
-.nav-links li{list-style:none;position:relative;}
-.nav-links li a{text-decoration:none;color:#01422a;font-size:16px;font-weight:600;display:flex;align-items:center;gap:7px;transition:0.3s ease;}
-.nav-links li a span{font-size:10px;margin-top:2px;}
-.nav-links li a:hover{color:#2f6f4f;}
-.nav-links li a.active{background:#e7ede8;color:#2f6f4f;padding:12px 18px;border-radius:12px;}
-.signup-btn{text-decoration:none;background:#2f6f4f;color:#fff;padding:14px 28px;border-radius:40px;font-size:16px;font-weight:600;transition:0.3s ease;white-space:nowrap;}
-.signup-btn:hover{background:#25563d;}
-
-/* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-.hamburger span{display:block;width:24px;height:2px;background:#234734;border-radius:2px;transition:0.3s;}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-/* MEGA MENU */
-.mega-menu{position:relative;list-style:none;}
-.mega-menu>a{text-decoration:none;color:#1f5137;font-weight:600;padding:20px 10px;display:block;}
-.mega-dropdown{position:absolute;top:120%;left:50%;transform:translateX(-50%);width:1500px;background:#fff;display:none;border-top:1px solid #e5e5e5;box-shadow:0 15px 40px rgba(0,0,0,.08);z-index:9499;}
-.mega-menu:hover .mega-dropdown{display:flex;}
-.mega-sidebar{width:220px;background:#f1f3f4;padding:40px 0;flex-shrink:0;}
-.mega-sidebar a{display:block;padding:12px 24px;color:#444;text-decoration:none;font-size:14px;transition:.3s;}
-.mega-sidebar a:hover{background:#e6e8e9;}
-.mega-sidebar .active{background:#dfe3e4;color:#1f5137;font-weight:900;border-left:4px solid #1f7a4f;}
-.mega-content{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding:30px;}
-.mega-column h3{font-size:23px;font-weight:800;margin-bottom:14px;color:#111;letter-spacing:1px;}
-.mega-column a{display:block;text-decoration:none;color:#333;margin-bottom:14px;font-size:14px;}
-.mega-column a:hover{color:#1f7a4f;}
-
-/* ========================================
-   HERO
-   ======================================== */
-
-/* ===== HERO ===== *
- 
- /* ==========================
-   HEALTHCARE HERO SECTION
-    ========================== */
- 
- 
-/* ===== STATS ===== */
-.stats-section{padding:80px 0;background:#fff;}
-.section-eyebrow{text-align:center;font-size:14px;color:#6d7f75;margin-bottom:48px;font-weight:500;}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
-.stat-card{background:#f4f5f4;border-radius:20px;padding:36px 24px;text-align:center;transition:0.3s;}
-.stat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08);}
-.stat-icon{font-size:32px;margin-bottom:16px;color:#2f6f4f;}
-.stat-number{font-size:36px;font-weight:700;color:#0d1f12;margin-bottom:8px;}
-.stat-label{font-size:14px;color:#6d7f75;}
-/* ===== SERVICES ===== */
-.services-section{width:100%;padding:80px 20px;background:#f5f5f5;overflow:hidden;}
-.services-container{width:100%;max-width:1200px;margin:auto;}
-.services-header{text-align:center;margin-bottom:60px;}
-.section-tag{display:inline-block;padding:8px 18px;background:#e7f3ed;color:#0d1f12;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:22px;}
-.section-title{font-size:clamp(32px,5vw,52px);line-height:1.1;color:#0d1f12;font-weight:700;margin-bottom:20px;font-family:'DM Serif Display',serif;}
-.section-title em{font-style:italic;color:#3b6c56;}
-.cargo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-.cargo-card{background:#fff;border-radius:20px;overflow:hidden;border:1px solid #e4e4e4;box-shadow:0 2px 10px rgba(0,0,0,0.06);transition:0.3s ease;}
-.cargo-card:hover{transform:translateY(-5px);}
-.cargo-card img{width:100%;height:220px;object-fit:cover;display:block;}
-.cargo-content{padding:22px;}
-.cargo-content h3{font-size:18px;line-height:1.4;color:#222;margin-bottom:12px;font-weight:700;}
-.cargo-content p{font-size:14px;line-height:1.7;color:#666;margin-bottom:16px;}
-.service-link{color:#2f6edb;font-size:15px;font-weight:600;text-decoration:none;}
-
-/* ===== PROVIDER ===== */
-.provider-section{padding:100px 0;background:#fff;}
-.provider-inner{display:flex;align-items:center;gap:60px;flex-wrap:wrap;}
-.provider-text{flex:1;min-width:280px;}
-.section-body{font-size:15px;color:#718096;line-height:1.7;margin:0 0 28px;}
-.feature-list{list-style:none;padding:0;margin:0 0 32px;}
-.feature-list li{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:15px;color:#0d1f12;}
-.check{color:#2f6f4f;font-weight:700;font-size:16px;}
-.provider-image{flex:1;min-width:280px;position:relative;}
-.provider-image img{width:100%;border-radius:20px;object-fit:cover;}
-.provider-badge{position:absolute;bottom:-20px;left:24px;background:#fff;border-radius:12px;padding:18px 24px;box-shadow:0 4px 24px rgba(0,0,0,0.1);max-width:280px;}
-.badge-num{display:block;font-size:20px;font-weight:700;color:#1a3a2a;margin-bottom:4px;}
-.badge-text{display:block;font-size:13px;color:#718096;line-height:1.5;}
-
-/* ===== FEATURE STRIP ===== */
-.feature-section{width:100%;background:var(--gray-100);padding:36px 0;overflow:hidden;position:relative;border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);}
-.scroll-wrapper{display:flex;width:max-content;animation:moveLeft 18s linear infinite;}
-.scroll-wrapper:hover{animation-play-state:paused;}
-.feature-strip-item{display:flex;align-items:center;gap:14px;margin:0 50px;min-width:max-content;}
-.strip-icon{font-size:16px;color:var(--green-sage);}
-.strip-text{color:var(--text-muted);font-size:15px;font-weight:700;letter-spacing:4px;text-transform:uppercase;}
-@keyframes moveLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* ===== DASHBOARD ===== */
-.dashboard-section{padding:100px 0;background:#f7f7f5;}
-.dashboard-inner{display:flex;align-items:center;gap:60px;flex-wrap:wrap;}
-.dashboard-image{flex:1;min-width:280px;}
-.device-mockup{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12);}
-.device-mockup img{width:100%;height:100%;object-fit:cover;display:block;}
-.dashboard-text{flex:1;min-width:280px;}
-.dashboard-metrics{display:flex;gap:32px;margin-bottom:36px;flex-wrap:wrap;}
-.metric{display:flex;flex-direction:column;gap:4px;}
-.metric-val{font-size:28px;font-weight:700;color:#1a3a2a;line-height:1;}
-.metric-label{font-size:13px;color:#718096;text-transform:uppercase;letter-spacing:0.05em;}
-
-/* ===== STATS WRAPPER ===== */
-.stats-wrapper{width:100%;display:flex;justify-content:center;padding:40px 20px;background:#fff;}
-.stats-card{width:100%;max-width:1050px;border:1px solid var(--border);border-radius:32px;padding:40px 45px;display:flex;justify-content:space-between;align-items:center;background:#fff;flex-wrap:wrap;gap:30px;}
-.stats-left{max-width:520px;}
-.stats-left h2{font-size:clamp(22px,3vw,36px);line-height:1.15;color:var(--green-sage);font-weight:800;margin-bottom:18px;}
-.stats-left p{font-size:14px;line-height:1.8;color:#6f6f6f;}
-.stats-right{display:flex;align-items:center;gap:45px;flex-wrap:wrap;}
-.stat-box{text-align:center;position:relative;}
-.stat-box:not(:last-child)::after{content:'';position:absolute;right:-24px;top:5px;width:1px;height:70px;background:#e8e8e8;}
-.stat-box h3{font-size:clamp(36px,5vw,60px);color:var(--green-sage);font-weight:800;line-height:1;margin-bottom:10px;}
-.stat-box span{font-size:10px;letter-spacing:1px;color:#8a8a8a;font-weight:700;text-transform:uppercase;}
-
-/* ===== SURGERY SECTION ===== */
-.po-surgery-section{width:100%;background:linear-gradient(to right,#071b12,#0a2417);display:flex;align-items:center;justify-content:center;padding:80px 20px;overflow:hidden;}
-.po-surgery-container{max-width:1200px;width:100%;text-align:center;}
-.po-subtitle{color:#d7d7d7;letter-spacing:4px;font-size:11px;margin-bottom:20px;font-weight:600;}
-.po-title{font-size:clamp(28px,5vw,58px);line-height:1.1;color:#fff;font-weight:700;margin-bottom:25px;}
-.po-description{color:#8d9390;max-width:700px;margin:0 auto 70px;line-height:1.7;font-size:16px;}
-.po-cards{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;}
-.po-card{width:320px;padding:45px 35px;border-radius:28px;background:rgba(10,30,20,0.85);border:1px solid rgba(0,255,170,0.08);position:relative;overflow:hidden;text-align:left;transition:0.3s ease;backdrop-filter:blur(8px);}
-.po-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top left,rgba(0,255,170,0.12),transparent 60%);pointer-events:none;}
-.po-card:hover{transform:translateY(-8px);border-color:rgba(0,255,170,0.2);}
-.po-icon-box{width:55px;height:55px;border-radius:14px;background:rgba(0,255,170,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:30px;}
-.po-icon{color:#00d9a6;font-size:24px;}
-.po-card h3{color:#fff;font-size:24px;line-height:1.3;margin-bottom:18px;}
-.po-card p{color:#8a908d;font-size:15px;line-height:1.8;}
-
-/* ===== ABOUT ===== */
-/* ========================================
-   ABOUT
-   ======================================== */
-.about-section {
-  padding: 90px 0;
-  background: var(--white);
-}
-.about-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-.about-image { position: relative; }
-.about-image img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-}
-.about-card {
-  position: absolute;
-  bottom: 24px; right: -20px;
-  background: var(--green-mid);
-  color: white;
-  border-radius: var(--radius-md);
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: var(--shadow-md);
-}
-.about-card-icon { font-size: 1.6rem; }
-.about-card-num { font-size: 1.3rem; font-weight: 700; }
-.about-card-text { font-size: 0.75rem; opacity: 0.85; }
-.about-stats {
-  display: flex;
-  gap: 32px;
-  margin-bottom: 28px;
-}
-.about-stat { display: flex; flex-direction: column; }
-.about-stat-num {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  color: var(--green-mid);
-}
-.about-stat-label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-
-/* ===== TESTIMONIALS ===== */
-.testimonials-section{padding:100px 0;background:#fff;}
-.section-header.centered{text-align:center;margin-bottom:60px;}
-.section-subtitle{font-size:15px;color:#6d7f75;margin-top:12px;}
-.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.testimonial-card{background:#f4f5f4;border-radius:20px;padding:32px;transition:0.3s;}
-.testimonial-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08);}
-.stars{font-size:18px;color:#f5a623;margin-bottom:16px;}
-.stars.light{color:#f5a623;}
-.testimonial-card p{font-size:15px;color:#444;line-height:1.7;margin-bottom:24px;}
-.testimonial-author{display:flex;align-items:center;gap:12px;}
-.testimonial-author img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
-.author-name{font-size:15px;font-weight:600;color:#0d1f12;}
-.author-role{font-size:13px;color:#6d7f75;}
-
-/* ===== DOCTORS ===== */
-.doctors-section{padding:100px 0;background:#f4f5f4;}
-.doctors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
-.doctor-card{background:#fff;border-radius:20px;overflow:hidden;transition:0.3s;}
-.doctor-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08);}
-.doctor-img-wrap{position:relative;}
-.doctor-img-wrap img{width:100%;height:220px;object-fit:cover;display:block;}
-.doctor-available{position:absolute;top:12px;right:12px;background:#22c55e;color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;}
-.doctor-available.busy{background:#ef4444;}
-.doctor-info{padding:20px;}
-.doctor-info h3{font-size:17px;font-weight:700;color:#0d1f12;margin-bottom:6px;}
-.doctor-specialty{font-size:13px;color:#6d7f75;display:block;margin-bottom:8px;}
-.doctor-rating{font-size:14px;color:#f5a623;font-weight:600;}
-.doctor-rating span{color:#6d7f75;font-weight:400;}
-.doctors-cta{text-align:center;margin-top:48px;}
-
-/* ===== PARTNERS ===== */
-.po-partners-section{width:100%;background:linear-gradient(to right,#071c13,#0a2418);display:flex;align-items:center;justify-content:center;padding:80px 20px;overflow:hidden;}
-.po-partners-container{width:100%;max-width:1200px;text-align:center;}
-.po-partners-title{color:#fff;font-size:clamp(28px,4vw,52px);font-weight:700;margin-bottom:70px;line-height:1.2;}
-.po-partners-grid{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;}
-.po-partner-card{width:250px;height:220px;border-radius:30px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:0.35s ease;position:relative;overflow:hidden;backdrop-filter:blur(8px);}
-.po-partner-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top left,rgba(255,255,255,0.08),transparent 65%);pointer-events:none;}
-.po-partner-card:hover{transform:translateY(-8px);border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);}
-.po-partner-card .po-icon{font-size:42px;color:#fff;margin-bottom:25px;}
-.po-partner-card h3{color:#fff;font-size:17px;line-height:1.8;letter-spacing:2px;font-weight:700;}
-
-/* ===== CONTACT ===== */
-.contact-section{padding:100px 0;background:#fff;}
-.contact-inner{display:flex;gap:60px;flex-wrap:wrap;align-items:flex-start;}
-.contact-text{flex:1;min-width:280px;}
-.contact-info{margin:28px 0;display:flex;flex-direction:column;gap:12px;}
-.contact-item{display:flex;align-items:center;gap:10px;font-size:15px;color:#444;}
-.contact-form-wrap{flex:1;min-width:280px;}
-.contact-form{display:flex;flex-direction:column;gap:20px;}
-.form-group{display:flex;flex-direction:column;gap:6px;}
-.form-group label{font-size:14px;font-weight:600;color:#0d1f12;}
-.form-group input,.form-group textarea{padding:12px 16px;border:1px solid #e4e4e4;border-radius:10px;font-size:15px;outline:none;font-family:inherit;transition:border 0.2s;}
-.form-group input:focus,.form-group textarea:focus{border-color:#2f6f4f;}
-.w-full{width:100%;text-align:center;}
-
-/* ===== FOOTER ===== */
-.footer{background:#0d1f12;color:#fff;padding:80px 0 0;}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.5fr;gap:40px;padding-bottom:60px;}
-.footer-brand p{font-size:14px;color:#a0b0a8;line-height:1.7;margin:16px 0 24px;}
-.social-links{display:flex;gap:12px;}
-.social-links a{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:14px;transition:0.3s;}
-.social-links a:hover{background:rgba(255,255,255,0.2);}
-.footer-col h4{font-size:15px;font-weight:700;margin-bottom:20px;color:#fff;}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.footer-col ul li a{text-decoration:none;color:#a0b0a8;font-size:14px;transition:0.3s;}
-.footer-col ul li a:hover{color:#fff;}
-.app-badges{display:flex;flex-direction:column;gap:12px;}
-.app-badge{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;text-decoration:none;color:#fff;transition:0.3s;}
-.app-badge:hover{background:rgba(255,255,255,0.15);}
-.app-icon{font-size:20px;}
-.app-badge-sub{font-size:11px;color:#a0b0a8;}
-.app-badge-main{font-size:15px;font-weight:700;}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding:24px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.footer-bottom p{font-size:14px;color:#a0b0a8;}
-.footer-nav{display:flex;gap:20px;}
-.footer-nav a{text-decoration:none;color:#a0b0a8;font-size:14px;transition:0.3s;}
-.footer-nav a:hover{color:#fff;}
-
-/* ===== ANIMATIONS ===== */
-.fade-in{opacity:0;transform:translateY(24px);animation:fadeUp 0.7s ease forwards;}
-.fade-in.delay-1{animation-delay:0.2s;}
-.fade-in.delay-2{animation-delay:0.4s;}
-.fade-in.delay-3{animation-delay:0.6s;}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
-
-/* ===== PROVIDERS INLINE SECTION ===== */
-.providers-section-wrap{padding:80px 40px;background:#f7f7f5;font-family:Georgia,'Times New Roman',serif;}
-.providers-inner-flex{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:60px;flex-wrap:wrap;}
-.providers-text-side{flex:1;min-width:280px;}
-.providers-image-side{flex:1;min-width:280px;position:relative;}
-.providers-image-side img{width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover;display:block;}
-.providers-float-badge{position:absolute;bottom:-20px;left:24px;background:#fff;border-radius:12px;padding:18px 28px;box-shadow:0 4px 24px rgba(0,0,0,.10);min-width:220px;font-family:Arial,sans-serif;}
-.providers-float-badge p:first-child{font-size:26px;font-weight:700;color:#1a3a2a;margin:0 0 4px;}
-.providers-float-badge p:last-child{font-size:13px;color:#718096;margin:0;line-height:1.5;}
-.prov-feature-list{list-style:none;padding:0;margin:0 0 36px;display:flex;flex-direction:column;gap:20px;font-family:Arial,sans-serif;}
-.prov-feature-list li{display:flex;align-items:flex-start;gap:12px;}
-.prov-check{color:#4a8c6a;font-size:18px;margin-top:2px;}
-.prov-feature-list strong{font-size:15px;color:#1a3a2a;display:block;margin-bottom:4px;}
-.prov-feature-list span{font-size:14px;color:#718096;line-height:1.6;}
-
-/* ============================================================
-   RESPONSIVE BREAKPOINTS
-============================================================ */
-
-/* Tablet - 1100px */
-@media(max-width:1100px){
-  .cargo-grid{grid-template-columns:repeat(2,1fr);}
-  .stats-grid{grid-template-columns:repeat(2,1fr);}
-  .doctors-grid{grid-template-columns:repeat(2,1fr);}
-  .testimonials-grid{grid-template-columns:repeat(2,1fr);}
-  .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
-  .footer-brand{grid-column:1/-1;}
-  .mega-dropdown{width:95vw;left:0;transform:none;flex-direction:column;}
-  .mega-sidebar{width:100%;}
-  .mega-content{grid-template-columns:repeat(2,1fr);}
-  .dashboard-image{min-width:unset;}
-}
-
-/* Tablet portrait - 900px */
-@media(max-width:900px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#f4f5f4;padding:20px 24px;border-top:1px solid #e4e4e4;gap:8px;z-index:999;}
-  .nav-links.open{display:flex;}
-  .hamburger{display:flex;}
-  .nav-container{padding:0 20px;position:relative;}
-  .mega-dropdown{position:static;transform:none;width:100%;box-shadow:none;flex-direction:column;}
-  .mega-menu:hover .mega-dropdown{display:none;}
-  .mega-menu.open .mega-dropdown{display:flex;}
-  .signup-btn{padding:10px 20px;font-size:14px;}
-  .hero-inner{flex-direction:column;gap:40px;}
-  .hero-card--top{right:0;}
-  .hero-card--bottom{left:0;}
-  .provider-inner{flex-direction:column;}
-  .about-inner{flex-direction:column;}
-  .contact-inner{flex-direction:column;}
-  .dashboard-inner{flex-direction:column;}
-  .providers-inner-flex{flex-direction:column;}
-  .providers-float-badge{position:static;margin-top:20px;}
-  .providers-image-side{width:100%;}
-  .stats-card{flex-direction:column;align-items:flex-start;gap:30px;}
-  .stat-box:not(:last-child)::after{display:none;}
-  .stats-right{gap:24px;}
-}
-
-/* Mobile - 700px */
-@media(max-width:700px){
-  .container{padding:0 20px;}
-  .cargo-grid{grid-template-columns:1fr;}
-  .stats-grid{grid-template-columns:1fr 1fr;}
-  .doctors-grid{grid-template-columns:1fr 1fr;}
-  .testimonials-grid{grid-template-columns:1fr;}
-  .hero{padding:70px 0 60px;}
-  .hero-title{font-size:32px;}
-  .hero-ctas{flex-direction:column;}
-  .hero-ctas .btn{width:100%;text-align:center;justify-content:center;}
-  .mega-content{grid-template-columns:1fr;}
-  .po-cards{flex-direction:column;align-items:center;}
-  .po-card{width:100%;max-width:400px;}
-  .po-partners-grid{flex-direction:column;align-items:center;}
-  .po-partner-card{width:100%;max-width:320px;}
-  .footer-top{grid-template-columns:1fr;}
-  .footer-bottom{flex-direction:column;text-align:center;}
-  .about-stats{gap:24px;}
-  .dashboard-metrics{gap:20px;}
-  .providers-section-wrap{padding:60px 20px;}
-  .stats-wrapper{padding:30px 15px;}
-  .stats-card{padding:28px 20px;border-radius:20px;}
-  .stats-right{width:100%;justify-content:space-between;}
-  .stat-box h3{font-size:36px;}
-}
-
-/* Small mobile - 480px */
-@media(max-width:480px){
-  .stats-grid{grid-template-columns:1fr;}
-  .doctors-grid{grid-template-columns:1fr;}
-  .hero-title{font-size:28px;}
-  .section-title{font-size:28px;}
-  .hero-card{display:none;}
-  .footer-top{grid-template-columns:1fr;}
-  .po-surgery-section{padding:60px 15px;}
-  .po-description{font-size:14px;}
-  .po-card{padding:30px 22px;}
-  .po-title{font-size:26px;}
-  .about-section{padding:70px 0;}
-  .testimonials-section{padding:70px 0;}
-  .doctors-section{padding:70px 0;}
-  .provider-section{padding:70px 0;}
-  .po-partners-section{padding:60px 15px;}
-  .po-partners-title{font-size:26px;margin-bottom:40px;}
-  .feature-strip-item{margin:0 30px;}
-  .strip-text{font-size:13px;letter-spacing:2px;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseOne - Structured Healthcare Platform</title>
+    <!-- Font Pre-fetching -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Style Sheet Link -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <a href="#" class="nav-logo">
-      <div class="logo-box">✦</div>
-      <div class="logo-text">PULSEONE</div>
-    </a>
+    <!-- Floating Top Navigation Header Bar -->
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo-block" onclick="navigateTo('home')">
+                 
+                 <img src="assets/logo.png" width="200" height="50" viewBox="0 0 24 24" fill="none"/>
+      
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="nav-item" onclick="navigateTo('about')">About Us</a>
+                <a href="#solutions" class="nav-item" onclick="navigateTo('solutions')">Solutions</a>
+                <a href="#medical-access" class="nav-item" onclick="navigateTo('medical')">Medical Access Support</a>
+                <a href="#royalty" class="nav-item" onclick="navigateTo('royalty')">Royalty Program</a>
+            </div>
+            <button class="btn-inquiry" onclick="openModal('Inquiry Workspace')">Sign Up</button>
+        </nav>
+    </header>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About <span>▼</span></a></li>
-      <li class="mega-menu" id="megaMenu">
-        <a href="#services">Services <span>▼</span></a>
-        <div class="mega-dropdown">
-          <div class="mega-sidebar">
-            <a href="#">Find Doctor By Specialty</a>
-            <a href="#">Find Doctor By Location</a>
-            <a href="#">Find Doctor By Disease</a>
-            <a href="#" class="active">Centres Of Excellence</a>
-            <a href="#">Book Health Checkup</a>
-            <a href="#">Emergency Services</a>
-            <a href="#">Ambulance Service</a>
-            <a href="#">International Patients</a>
-          </div>
-          <div class="mega-content">
-            <div class="mega-column">
-              <h3>MEDICAL CURE</h3>
-              <a href="#">Cardiologist</a><a href="#">Neurologist</a><a href="#">Gastroenterologist</a><a href="#">Oncologist</a><a href="#">Urologist</a><a href="#">General Physician</a>
-            </div>
-            <div class="mega-column">
-              <h3>INTERNAL MEDICINE</h3>
-              <a href="#">Pulmonologist</a><a href="#">Pediatrician</a><a href="#">Gynecologist</a><a href="#">ENT Specialist</a><a href="#">Plastic Surgeon</a><a href="#">Ophthalmologist</a>
-            </div>
-            <div class="mega-column">
-              <h3>DIAGNOSTICS</h3>
-              <a href="#">General Surgeon</a><a href="#">Dermatologist</a><a href="#">Endocrinologist</a><a href="#">Dentist</a><a href="#">Physiotherapist</a><a href="#">Psychiatrist</a>
-            </div>
-            <div class="mega-column">
-              <h3>SPECIALIZED</h3>
-              <a href="#">Orthopaedian</a><a href="#">Rheumatologist</a><a href="#">Nephrologist</a><a href="#">Infectious Disease</a><a href="#">Transplant Surgeon</a><a href="#">Vascular Surgeon</a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li><a href="#doctors">Doctors <span>▼</span></a></li>
-      <li><a href="#contact">Contact <span>▼</span></a></li>
-    </ul>
+    <!-- Main Content Dynamic Frame -->
+    <main id="app-viewport">
+        
+        <!-- PAGE VIEW: HOME -->
+        <section id="view-home" class="page-view dynamic-active">
+            <!-- Hero Composite Banner -->
+            <div class="hero-block">
+                <div class="hero-backdrop-overlay"></div>
+                <div class="hero-content">
+                    <div class="pill-badge">Structured Healthcare Platform</div>
+                    <h1 class="serif-title-hero">Structured Healthcare.<br>Seamless Access.<br><span class="highlight-green">Stronger Continuity.</span></h1>
+                    <p class="hero-description">PulseOne connects hospitals, families, and diagnostics into one coordinated healthcare system.</p>
+                    
 
-    <div style="display:flex;align-items:center;gap:16px;">
-      <a href="login.html" class="signup-btn">Signup</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
+                    
+                    <div class="hero-action-row">
+                       
+                        <button class="btn btn-primary" onclick="window.location.href='next .html'">
+    Book Appointment
+</button>
+                        <button class="btn-secondary" onclick="openModal('Partnership Console')">Partner With PulseOne</button>
+                    </div>
+   
+
+
 <style>
+.hero-quick-links {
+  position: absolute;
+  right: -650px;
+  bottom: 4%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+ 
+.quick-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px 12px 10px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(34, 139, 34, 0.35);
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+  transition: all 0.28s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  cursor: pointer;
+}
+ 
+.quick-link-btn:hover {
+  background: rgba(255, 255, 255, 0.30);
+  border-color: rgba(34, 139, 34, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  color: #0a2e14;
+}
+ 
+.quick-link-btn .ql-play {
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  color: #2d6a4f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+ 
+.quick-link-btn:hover .ql-play {
+  transform: scale(1.08);
+}
+ 
+.quick-link-btn .ql-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+ 
+.quick-link-btn .ql-label {
+  font-size: 11px;
+  color: rgba(10,20,10,0.55);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+ 
+.quick-link-btn .ql-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0d2a14;
+}
+</style>
+<!-- ─── FIXED: Two floating quick-link boxes, bottom-right ─── -->
+  <div class="hero-quick-links fade-in delay-2">
+ 
+    <a href="identity.html" target="_blank" class="quick-link-btn">
+      <span class="ql-play">▶</span>
+      <span class="ql-text">
+        <span class="ql-label">Portal</span>
+        <span class="ql-title">Doctors onboarding pages</span>
+      </span>
+    </a>
+ 
+    <a href="onn.html" class="quick-link-btn">
+      <span class="ql-play">▶</span>
+      <span class="ql-text">
+        <span class="ql-label">Portal</span>
+        <span class="ql-title">Onboarding hospital</span>
+      </span>
+    </a>
+ 
+  </div>
 
-    
- 
- 
- 
-
- 
- 
-/* ──────────── HERO ──────────── */
- 
- 
 
 
- 
- 
-/* ──────────── QUICK CARDS ──────────── */
+                    <div class="telemetry-row">
+                        <div class="glass-card-telemetry">
+                            <div class="telemetry-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 21v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4M7 7h2M7 11h2M15 7h2M15 11h2"/></svg>
+                            </div>
+                            <div>
+                                <h3>50+</h3>
+                                <p>Hospitals</p>
+                            </div>
+                        </div>
+                        <div class="glass-card-telemetry">
+                            <div class="telemetry-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div>
+                                <h3>2K+</h3>
+                                <p>Doctors</p>
+                            </div>
+                        </div>
+                        <div class="glass-card-telemetry">
+                            <div class="telemetry-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                            </div>
+                            <div>
+                                <h3>50K+</h3>
+                                <p>Patients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+          
+            <style>
 .quick-cards{padding-bottom:0;padding-top:0;margin-top:24px;margin-bottom:-20px;position:relative;z-index:10}
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 @media(max-width:800px){.quick-grid{grid-template-columns:repeat(2,1fr)}}
@@ -543,295 +258,144 @@ body{font-family:'Poppins',sans-serif;background:#ffffff;color:#0d1f12;overflow-
 .bar-item:hover .bar-label{color:var(--primary)}
 .bar-icon{width:36px;height:36px;border-radius:10px;background:var(--primary-mid);display:flex;align-items:center;justify-content:center;color:var(--primary);transition:all .25s}
 .bar-label{font-size:.875rem;font-weight:500;color:#6b7280;transition:color .25s}
-
- 
-</style>
-<!-- HERO SECTION ──── -->
- <!-- ===== HERO CSS ===== -->
-<style>
-/* ── HERO: Full background image ── */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding: 50px 0 80px;
-
-  /* hero.jpeg as full background */
-  background-image: url('hero.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Dark overlay: 55% opacity black */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:  rgba(138, 132, 132, 0.332);
-  z-index: 1;
-}
-
-/* Container sits above overlay */
-.hero .container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1800px;
-  margin: auto;
-  padding: 0 40px;
-}
-
-/* Single-column layout — no more two-col grid */
-.hero-inner {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-/* Content block: max 680px, left-aligned */
-.hero-text {
-  flex: none;
-  width: 100%;
-  max-width: 680px;
-}
-
-/* Badge */
-.hero-badge {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
-  color: #131514;
-  border: 1px solid rgba(255, 255, 255, 0.30);
-  padding: 8px 20px;
-  border-radius: 50px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 28px;
-  backdrop-filter: blur(6px);
-  letter-spacing: 0.02em;
-}
-
-/* Heading */
-.hero-title {
-  font-size: clamp(38px, 5.5vw, 68px);
-  line-height: 1.08;
-  color: rgba(2, 50, 17, 0.942);
-  font-weight: 800;
-  margin-bottom: 24px;
-  font-family: 'DM Serif Display', serif;
-  text-shadow: 0 2px 16px rgba(247, 243, 243, 0.35);
-}
-.hero-title em {
-  color: #e6e7e6;           /* mint green stands out on dark bg */
-
-  font-style: italic;
-}
-
-/* Subtitle */
-.hero-subtitle {
-  font-size: 16.5px;
-  color: rgb(248, 247, 247);
-  line-height: 1.72;
-  margin-bottom: 40px;
-  max-width: 560px;
-  font-weight: 400;
-}
-
-/* CTA buttons */
-.hero-ctas {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 44px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 14px 28px;
-  transition: all 0.22s ease;
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-}
-
-.btn-primary {
-  background: #2d6a4f;
-  color: #181717;
-  box-shadow: 0 4px 20px rgba(45, 106, 79, 0.45);
-}
-.btn-primary:hover {
-  background: #1a4a34;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(45, 106, 79, 0.55);
-}
-
-.btn-ghost {
-  background: rgba(7, 7, 7, 0.12);
-  color: #0a0808;
-  border: 1.5px solid rgba(4, 95, 42, 0.45);
-  border-radius: 40px;
-  gap: 10px;
-  backdrop-filter: blur(6px);
-}
-.btn-ghost:hover {
-  background: rgba(2, 50, 17, 0.942);
-  border-color: rgba(2, 60, 11, 0.696);
-  transform: translateY(-2px);
-}
-
-.play-icon {
-  width: 30px;
-  height: 30px;
-  background: #fff;
-  color: #2d6a4f;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  flex-shrink: 0;
-}
-
-/* Trust bar */
-.hero-trust {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.trust-avatars {
-  display: flex;
-}
-.trust-avatars img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 2.5px solid rgba(255, 255, 255, 0.7);
-  margin-left: -10px;
-  object-fit: cover;
-}
-.trust-avatars img:first-child { margin-left: 0; }
-
-.trust-text { display: flex; flex-direction: column; }
-.trust-number {
-  font-size: 18px;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.2;
-}
-.trust-label {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.70);
-}
-
-/* Decorative blobs — subtle, behind overlay but still visible as depth */
-.hero-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 1;
-}
-.blob-1 { width: 500px; height: 500px; background: #2f6f4f; top: -120px; right: -80px; }
-.blob-2 { width: 350px; height: 350px; background: #4a8c6a; bottom: -60px; left: -60px; }
-
 /* Animations */
 .fade-in { opacity: 0; transform: translateY(24px); animation: fadeUp 0.75s ease forwards; }
 .fade-in.delay-1 { animation-delay: 0.2s; }
+.fade-in.delay-2 { animation-delay: 0.35s; }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-/* Responsive */
+ 
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-quick-links {
+    right: 20px;
+    bottom: 36px;
+  }
+  .quick-link-btn {
+    font-size: 12px;
+    padding: 10px 14px 10px 8px;
+  }
+  .quick-link-btn .ql-play {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+  }
+}
+ 
 @media (max-width: 768px) {
-  .hero { padding: 100px 0 60px; min-height: 90vh; }
-  .hero .container { padding: 0 20px; }
-  .hero-text { max-width: 100%; }
-  .hero-title { font-size: clamp(32px, 8vw, 48px); }
-  .hero-ctas { flex-direction: column; }
-  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero {
+    padding: 100px 0 60px;
+    min-height: 90vh;
+  }
+  .hero .container {
+    padding: 0 20px;
+  }
+  .hero-text {
+    max-width: 100%;
+  }
+  .hero-title {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+  .hero-ctas {
+    flex-direction: column;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+ 
+  /* On mobile: quick links move to bottom center, smaller */
+  .hero-quick-links {
+    right: 12px;
+    bottom: 20px;
+    gap: 8px;
+  }
+  .quick-link-btn {
+    font-size: 11px;
+    padding: 8px 12px 8px 7px;
+    gap: 8px;
+  }
+  .quick-link-btn .ql-play {
+    width: 26px;
+    height: 26px;
+    font-size: 9px;
+  }
+  .quick-link-btn .ql-label { display: none; }
+  .quick-link-btn .ql-title { font-size: 11px; }
+}
+ 
+@media (max-width: 480px) {
+  .hero-quick-links {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .quick-link-btn {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+  }
 }
 </style>
-
-<!-- ===== HERO HTML ===== -->
-<section class="hero" id="home">
-
-  <!-- All text content — unchanged -->
-  <div class="container hero-inner">
-    <div class="hero-text fade-in">
-
-      <div class="hero-badge">🏥 Trusted Healthcare Platform</div>
-
-      <h1 class="hero-title">
-        Structured Healthcare<br />
-        For Modern Families<br />
-        <em>Healthcare</em> for You
-      </h1>
-
-      <p class="hero-subtitle">
-        PulseOne connects hospitals, diagnostics, surgery coordination,
-        and healthcare membership into one seamless ecosystem.
-      </p>
-
-      <div class="hero-ctas">
-        <a href="#" class="btn btn-primary">Book Appointment</a>
-        <a href="#" class="btn btn-ghost">
-          <span class="play-icon">▶</span> Explore Royalty Program
-        </a>
-      </div>
-
-      <div class="hero-trust">
-        <div class="trust-avatars">
-          <img src="u.jpg" alt="user" />
-          <img src="f.jpg" alt="user" />
-          <img src="s.jpg" alt="user" />
-          <img src="p.jpg" alt="user" />
-        </div>
-        <div class="trust-text">
-          <span class="trust-number">12K+</span>
-          <span class="trust-label">Happy patients worldwide</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Decorative blobs -->
-  <div class="hero-blob blob-1"></div>
-  <div class="hero-blob blob-2"></div>
-
-</section>
-   
+ 
    
 
   <!-- Quick cards -->
-  <div class="quick-cards max-w" style="padding-bottom:12px">
+    
+    <div class="quick-cards max-w" style="padding-bottom:12px">
     <div class="quick-grid">
+     <div class="qcard" onclick="window.location.href='choose.html'">
+
+    <div class="qcard-icon" style="background:#eef7f3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F5D50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+    </div>
+
+    <div class="qcard-text">
+        <div class="qcard-label">Appointments</div>
+        <div class="qcard-desc">Book a specialist</div>
+    </div>
+
+    <svg class="qcard-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+    </svg>
+
+</div>
+       <div class="qcard" onclick="window.location.href='lab .html'">
+
+    <div class="qcard-icon" style="background:#eef7f3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F5D50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+    </div>
+
+    <div class="qcard-text">
+        <div class="qcard-label">Labs and Radiology</div>
+        <div class="qcard-desc">Book a specialist</div>
+    </div>
+
+    <svg class="qcard-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+    </svg>
+
+</div>
       <div class="qcard">
-        <div class="qcard-icon" style="background:#eef7f3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1F5D50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <div class="qcard-text"><div class="qcard-label">Appointments</div><div class="qcard-desc">Book a specialist</div></div>
+        <div class="qcard-icon" style="background:#fff1f2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="qcard-text"><div class="qcard-label">Surgery and Emergency</div><div class="qcard-desc">Urgent care access</div></div>
         <svg class="qcard-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
       <div class="qcard">
         <div class="qcard-icon" style="background:#eff6ff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
-        <div class="qcard-text"><div class="qcard-label">Teleconsultation</div><div class="qcard-desc">Consult from home</div></div>
-        <svg class="qcard-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-      <div class="qcard">
-        <div class="qcard-icon" style="background:#f5f3ff"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
-        <div class="qcard-text"><div class="qcard-label">Labs and Radiology</div><div class="qcard-desc">Diagnostics near you</div></div>
-        <svg class="qcard-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-      <div class="qcard">
-        <div class="qcard-icon" style="background:#fff1f2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-        <div class="qcard-text"><div class="qcard-label">ER and Emergency</div><div class="qcard-desc">Urgent care access</div></div>
+        <div class="qcard-text"><div class="qcard-label">Woman/Child </div><div class="qcard-desc">Consult from home</div></div>
         <svg class="qcard-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
     </div>
@@ -857,7 +421,6 @@ body{font-family:'Poppins',sans-serif;background:#ffffff;color:#0d1f12;overflow-
     </div>
   </div>
 </section>
-
 <!-- ─── FEATURES ─── -->
 <section class="features px">
   <div class="max-w">
@@ -894,521 +457,361 @@ body{font-family:'Poppins',sans-serif;background:#ffffff;color:#0d1f12;overflow-
         <div class="feat-card-desc">Long-term engagement models that support sustainable healthcare relationships and reduce patient churn.</div>
       </div>
     </div>
+     
+            <!-- Segment: Infrastructure Buildout Base -->
+            <div class="content-section-light balance-layout">
+                <div class="text-side-column">
+                    <div class="pill-badge-mini">What is PulseOne</div>
+                    <h2 class="serif-title-section">Building the Infrastructure of Modern Healthcare</h2>
+                    <p class="section-paragraph-lead">PulseOne is a structured healthcare platform designed to connect hospitals, families, and diagnostics into one seamless ecosystem.</p>
+                    
+                    <div class="vertical-feature-stack">
+                        <div class="feature-strip-card">
+                            <div class="strip-icon green-tint">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            </div>
+                            <div>
+                                <h4>Hospital Growth Engine</h4>
+                                <p>Structured patient acquisition & retention systems</p>
+                            </div>
+                        </div>
+                        <div class="feature-strip-card">
+                            <div class="strip-icon green-tint">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Patient Access Network</h4>
+                                <p>Organized healthcare access with membership benefits</p>
+                            </div>
+                        </div>
+                        <div class="feature-strip-card">
+                            <div class="strip-icon green-tint">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <div>
+                                <h4>Integrated Care System</h4>
+                                <p>Diagnostics, treatment coordination & financial support</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="attribution-note">Built and operated by <strong>Zeencare Health Pvt. Ltd.</strong></div>
+                </div>
+                <div class="graphic-side-column">
+                    <div class="asymmetric-image-wrapper">
+                        <div class="green-backing-canvas"></div>
+                        <div class="image-mock-placeholder">
+                            <div class="inner-image-overlay"></div>
+                            <div class="floating-image-label-card">
+                                <h5>Integrated Care</h5>
+                                <p>Diagnostics, treatment & support in one system</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Bottom icon bar -->
-    <div class="bottom-bar">
-      <div class="bar-item fade-up"><div class="bar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.05 12A11 11 0 0 1 23 12.05M1 12a11 11 0 0 0 22 .05"/><line x1="12" y1="1" x2="12" y2="23"/><path d="M12 1a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 1z"/></svg></div><span class="bar-label">Accessible</span></div>
-      <div class="bar-item fade-up"><div class="bar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div><span class="bar-label">Integrated</span></div>
-      <div class="bar-item fade-up"><div class="bar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div><span class="bar-label">Consistent</span></div>
-      <div class="bar-item fade-up"><div class="bar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div><span class="bar-label">Coordinated</span></div>
-      <div class="bar-item fade-up"><div class="bar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="bar-label">Preventive</span></div>
-    </div>
-  </div>
-</section>
- 
+            <!-- Segment: Three Pillars -->
+            <div class="content-section-muted">
+                <div class="section-header-centered">
+                    <div class="pill-badge-mini">Core Offerings</div>
+                    <h2 class="serif-title-section-centered">Three Pillars of PulseOne</h2>
+                    <p class="section-desc-centered">Designed to create structured, scalable, and seamless healthcare experiences across hospitals and families.</p>
+                </div>
+                <div class="three-cards-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Patient Acquisition & Retention</h3>
+                        <p>Convert one-time visits into long-term relationships with structured patient onboarding and engagement systems.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M20 7h-9M14 3v8M19 17h-5M11 13v8M5 10l-3 3 3 3M22 10l-3 3 3 3"/></svg>
+                        </div>
+                        <h3>Royalty Membership Program</h3>
+                        <p>A premium healthcare membership offering continuity, priority access, and integrated care benefits for families.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M4 4h16v16H4zM4 12h16M12 4v16"/></svg>
+                        </div>
+                        <h3>Coordinated Care Network</h3>
+                        <p>Seamless integration of diagnostics, consultations, and treatment pathways into one connected ecosystem.</p>
+                    </div>
+                </div>
+            </div>
 
-<script>
-// Navbar shadow on scroll
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
-});
+            <!-- Segment: Stakeholders Context -->
+            <div class="content-section-dark-bg">
+                <div class="dark-section-overlay"></div>
+                <div class="dark-section-inner">
+                    <div class="pill-badge-mini-dark">For Who We Build</div>
+                    <h2 class="serif-title-section-white">Designed for Every Stakeholder</h2>
+                    <p class="section-paragraph-lead-muted">PulseOne creates value across the healthcare ecosystem — from hospitals to families to strategic partners.</p>
+                    
+                    <div class="three-cards-grid-dark">
+                        <div class="stakeholder-card">
+                            <div class="stakeholder-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>
+                            </div>
+                            <h3>For Hospitals</h3>
+                            <p>Structured patient inflow, membership-driven retention, and lifecycle engagement systems.</p>
+                            <button class="btn-card-action" onclick="openModal('Hospital Gateway')">Explore Hospital Partnership &rarr;</button>
+                        </div>
+                        <div class="stakeholder-card">
+                            <div class="stakeholder-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                            </div>
+                            <h3>For Patients & Families</h3>
+                            <p>Organized healthcare access, diagnostics, appointments, and support in one unified platform.</p>
+                            <button class="btn-card-action" onclick="navigateTo('royalty')">Join Royalty Membership &rarr;</button>
+                        </div>
+                        <div class="stakeholder-card">
+                            <div class="stakeholder-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#46E483" stroke-width="2"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1"/></svg>
+                            </div>
+                            <h3>For Strategic Partners</h3>
+                            <p>Collaborate to strengthen India's healthcare delivery ecosystem through shared infrastructure.</p>
+                            <button class="btn-card-action" onclick="openModal('Partnership Desk')">Partner With PulseOne &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-// Scroll-triggered fade-up
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
- 
+            <!-- Segment: Interactive Timeline Map -->
+            <div class="content-section-light">
+                <div class="section-header-centered">
+                    <div class="pill-badge-mini">How It Works</div>
+                    <h2 class="serif-title-section-centered">The PulseOne Journey</h2>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-backbone"></div>
+                    
+                    <div class="timeline-node lay-left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <span class="step-num">01 — System Integration</span>
+                            <p>Hospitals integrate with PulseOne's structured acquisition and membership system.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node lay-right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <span class="step-num">02 — Patient Engagement</span>
+                            <p>Patients enroll, book appointments, access diagnostics, and receive coordinated care support.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node lay-left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <span class="step-num">03 — Continuity & Care</span>
+                            <p>Continuous monitoring, lifecycle management, and systematic treatment execution maps.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<!-- ===== STATS ===== -->
-<section class="stats-section" id="stats">
-  <div class="container">
-    <p class="section-eyebrow">A coordinated team who shares the healthcare system</p>
-    <div class="stats-grid">
-      <div class="stat-card fade-in">
-        <div class="stat-icon"><i class="fa-solid fa-hospital"></i></div>
-        <div class="stat-number">450+</div>
-        <div class="stat-label">Healthcare Facilities</div>
-      </div>
-      <div class="stat-card fade-in delay-1">
-        <div class="stat-icon"><i class="fa-solid fa-user-doctor"></i></div>
-        <div class="stat-number">1,200+</div>
-        <div class="stat-label">Expert Physicians</div>
-      </div>
-      <div class="stat-card fade-in delay-2">
-        <div class="stat-icon"><i class="fa-solid fa-smile"></i></div>
-        <div class="stat-number">98%</div>
-        <div class="stat-label">Patient Satisfaction</div>
-      </div>
-      <div class="stat-card fade-in delay-3">
-        <div class="stat-icon"><i class="fa-solid fa-globe"></i></div>
-        <div class="stat-number">50+</div>
-        <div class="stat-label">Countries Served</div>
-      </div>
-    </div>
-  </div>
-</section>
+            <!-- Segment: Future Horizon Callout Conversion Box -->
+            <div class="content-section-light no-top-padding">
+                <div class="callout-card-green-gradient">
+                    <h2 class="serif-title-callout">Ready to Build the Future of Healthcare?</h2>
+                    <p class="callout-desc">Join PulseOne and become part of a structured ecosystem redefining modern medical delivery.</p>
+                    <div class="callout-btn-row">
+                        <button class="btn-callout-primary" onclick="openModal('Partnership Console')">Contact Partnership Team &rarr;</button>
+                        <button class="btn-callout-secondary" onclick="openModal('Case Study Desk')">View Case Studies</button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- ===== SERVICES ===== -->
-<section class="services-section" id="services">
-  <div class="services-container">
-    <div class="services-header">
-      <div class="section-tag">Our Services</div>
-      <h2 class="section-title">Healthcare Secret <br><em>Infrastructure</em></h2>
-    </div>
-    <div class="cargo-grid">
-      <div class="cargo-card">
-        <img src="a.jpg" alt="Healthcare Access">
-        <div class="cargo-content">
-          <h3>Structured Healthcare Access</h3>
-          <p>A single coordinated entry point across providers, specialists and care settings.</p>
-          <a href="#" class="service-link">Explore →</a>
+        <!-- PAGE VIEW: ABOUT US -->
+        <section id="view-about" class="page-view">
+            <div class="content-section-light balance-layout adaptive-padding-top">
+                <div class="text-side-column">
+                    <div class="pill-badge-mini">Why PulseOne</div>
+                    <h2 class="serif-title-section">Built for the Future of Healthcare Delivery</h2>
+                    <p class="section-paragraph-lead">PulseOne is not just a healthcare solution — it is a structured infrastructure designed to scale modern medical systems.</p>
+                </div>
+                <div class="graphic-side-column">
+                    <div class="about-grid-metrics">
+                        <div class="metric-block-dark">
+                            <h5>Lifecycle Focused</h5>
+                            <p>Not just visits — long-term patient engagement</p>
+                        </div>
+                        <div class="metric-block-light">
+                            <h5>Built for Growth Hospitals</h5>
+                            <p>Optimized for mid-sized & expanding healthcare systems</p>
+                        </div>
+                        <div class="metric-block-light">
+                            <h5>Membership Continuity</h5>
+                            <p>Structured retention through membership-driven care</p>
+                        </div>
+                        <div class="metric-block-light">
+                            <h5>Diagnostics Integration</h5>
+                            <p>Seamless connection across diagnostics network</p>
+                        </div>
+                        <div class="metric-block-light">
+                            <h5>Financial Access Support</h5>
+                            <p>Structured assistance for treatment affordability</p>
+                        </div>
+                        <div class="metric-block-light">
+                            <h5>Scalable Infrastructure</h5>
+                            <p>Designed for long-term healthcare expansion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE VIEW: SOLUTIONS -->
+        <section id="view-solutions" class="page-view">
+            <div class="content-section-muted adaptive-padding-top">
+                <div class="section-header-centered">
+                    <div class="pill-badge-mini">Core Framework</div>
+                    <h2 class="serif-title-section-centered">Engineered Enterprise Solutions</h2>
+                </div>
+                <div class="three-cards-grid">
+                    <div class="pillar-card">
+                        <h3>Dynamic Routing Engine</h3>
+                        <p>Automated clinical triage mapping patients directly to the optimal specialist facility instantaneously.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <h3>Telemetry Synapse</h3>
+                        <p>Real-time pipeline passing diagnostics telemetry securely between laboratory hubs and operating rooms.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <h3>Continuity Suite</h3>
+                        <p>Algorithmic post-discharge monitoring keeping families updated and healthcare teams in absolute alignment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE VIEW: MEDICAL ACCESS SUPPORT -->
+        <section id="view-medical" class="page-view">
+            <div class="content-section-light balance-layout adaptive-padding-top">
+                <div class="text-side-column">
+                    <div class="pill-badge-mini">Advanced Care Access</div>
+                    <h2 class="serif-title-section">Planning a Surgery or Advanced Treatment?</h2>
+                    <p class="section-paragraph-lead">PulseOne simplifies complex healthcare journeys by connecting you with the right specialists, diagnostics, and care pathways.</p>
+                    <ul class="checklist-suite">
+                        <li><span class="check-bullet">&checkmark;</span> Specialist discovery</li>
+                        <li><span class="check-bullet">&checkmark;</span> Pre-surgery diagnostic coordination</li>
+                        <li><span class="check-bullet">&checkmark;</span> Appointment scheduling</li>
+                        <li><span class="check-bullet">&checkmark;</span> Treatment pathway guidance</li>
+                        <li><span class="check-bullet">&checkmark;</span> Structured financial access assistance</li>
+                    </ul>
+                    <button class="btn-dark-hero" onclick="openModal('Surgery Concierge')">Request Surgery Consultation &rarr;</button>
+                </div>
+                <div class="graphic-side-column flex-center">
+                    <div class="dark-box-card">
+                        <div class="pill-badge-mini-dark-static">Care Infrastructure</div>
+                        <h3>End-to-End Support</h3>
+                        <p>From diagnosis to recovery, PulseOne ensures a seamless, structured, and guided treatment journey.</p>
+                        <div class="inner-highlight-banner">
+                            Trusted across metro & emerging healthcare corridors
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE VIEW: ROYALTY PROGRAM -->
+        <section id="view-royalty" class="page-view">
+            <div class="content-section-muted adaptive-padding-top">
+                <div class="section-header-centered">
+                    <div class="pill-badge-mini">Elite Tier</div>
+                    <h2 class="serif-title-section-centered">Royalty Membership Ecosystem</h2>
+                    <p class="section-desc-centered">Unlocking absolute administrative priority and premium specialized health delivery pathways for your entire household ecosystem.</p>
+                </div>
+                <div class="three-cards-grid">
+                    <div class="pillar-card hot-tier">
+                        <h3>Family Tier</h3>
+                        <p>Covers up to 4 dependents with absolute continuous coordination loops.</p>
+                    </div>
+                    <div class="pillar-card complex-tier">
+                        <h3>Corporate Core</h3>
+                        <p>Dedicated clinical infrastructure links for specialized business teams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Application Footer Structure -->
+    <footer class="app-footer">
+        <div class="footer-primary-layout">
+            <div class="footer-branding-cell">
+                <div class="logo-block-footer">
+                     
+                      <img src="assets/logo.png" width="200" height="50" viewBox="0 0 24 24" fill="none"/>
+     
+                </div>
+                <p class="footer-mission-text">Structured healthcare infrastructure designed to connect hospitals, patients, and diagnostics into one seamless system.</p>
+                <div class="social-icon-row">
+                    <div class="icon-circle-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </div>
+                    <div class="icon-circle-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links-column">
+                <h4>Company</h4>
+                <a href="#about" onclick="navigateTo('about')">About Us</a>
+                <a href="#contact" onclick="openModal('Contact Center')">Contact</a>
+            </div>
+            <div class="footer-links-column">
+                <h4>Solutions</h4>
+                <a href="#solutions" onclick="navigateTo('solutions')">For Providers</a>
+                <a href="#solutions" onclick="navigateTo('solutions')">For Patients</a>
+                <a href="#medical" onclick="navigateTo('medical')">Medical Access</a>
+                <a href="Agreement.html" onclick="navigateTo('agreement')">Agreement</a>
+            </div>
+            <div class="footer-links-column">
+                <h4>Programs</h4>
+                <a href="#royalty" onclick="navigateTo('royalty')">Royalty Membership</a>
+                <a href="#partner" onclick="openModal('Partnership Console')">Partner With Us</a>
+            </div>
         </div>
-      </div>
-      <div class="cargo-card">
-        <img src="b.jpg" alt="Patient Lifecycle">
-        <div class="cargo-content">
-          <h3>Patient Lifecycle Management</h3>
-          <p>Continuity from first appointment through diagnostics, surgery and follow-up.</p>
-          <a href="#" class="service-link">Explore →</a>
+        <div class="footer-bottom-bar">
+            <span>&copy; 2026 PulseOne Infrastructure. All rights reserved.</span>
+            <div class="compliance-tokens">
+                <span>ISO Certified</span>
+                <span>Secure Healthcare Systems</span>
+            </div>
         </div>
-      </div>
-      <div class="cargo-card">
-        <img src="c.jpg" alt="Hospital Growth">
-        <div class="cargo-content">
-          <h3>Hospital Growth Infrastructure</h3>
-          <p>An institutional framework for patient acquisition, retention and care delivery.</p>
-          <a href="#" class="service-link">Explore →</a>
-        </div>
-      </div>
-      <div class="cargo-card">
-        <img src="d.jpg" alt="Diagnostics">
-        <div class="cargo-content">
-          <h3>Diagnostics Integration</h3>
-          <p>Lab networks coordinated into a unified, transparent reporting workflow.</p>
-          <a href="#" class="service-link">Explore →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- ===== PROVIDER ===== -->
-<section class="provider-section" id="provider">
-  <div class="container provider-inner">
-    <div class="provider-text fade-in">
-      <div class="section-tag">Our Platform</div>
-      <h2 class="section-title">Redefining<br /><em>Medical</em><br />Infrastructure</h2>
-      <p class="section-body">PulseOne isn't just a service; it's the underlying architecture that makes healthcare predictable, professional, and patient-first. We bridge the gap between clinical excellence and organizational efficiency.</p>
-      <ul class="feature-list">
-        <li><span class="check">✓</span> Real-time patient monitoring</li>
-        <li><span class="check">✓</span> Secure health records</li>
-        <li><span class="check">✓</span> 24/7 doctor availability</li>
-        <li><span class="check">✓</span> AI-powered diagnostics</li>
-      </ul>
-      <a href="#" class="btn btn-primary">Learn More</a>
+    <!-- Interactive Workspace Overlay (Modal Window) -->
+    <div id="interactive-modal" class="modal-blur-overlay">
+        <div class="modal-surface-container">
+            <div class="modal-header-row">
+                <h3 id="modal-workspace-title">Data Transmission Workspace</h3>
+                <button class="close-modal-trigger" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body-content">
+                <p>Submit your parameters to the secure PulseOne system.</p>
+                <form id="workspace-form" onsubmit="handleFormSubmission(event)">
+                    <div class="input-form-group">
+                        <label>Full Representative Name</label>
+                        <input type="text" placeholder="John Doe" required />
+                    </div>
+                    <div class="input-form-group">
+                        <label>Secure Communication Email</label>
+                        <input type="email" placeholder="johndoe@pulseone.com" required />
+                    </div>
+                    <button type="submit" class="btn-primary full-width-modifier">Submit Verification Stream</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="provider-image fade-in delay-1">
-      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Medical Infrastructure" />
-      <div class="provider-badge">
-        <span class="badge-num">99.9% Precision</span>
-        <span class="badge-text">Industry-leading diagnostic accuracy across our entire partner network.</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ===== SCROLLING FEATURE STRIP ===== -->
-<section class="feature-section" id="featureStrip">
-  <div class="scroll-wrapper" id="scrollContent">
-    <div class="feature-strip-item"><div class="strip-icon">✣</div><div class="strip-text">Ecosystem</div></div>
-    <div class="feature-strip-item"><div class="strip-icon">⚗</div><div class="strip-text">Integration</div></div>
-    <div class="feature-strip-item"><div class="strip-icon">⌘</div><div class="strip-text">Continuity</div></div>
-    <div class="feature-strip-item"><div class="strip-icon">✚</div><div class="strip-text">Coordination</div></div>
-    <div class="feature-strip-item"><div class="strip-icon">🛡</div><div class="strip-text">Compliance</div></div>
-  </div>
-</section>
-
-<!-- ===== DASHBOARD ===== -->
-<section class="dashboard-section" id="dashboard">
-  <div class="container dashboard-inner">
-    <div class="dashboard-image fade-in">
-      <div class="device-mockup">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80" alt="Dashboard" />
-      </div>
-    </div>
-    <div class="dashboard-text fade-in delay-1">
-      <div class="section-tag">Pulse one</div>
-      <h2 class="section-title"><em>Healthcare</em><br />Access<br />Infrastructure</h2>
-      <p class="section-body">We build the physical and digital pipelines that allow hospitals to operate at peak efficiency while providing patients with immediate bedside care.</p>
-      <div class="dashboard-metrics">
-        <div class="metric"><span class="metric-val">98%</span><span class="metric-label">Uptime</span></div>
-        <div class="metric"><span class="metric-val">2.1s</span><span class="metric-label">Avg. Response</span></div>
-        <div class="metric"><span class="metric-val">256-bit</span><span class="metric-label">Encryption</span></div>
-      </div>
-      <a href="#" class="btn btn-primary">Learn more about our infrastructure -></a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== STATS WRAPPER ===== -->
-<section class="stats-wrapper">
-  <div class="stats-card">
-    <div class="stats-left">
-      <h2>Diagnostics & Coordinated Care</h2>
-      <p>Integrated reporting ensures your doctor is always in the loop, reducing wait times by up to 40%.</p>
-    </div>
-    <div class="stats-right">
-      <div class="stat-box"><h3>40%</h3><span>FASTER RESULTS</span></div>
-      <div class="stat-box"><h3>2.5k+</h3><span>SPECIALISED TESTS</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PROVIDERS / FOR PROVIDERS ===== -->
-<section class="providers-section-wrap">
-  <div class="providers-inner-flex">
-    <div class="providers-text-side">
-      <span style="display:inline-block;background:#e6efe9;color:#2d6a4f;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:24px;font-family:Arial,sans-serif;">FOR PROVIDERS</span>
-      <h2 style="font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.1;color:#1a3a2a;margin:0 0 32px;">Structured<br><em style="color:#4a8c6a;font-style:italic;">Growth</em> For<br>Providers</h2>
-      <p style="font-size:15px;color:#4a5568;line-height:1.7;margin:0 0 32px;font-family:Arial,sans-serif;">PulseOne provides the underlying architecture that drives predictable, professional, and patient-first growth for healthcare providers.</p>
-      <ul class="prov-feature-list">
-        <li><span class="prov-check">&#10003;</span><div><strong>Patient Acquisition</strong><span>Tap into the PulseOne ecosystem of members actively seeking high-end coordinated care solutions.</span></div></li>
-        <li><span class="prov-check">&#10003;</span><div><strong>Retention Protocols</strong><span>Leverage our continuity protocols to increase patient loyalty and lifetime engagement value.</span></div></li>
-        <li><span class="prov-check">&#10003;</span><div><strong>Direct Lab Integration</strong><span>Seamlessly connect your clinical systems with our tier-1 diagnostic partners for instant data flow.</span></div></li>
-      </ul>
-      <a href="#" style="display:inline-block;background:#2d6a4f;color:#fff;font-size:15px;font-weight:600;padding:14px 32px;border-radius:8px;text-decoration:none;font-family:Arial,sans-serif;">Learn More</a>
-    </div>
-    <div class="providers-image-side">
-      <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=700&q=80" alt="Surgeons in operating room" />
-      <div class="providers-float-badge">
-        <p>99.9% Precision</p>
-        <p>Industry-leading diagnostic accuracy across our entire partner network</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section class="about-section" id="about">
-  <div class="container about-inner">
-    <div class="about-image fade-in">
-      <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600&q=80" alt="Eldercare" />
-      <div class="about-card">
-        <div class="about-card-icon">⭐</div>
-        <div>
-          <div class="about-card-num">4.9/5</div>
-          <div class="about-card-text">Patient Rating</div>
-        </div>
-      </div>
-    </div>
-    <div class="about-text fade-in delay-1">
-      <div class="section-tag">DIAGNOSTIC EXCELLENCE</div>
-      <h2 class="section-title">Healthcare<br /><em>That Feels</em><br />Organized and Personal</h2>
-      <p class="section-body">No more lost reports or manual coordination. PulseOne handles the logistics so you can focus entirely on recovery and wellness.</p>
-      <div class="about-stats">
-        <div class="about-stat"><span class="about-stat-num">15+</span><span class="about-stat-label">Years Experience</span></div>
-        <div class="about-stat"><span class="about-stat-num">300K+</span><span class="about-stat-label">Patients Treated</span></div>
-      </div>
-      <a href="#" class="btn btn-primary">Our Story</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SURGERY SECTION ===== -->
-<section class="po-surgery-section">
-  <div class="po-surgery-container">
-    <p class="po-subtitle">ADVANCED CLINICAL SUPPORT</p>
-    <h1 class="po-title">Surgery Requires Precision <br>Coordination</h1>
-    <p class="po-description">Surgery isn't just a procedure; it's a journey. PulseOne provides the end-to-end framework—from pre-op diagnostics to rehabilitation.</p>
-    <div class="po-cards">
-      <div class="po-card">
-        <div class="po-icon-box"><div class="po-icon">✦</div></div>
-        <h3>Precision <br>Sourcing</h3>
-        <p>Matching your condition with the highest-rated surgical facilities and surgeons in our global network.</p>
-      </div>
-      <div class="po-card">
-        <div class="po-icon-box"><div class="po-icon">📋</div></div>
-        <h3>Protocol <br>Adherence</h3>
-        <p>Standardized clinical pathways that reduce post-surgical complication rates by up to 30%.</p>
-      </div>
-      <div class="po-card">
-        <div class="po-icon-box"><div class="po-icon">⌂</div></div>
-        <h3>Rehab <br>Continuity</h3>
-        <p>Integrated post-care monitoring through our virtual health suite for immediate recovery support.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TESTIMONIALS ===== -->
-<section class="testimonials-section" id="testimonials">
-  <div class="container">
-    <div class="section-header centered">
-      <div class="section-tag">Testimonials</div>
-      <h2 class="section-title">Recommend &amp; Rate <em>Cards</em></h2>
-      <p class="section-subtitle">What our patients say about their experience</p>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-in">
-        <div class="stars">★★★★★</div>
-        <p>"The platform made managing my chronic condition so much easier. My care team is always just a tap away and the health tracking features are excellent."</p>
-        <div class="testimonial-author">
-          <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Sarah" />
-          <div><div class="author-name">Sarah Mitchell</div><div class="author-role">Diabetes Patient</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-in delay-1">
-        <div class="stars light">★★★★★</div>
-        <p>"Incredible experience! Booked a specialist appointment in minutes and had my lab results available the same day. Revolutionary healthcare."</p>
-        <div class="testimonial-author">
-          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="James" />
-          <div><div class="author-name">James Rodriguez</div><div class="author-role">Cardiology Patient</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-in delay-2">
-        <div class="stars">★★★★★</div>
-        <p>"As a senior, I was skeptical about digital healthcare. But this platform is so intuitive and my family can monitor my health in real-time. Amazing!"</p>
-        <div class="testimonial-author">
-          <img src="https://randomuser.me/api/portraits/women/78.jpg" alt="Margaret" />
-          <div><div class="author-name">Margaret Chen</div><div class="author-role">General Wellness</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== DOCTORS ===== -->
-<section class="doctors-section" id="doctors">
-  <div class="container">
-    <div class="section-header centered">
-      <div class="section-tag">Our Team</div>
-      <h2 class="section-title">Our Best <em>Practitioners</em></h2>
-    </div>
-    <div class="doctors-grid">
-      <div class="doctor-card fade-in">
-        <div class="doctor-img-wrap">
-          <img src="u.jpg" alt="Dr. Marcus" />
-          <div class="doctor-available">Available</div>
-        </div>
-        <div class="doctor-info">
-          <h3>Dr. Marcus Webb</h3>
-          <span class="doctor-specialty">Cardiologist</span>
-          <div class="doctor-rating">★ 4.9 <span>(234 reviews)</span></div>
-        </div>
-      </div>
-      <div class="doctor-card fade-in delay-1">
-        <div class="doctor-img-wrap">
-          <img src="p.jpg" alt="Dr. Elena" />
-          <div class="doctor-available">Available</div>
-        </div>
-        <div class="doctor-info">
-          <h3>Dr. Elena Santos</h3>
-          <span class="doctor-specialty">Neurologist</span>
-          <div class="doctor-rating">★ 4.8 <span>(189 reviews)</span></div>
-        </div>
-      </div>
-      <div class="doctor-card fade-in delay-2">
-        <div class="doctor-img-wrap">
-          <img src="r.jpg" alt="Dr. Khan" />
-          <div class="doctor-available busy">Busy</div>
-        </div>
-        <div class="doctor-info">
-          <h3>Dr. Arjun Khan</h3>
-          <span class="doctor-specialty">Orthopedist</span>
-          <div class="doctor-rating">★ 4.9 <span>(312 reviews)</span></div>
-        </div>
-      </div>
-      <div class="doctor-card fade-in delay-3">
-        <div class="doctor-img-wrap">
-          <img src="f.jpg" alt="Dr. Patel" />
-          <div class="doctor-available">Available</div>
-        </div>
-        <div class="doctor-info">
-          <h3>Dr. Priya Patel</h3>
-          <span class="doctor-specialty">Pediatrician</span>
-          <div class="doctor-rating">★ 5.0 <span>(421 reviews)</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="doctors-cta">
-      <a href="#" class="btn btn-outline">View All Doctors</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PARTNERS ===== -->
-<section class="po-partners-section">
-  <div class="po-partners-container">
-    <h1 class="po-partners-title">Our Ecosystem Partners</h1>
-    <div class="po-partners-grid">
-      <div class="po-partner-card">
-        <div class="po-icon">🏢</div>
-        <h3>ELITE <br>HOSPITALS</h3>
-      </div>
-      <div class="po-partner-card">
-        <div class="po-icon">⚕️</div>
-        <h3>TIER-1 <br>DIAGNOSTICS</h3>
-      </div>
-      <div class="po-partner-card">
-        <div class="po-icon">🤝</div>
-        <h3>STRATEGIC <br>ALLIANCES</h3>
-      </div>
-      <div class="po-partner-card">
-        <div class="po-icon">💵</div>
-        <h3>GLOBAL <br>INVESTORS</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section class="contact-section" id="contact">
-  <div class="container contact-inner">
-    <div class="contact-text fade-in">
-      <div class="section-tag">Get in Touch</div>
-      <h2 class="section-title">Ready to <em>Transform</em><br />Your Healthcare?</h2>
-      <p class="section-body">Join thousands of patients and providers already using our platform. Start your free trial today, no credit card required.</p>
-      <div class="contact-info">
-        <div class="contact-item"><span>📧</span> support@medicare.com</div>
-        <div class="contact-item"><span>📞</span> +1 (800) 123-4567</div>
-        <div class="contact-item"><span>📍</span> 123 Health Ave, NY 10001</div>
-      </div>
-    </div>
-    <div class="contact-form-wrap fade-in delay-1">
-      <form class="contact-form" onsubmit="handleForm(event)">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" placeholder="John Smith" />
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="john@example.com" />
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea rows="4" placeholder="How can we help you?"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary w-full">Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer" id="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo">
-          <span class="logo-box" style="font-size:16px;">✦</span>
-          <span class="logo-text">Pulse<strong>One</strong></span>
-        </a>
-        <p>The most trusted healthcare platform connecting patients with world-class medical professionals.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Twitter">𝕏</a>
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Partners</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#">Telemedicine</a></li>
-          <li><a href="#">Lab Testing</a></li>
-          <li><a href="#">Pharmacy</a></li>
-          <li><a href="#">Mental Health</a></li>
-          <li><a href="#">Surgery Care</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-          <li><a href="#">HIPAA</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Download App</h4>
-        <div class="app-badges">
-          <a href="#" class="app-badge">
-            <span class="app-icon">🍎</span>
-            <div><div class="app-badge-sub">Download on</div><div class="app-badge-main">App Store</div></div>
-          </a>
-          <a href="#" class="app-badge">
-            <span class="app-icon">▶</span>
-            <div><div class="app-badge-sub">Get it on</div><div class="app-badge-main">Google Play</div></div>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 PulseOne Platform. All rights reserved.</p>
-      <div class="footer-nav">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Cookies</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-// Scroll strip duplicate
-const scrollContent = document.getElementById("scrollContent");
-if(scrollContent) scrollContent.innerHTML += scrollContent.innerHTML;
-
-// Hamburger toggle
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("navLinks");
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("open");
-  navLinks.classList.toggle("open");
-});
-
-// Close nav on link click (mobile)
-navLinks.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    if(window.innerWidth <= 900){
-      hamburger.classList.remove("open");
-      navLinks.classList.remove("open");
-    }
-  });
-});
-
-// Mobile mega menu toggle
-const megaMenu = document.getElementById("megaMenu");
-if(megaMenu){
-  megaMenu.querySelector("a").addEventListener("click", (e) => {
-    if(window.innerWidth <= 900){
-      e.preventDefault();
-      megaMenu.classList.toggle("open");
-    }
-  });
-}
-
-// Form handler
-function handleForm(e){
-  e.preventDefault();
-  alert("Message sent! We'll get back to you shortly.");
-}
-</script>
+    <!-- Script Block -->
+    <script src="script.js"></script>
 </body>
 </html>
